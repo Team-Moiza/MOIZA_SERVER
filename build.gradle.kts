@@ -39,6 +39,9 @@ dependencies {
     // validation
     implementation("org.springframework.boot:spring-boot-starter-validation")
 
+    // redis
+    implementation("org.springframework.boot:spring-boot-starter-data-redis")
+
     // web
     implementation("org.springframework.boot:spring-boot-starter-web")
 
