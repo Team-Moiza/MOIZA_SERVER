@@ -5,6 +5,18 @@ spring:
     username: ${DB_USERNAME:root}
     password: ${DB_PASSWORD:1111}
 
+  jpa:
+    database: mysql
+    database-platform: org.hibernate.dialect.MySQLDialect
+    generate-ddl: true
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+    open-in-view: false
+
 jwt:
   access-time: 3600000 # 1시간
   refresh-time: 2592000000 # 30일
