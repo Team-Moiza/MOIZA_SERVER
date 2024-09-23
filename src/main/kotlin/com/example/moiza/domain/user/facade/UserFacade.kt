@@ -1,5 +1,6 @@
 package com.example.moiza.domain.user.facade
 
+import com.example.moiza.domain.user.exception.UserNotFoundException
 import com.example.moiza.domain.user.domain.User
 import com.example.moiza.domain.user.domain.repository.UserRepository
 import org.springframework.security.core.context.SecurityContextHolder
@@ -15,5 +16,5 @@ class UserFacade(
     }
 
     fun getUserByEmail(email: String)
-            = userRepository.findByEmail(email) ?: throw IllegalArgumentException("Not Found User")
+            = userRepository.findByEmail(email) ?: throw UserNotFoundException
 }
