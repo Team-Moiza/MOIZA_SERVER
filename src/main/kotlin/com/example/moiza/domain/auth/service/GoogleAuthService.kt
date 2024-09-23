@@ -24,7 +24,7 @@ class GoogleAuthService(
         val email: String = response.email
 
         userRepository.findByEmail(email)
-                ?: save(email, response.name)
+                ?: save(email, response.name, response.picture)
 
         return TokenResponse(
                 jwtTokenProvider.createAccessToken(email),
@@ -32,7 +32,7 @@ class GoogleAuthService(
         )
     }
 
-    private fun save(email: String, nickname: String) {
+    private fun save(email: String, nickname: String, profile: String) {
         val authority: Authority
 
         if (email.endsWith("@bssm.hs.kr"))
@@ -49,6 +49,7 @@ class GoogleAuthService(
         userRepository.save(User(
             email,
             nickname,
+            profile,
             authority,
         ))
     }

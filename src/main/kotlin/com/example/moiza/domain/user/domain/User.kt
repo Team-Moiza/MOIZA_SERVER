@@ -10,7 +10,8 @@ import jakarta.persistence.Id
 class User(
     email: String,
     nickname: String,
-    authority: Authority
+    profile: String,
+    authority: Authority,
 ) {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long = 0L
@@ -19,6 +20,9 @@ class User(
         protected set
 
     var nickname: String = nickname
+        protected set
+
+    var profile: String = profile
         protected set
 
     var authority: Authority = authority
