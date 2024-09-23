@@ -2,6 +2,7 @@ package com.example.moiza.global.security.jwt
 
 import com.example.moiza.global.error.ErrorResponse
 import com.example.moiza.global.error.exception.BusinessException
+import com.fasterxml.jackson.databind.ObjectMapper
 import jakarta.servlet.FilterChain
 import jakarta.servlet.http.HttpServletRequest
 import jakarta.servlet.http.HttpServletResponse
@@ -32,7 +33,6 @@ class JwtTokenFilter(
 
     }
 
-    @Throws(IOException::class)
     private fun handleException(response: HttpServletResponse, e: BusinessException) {
         val errorCode = e.errorCode
         val res = ErrorResponse(
