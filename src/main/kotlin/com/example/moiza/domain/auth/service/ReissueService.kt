@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 
 @Service
-class GetAccessTokenService(
+class ReissueService(
         private val refreshTokenRepository: RefreshTokenRepository,
         private val jwtTokenProvider: JwtTokenProvider
 ) {

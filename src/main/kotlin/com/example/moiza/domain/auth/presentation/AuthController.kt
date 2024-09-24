@@ -1,7 +1,7 @@
 package com.example.moiza.domain.auth.presentation
 
 import com.example.moiza.domain.auth.presentation.dto.req.TokenRequest
-import com.example.moiza.domain.auth.service.GetAccessTokenService
+import com.example.moiza.domain.auth.service.ReissueService
 import com.example.moiza.domain.auth.service.GoogleAuthService
 import com.example.moiza.domain.auth.service.GoogleLinkService
 import com.example.moiza.domain.auth.service.LogoutService
@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*
 class AuthController(
     private val googleLinkService: GoogleLinkService,
     private val googleAuthService: GoogleAuthService,
-    private val getAccessTokenService: GetAccessTokenService,
+    private val reissueService: ReissueService,
     private val logoutService: LogoutService,
 ) {
     @GetMapping
@@ -25,7 +25,7 @@ class AuthController(
 
     @PostMapping("/refresh")
     fun createNewAccessToken(@RequestBody @Valid request: TokenRequest)
-            = getAccessTokenService.execute(request.token)
+            = reissueService.execute(request.token)
 
     @DeleteMapping
     fun logout(@RequestBody @Valid request: TokenRequest)
