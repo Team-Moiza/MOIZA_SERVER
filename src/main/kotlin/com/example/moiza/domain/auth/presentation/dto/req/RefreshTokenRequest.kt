@@ -1,4 +1,4 @@
-package com.example.moiza.domain.auth.persentation.dto.req
+package com.example.moiza.domain.auth.presentation.dto.req
 
 import jakarta.validation.constraints.NotNull
 

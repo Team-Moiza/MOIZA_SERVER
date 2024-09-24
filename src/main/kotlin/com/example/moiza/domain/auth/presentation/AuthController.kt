@@ -1,7 +1,7 @@
-package com.example.moiza.domain.auth.persentation
+package com.example.moiza.domain.auth.presentation
 
-import com.example.moiza.domain.auth.persentation.dto.req.AccessTokenRequest
-import com.example.moiza.domain.auth.persentation.dto.req.RefreshTokenRequest
+import com.example.moiza.domain.auth.presentation.dto.req.AccessTokenRequest
+import com.example.moiza.domain.auth.presentation.dto.req.RefreshTokenRequest
 import com.example.moiza.domain.auth.service.GetAccessTokenService
 import com.example.moiza.domain.auth.service.GoogleAuthService
 import com.example.moiza.domain.auth.service.GoogleLinkService

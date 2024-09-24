@@ -1,7 +1,7 @@
 package com.example.moiza.domain.auth.service
 
 import com.example.moiza.domain.auth.exception.NotSchoolUserException
-import com.example.moiza.domain.auth.persentation.dto.res.TokenResponse
+import com.example.moiza.domain.auth.presentation.dto.res.TokenResponse
 import com.example.moiza.domain.user.domain.User
 import com.example.moiza.domain.user.domain.repository.UserRepository
 import com.example.moiza.domain.user.domain.type.Authority

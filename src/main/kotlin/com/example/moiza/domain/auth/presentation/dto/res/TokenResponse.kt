@@ -1,4 +1,4 @@
-package com.example.moiza.domain.auth.persentation.dto.res
+package com.example.moiza.domain.auth.presentation.dto.res
 
 data class TokenResponse(
         val accessToken: String,
