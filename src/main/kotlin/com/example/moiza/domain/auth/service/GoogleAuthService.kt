@@ -19,12 +19,16 @@ class GoogleAuthService(
 ) {
     @Transactional
     fun execute(accessToken: String): TokenResponse {
-        val response: GoogleInformationResponse = googleInformationClient
+        val res: GoogleInformationResponse = googleInformationClient
                 .getInformation(accessToken)
-        val email: String = response.email
+        val email = res.email
 
-        userRepository.findByEmail(email)
-                ?: save(email, response.name, response.picture)
+        userRepository.findByEmail(email) ?: run {
+            val authority = decideAuthority(email)
+            userRepository.save(User(
+                email,res.name, res.picture, authority
+            ))
+        }
 
         return TokenResponse(
                 jwtTokenProvider.createAccessToken(email),
@@ -32,25 +36,13 @@ class GoogleAuthService(
         )
     }
 
-    private fun save(email: String, nickname: String, profile: String) {
-        val authority: Authority
-
-        if (email.endsWith("@bssm.hs.kr"))
-            authority = Authority.BSSM
-        else if (email.endsWith("@dgsw.hs.kr"))
-            authority = Authority.DGSM
-        else if (email.endsWith("@gsm.hs.kr"))
-            authority = Authority.GSM
-        else if (email.endsWith("@dsm.hs.kr"))
-            authority = Authority.DSM
-        else
-            throw NotSchoolUserException
-
-        userRepository.save(User(
-            email,
-            nickname,
-            profile,
-            authority,
-        ))
+    private fun decideAuthority(email: String): Authority {
+        return when {
+            email.endsWith("@bssm.hs.kr") -> Authority.BSSM
+            email.endsWith("@dgsw.hs.kr") -> Authority.DGSM
+            email.endsWith("@gsm.hs.kr") -> Authority.GSM
+            email.endsWith("@dsm.hs.kr") -> Authority.DSM
+            else -> throw NotSchoolUserException
+        }
     }
 }
