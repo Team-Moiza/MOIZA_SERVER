@@ -25,6 +25,7 @@ class SecurityConfig(
             .httpBasic { it.disable() }
             .formLogin { it.disable() }
             .logout { it.disable() }
+            .cors( Customizer.withDefaults() )
 
         http
             .sessionManagement { session ->
@@ -38,7 +39,6 @@ class SecurityConfig(
             )
 
         http
-            .cors( Customizer.withDefaults() )
             .authorizeHttpRequests { authorize ->
                 authorize.requestMatchers("/user").authenticated()
                 authorize.anyRequest().permitAll()
