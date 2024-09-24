@@ -6,7 +6,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties
 class AuthProperties(
         val google: Google
 ) {
-    class Google(
+    data class Google(
             val baseUrl: String,
             val clientId: String,
             val redirectUrl: String
