@@ -7,8 +7,10 @@ import org.springframework.stereotype.Service
 class GoogleLinkService(
         private val authProperties: AuthProperties
 ) {
-    private val QUERY_STRING: String = "?client_id=%s&redirect_uri=%s" +
+    companion object {
+        const val QUERY_STRING: String = "?client_id=%s&redirect_uri=%s" +
             "&response_type=token&scope=https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile"
+    }
 
     fun execute() = authProperties.google.baseUrl +
             String.format(
