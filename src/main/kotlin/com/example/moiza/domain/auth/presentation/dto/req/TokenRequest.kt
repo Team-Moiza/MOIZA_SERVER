@@ -2,7 +2,7 @@ package com.example.moiza.domain.auth.presentation.dto.req
 
 import jakarta.validation.constraints.NotNull
 
-data class RefreshTokenRequest(
+data class TokenRequest(
         @NotNull
-        val refreshToken: String
+        val token: String
 )

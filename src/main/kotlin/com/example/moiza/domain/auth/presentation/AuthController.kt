@@ -1,7 +1,6 @@
 package com.example.moiza.domain.auth.presentation
 
-import com.example.moiza.domain.auth.presentation.dto.req.AccessTokenRequest
-import com.example.moiza.domain.auth.presentation.dto.req.RefreshTokenRequest
+import com.example.moiza.domain.auth.presentation.dto.req.TokenRequest
 import com.example.moiza.domain.auth.service.GetAccessTokenService
 import com.example.moiza.domain.auth.service.GoogleAuthService
 import com.example.moiza.domain.auth.service.GoogleLinkService
@@ -21,14 +20,14 @@ class AuthController(
     fun getGoogleAuthLink() = googleLinkService.execute()
 
     @PostMapping
-    fun login(@RequestBody @Valid accessTokenRequest: AccessTokenRequest)
-            = googleAuthService.execute(accessTokenRequest.accessToken)
+    fun login(@RequestBody @Valid request: TokenRequest)
+            = googleAuthService.execute(request.token)
 
     @PostMapping("/refresh")
-    fun createNewAccessToken(@RequestBody @Valid request: RefreshTokenRequest)
-            = getAccessTokenService.execute(request.refreshToken)
+    fun createNewAccessToken(@RequestBody @Valid request: TokenRequest)
+            = getAccessTokenService.execute(request.token)
 
     @DeleteMapping
-    fun logout(@RequestBody @Valid refreshTokenRequest: RefreshTokenRequest)
-            = logoutService.execute(refreshTokenRequest.refreshToken)
+    fun logout(@RequestBody @Valid request: TokenRequest)
+            = logoutService.execute(request.token)
 }
