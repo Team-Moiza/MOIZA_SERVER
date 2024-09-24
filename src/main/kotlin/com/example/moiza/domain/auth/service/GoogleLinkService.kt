@@ -12,9 +12,8 @@ class GoogleLinkService(
             "&response_type=token&scope=https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile"
     }
 
-    fun execute() = authProperties.google.baseUrl +
-            String.format(
-                    QUERY_STRING,
-                    authProperties.google.clientId,
-                    authProperties.google.redirectUrl)
+    fun execute() = "${authProperties.google.baseUrl}$QUERY_STRING".format(
+            authProperties.google.clientId,
+            authProperties.google.redirectUrl
+        )
 }
