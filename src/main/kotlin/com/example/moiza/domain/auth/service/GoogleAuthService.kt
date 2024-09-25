@@ -26,7 +26,7 @@ class GoogleAuthService(
         userRepository.findByEmail(email) ?: run {
             val authority = decideAuthority(email)
             userRepository.save(User(
-                email,res.name, res.picture, authority
+                email, res.name, res.picture, authority
             ))
         }
 
