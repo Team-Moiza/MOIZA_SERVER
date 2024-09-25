@@ -4,17 +4,19 @@ class ErrorResponse(
     val status: Int,
     val message: String
 ) {
-    private val errorLogsFormat: String = """
-        {
-            "status": "%s",
-            "message": "%s"
-        }
-        """
-
     override fun toString(): String {
-        return errorLogsFormat.format(
+        return ERROR_LOGS_FORMAT.format(
             status,
             message
         )
+    }
+
+    companion object {
+        var ERROR_LOGS_FORMAT = """
+            {
+                "status": %s,
+                "message": "%s"
+            }
+        """.trimIndent()
     }
 }
