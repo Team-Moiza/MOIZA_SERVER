@@ -1,4 +1,4 @@
-package com.example.moiza.domain.community.domain.poll
+package com.example.moiza.domain.community.poll.domain
 
 import jakarta.persistence.*
 

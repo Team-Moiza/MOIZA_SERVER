@@ -1,7 +1,7 @@
-package com.example.moiza.domain.community.domain.post
+package com.example.moiza.domain.community.post.domain
 
-import com.example.moiza.domain.community.domain.Tag
-import com.example.moiza.domain.community.domain.type.CommunityType
+import com.example.moiza.domain.community.community.domain.Tag
+import com.example.moiza.domain.community.community.domain.type.CommunityType
 import com.example.moiza.domain.user.domain.User
 import jakarta.persistence.*
 import java.time.LocalDate

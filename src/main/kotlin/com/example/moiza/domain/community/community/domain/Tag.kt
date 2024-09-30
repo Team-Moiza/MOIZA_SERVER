@@ -1,6 +1,6 @@
-package com.example.moiza.domain.community.domain
+package com.example.moiza.domain.community.community.domain
 
-import com.example.moiza.domain.community.domain.post.Post
+import com.example.moiza.domain.community.post.domain.Post
 import jakarta.persistence.*
 
 @Entity(name = "tag")
