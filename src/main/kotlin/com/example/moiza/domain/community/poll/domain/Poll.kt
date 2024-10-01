@@ -1,5 +1,8 @@
 package com.example.moiza.domain.community.poll.domain
 
+import com.example.moiza.domain.community.community.domain.Community
+import com.example.moiza.domain.community.community.domain.type.CommunityType
+import com.example.moiza.domain.user.domain.User
 import jakarta.persistence.*
 import java.time.LocalDate
 
@@ -8,25 +11,18 @@ class Poll(
     title: String,
     content: String,
     options: List<PollOption>,
+    user: User,
+    type: CommunityType,
     createdAt: LocalDate
+) : Community(
+    title = title,
+    content = content,
+    user = user,
+    type = type,
+    createdAt = createdAt
 ) {
 
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", columnDefinition = "VARCHAR")
-    val id: Long = 0L
-
-    @Column(name = "title", columnDefinition = "VARCHAR(100)", nullable = false)
-    var title: String = title
-        protected set
-
-    @Column(name = "content", columnDefinition = "VARCHAR", nullable = false)
-    var content: String = content
-        protected set
-
-    @OneToMany(mappedBy = "poll", cascade = [CascadeType.ALL])
+    @OneToMany(mappedBy = "poll")
     var options: List<PollOption> = options
         protected set
-
-    @Column(name = "createdAt", columnDefinition = "DATE", nullable = false)
-    var createdAt: LocalDate = createdAt
 }
