@@ -8,5 +8,9 @@ enum class ErrorCode(
     INVALID_JWT(401, "Invalid Jwt"),
     USER_NOT_FOUND(404, "User Not Found"),
     TOKEN_NOT_FOUND(404, "Token Not Found"),
-    NOT_SCHOOL_USER(400, "Not School User")
+    NOT_SCHOOL_USER(400, "Not School User"),
+
+    POST_NOT_FOUND(404, "Post Not Found"),
+
+    POLL_NOT_FOUND(404, "Poll Not Found")
 }
