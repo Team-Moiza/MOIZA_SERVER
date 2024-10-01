@@ -28,7 +28,7 @@ abstract class Community(
     @JoinColumn(name = "user_id", nullable = false)
     var user: User,
 
-    @Column(name = "type", columnDefinition = "ENUM", nullable = true)
+    @Column(name = "type", columnDefinition = "VARCHAR(4)", nullable = false)
     var type: CommunityType,
 
     @Column(name = "createdAt", columnDefinition = "DATE", nullable = false)

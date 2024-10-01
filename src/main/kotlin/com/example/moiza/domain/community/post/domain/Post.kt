@@ -13,7 +13,7 @@ class Post(
     content: String,
     user: User,
     type: CommunityType,
-    image: List<String>?,
+    image: List<String>? = null,
     createdAt: LocalDate
 ) : Community(
     title = title,

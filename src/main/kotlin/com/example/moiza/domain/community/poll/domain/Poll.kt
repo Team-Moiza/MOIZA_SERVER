@@ -10,10 +10,9 @@ import java.time.LocalDate
 class Poll(
     title: String,
     content: String,
-    options: List<PollOption>,
     user: User,
     type: CommunityType,
-    createdAt: LocalDate
+    createdAt: LocalDate,
 ) : Community(
     title = title,
     content = content,
@@ -21,8 +20,11 @@ class Poll(
     type = type,
     createdAt = createdAt
 ) {
-
     @OneToMany(mappedBy = "poll")
-    var options: List<PollOption> = options
+    var options: MutableList<PollOption> = mutableListOf()
         protected set
+
+    fun addOptions(newOptions: List<PollOption>) {
+        options.addAll(newOptions)
+    }
 }
