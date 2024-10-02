@@ -10,7 +10,12 @@ enum class ErrorCode(
     TOKEN_NOT_FOUND(404, "Token Not Found"),
     NOT_SCHOOL_USER(400, "Not School User"),
 
+    WRITER_MISMATCH(401, "Writer Mismatch"),
+
     POST_NOT_FOUND(404, "Post Not Found"),
 
-    POLL_NOT_FOUND(404, "Poll Not Found")
+    POLL_NOT_FOUND(404, "Poll Not Found"),
+    POLL_OPTION_NOT_FOUND(404, "Poll Option Not Found"),
+
+    ALREADY_VOTED(409, "Already voted")
 }
