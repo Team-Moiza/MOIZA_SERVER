@@ -36,4 +36,10 @@ abstract class Community(
 
     @Column(name = "createdAt", columnDefinition = "DATE", nullable = false)
     var createdAt: LocalDate
-)
+) {
+
+    fun update(title: String, content: String) {
+        this.title = title
+        this.content = content
+    }
+}
