@@ -3,7 +3,7 @@ package com.example.moiza.domain.community.post.presentation.dto.res
 import com.example.moiza.domain.user.presentation.dto.res.UserResponse
 import java.time.LocalDate
 
-class PostResponse(
+class PostDetailResponse(
     val postId: Long,
     val title: String,
     val content: String,
@@ -13,9 +13,17 @@ class PostResponse(
 )
 
 data class PostsResponse(
-    val posts: List<PostResponse>
+    val posts: List<PostDetailResponse>
 )
 
 data class PostIdResponse(
     val postId: Long
+)
+
+class PostResponse(
+    val postId: Long,
+    val title: String,
+    val content: String,
+    val createdAt: LocalDate,
+    val user: UserResponse,
 )

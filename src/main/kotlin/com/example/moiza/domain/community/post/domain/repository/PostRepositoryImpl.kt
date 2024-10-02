@@ -26,6 +26,7 @@ class PostRepositoryImpl(
 
     override fun findAllPosts(): List<PostResponse> {
         val post = QPost.post
+
         return queryFactory
             .select(
                 Projections.constructor(
@@ -34,7 +35,6 @@ class PostRepositoryImpl(
                     post.title,
                     post.content,
                     post.createdAt,
-                    post.image,
                     Projections.constructor(
                         UserResponse::class.java,
                         post.user.nickname,
