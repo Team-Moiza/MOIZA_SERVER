@@ -5,8 +5,7 @@ import com.example.moiza.domain.community.poll.domain.Poll
 import com.example.moiza.domain.community.poll.domain.PollOption
 import com.example.moiza.domain.community.poll.domain.PollRepository
 import com.example.moiza.domain.community.poll.presentation.dto.req.CreatePollRequest
-import com.example.moiza.domain.community.poll.presentation.dto.res.CreatePollResponse
-import com.example.moiza.domain.community.post.presentation.dto.res.CreatePostResponse
+import com.example.moiza.domain.community.poll.presentation.dto.res.PollIdResponse
 import com.example.moiza.domain.user.facade.UserFacade
 import jakarta.transaction.Transactional
 import org.springframework.stereotype.Service
@@ -19,7 +18,7 @@ class CreatePollService(
     private val userFacade: UserFacade
 ) {
 
-    fun execute(request: CreatePollRequest): CreatePollResponse {
+    fun execute(request: CreatePollRequest): PollIdResponse {
         val user = userFacade.getCurrentUser()
 
         val poll = Poll(
@@ -38,6 +37,6 @@ class CreatePollService(
 
         pollRepository.save(poll)
         
-        return CreatePollResponse(poll.id)
+        return PollIdResponse(poll.id)
     }
 }

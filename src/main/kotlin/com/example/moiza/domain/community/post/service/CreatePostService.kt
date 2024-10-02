@@ -4,7 +4,7 @@ import com.example.moiza.domain.community.community.domain.type.CommunityType
 import com.example.moiza.domain.community.post.domain.Post
 import com.example.moiza.domain.community.post.domain.PostRepository
 import com.example.moiza.domain.community.post.presentation.dto.req.CreatePostRequest
-import com.example.moiza.domain.community.post.presentation.dto.res.CreatePostResponse
+import com.example.moiza.domain.community.post.presentation.dto.res.PostIdResponse
 import com.example.moiza.domain.user.facade.UserFacade
 import jakarta.transaction.Transactional
 import org.springframework.stereotype.Service
@@ -17,7 +17,7 @@ class CreatePostService(
     private val userFacade: UserFacade,
 ) {
 
-    fun execute(request: CreatePostRequest): CreatePostResponse {
+    fun execute(request: CreatePostRequest): PostIdResponse {
         val user = userFacade.getCurrentUser()
 
         val post = Post(
@@ -31,6 +31,6 @@ class CreatePostService(
 
         postRepository.save(post)
 
-        return CreatePostResponse(post.id)
+        return PostIdResponse(post.id)
     }
 }
