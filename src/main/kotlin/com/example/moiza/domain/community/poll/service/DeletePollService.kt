@@ -2,7 +2,6 @@ package com.example.moiza.domain.community.poll.service
 
 import com.example.moiza.domain.community.poll.domain.PollRepository
 import com.example.moiza.domain.community.poll.exception.PollNotFoundException
-import com.example.moiza.domain.community.post.exception.PostNotFoundException
 import com.example.moiza.domain.user.facade.UserFacade
 import com.teaminsert.homepage.global.security.jwt.exception.InvalidJwtException
 import jakarta.transaction.Transactional

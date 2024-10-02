@@ -20,7 +20,7 @@ class Poll(
     type = type,
     createdAt = createdAt
 ) {
-    @OneToMany(mappedBy = "poll")
+    @OneToMany(mappedBy = "poll", cascade = [CascadeType.ALL], orphanRemoval = true)
     var options: MutableList<PollOption> = mutableListOf()
         protected set
 
