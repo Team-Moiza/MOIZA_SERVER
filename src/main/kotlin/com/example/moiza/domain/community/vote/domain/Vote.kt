@@ -1,6 +1,6 @@
 package com.example.moiza.domain.community.vote.domain
 
-import com.example.moiza.domain.community.poll.domain.PollOption
+import com.example.moiza.domain.community.poll.domain.entity.PollOption
 import com.example.moiza.domain.user.domain.User
 import jakarta.persistence.Column
 import jakarta.persistence.Entity

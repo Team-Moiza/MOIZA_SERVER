@@ -1,8 +1,8 @@
 package com.example.moiza.domain.community.post.service
 
-import com.example.moiza.domain.community.community.domain.type.CommunityType
-import com.example.moiza.domain.community.post.domain.Post
-import com.example.moiza.domain.community.post.domain.PostRepository
+import com.example.moiza.domain.community.community.domain.entity.type.CommunityType
+import com.example.moiza.domain.community.post.domain.entity.Post
+import com.example.moiza.domain.community.post.domain.repository.PostRepository
 import com.example.moiza.domain.community.post.presentation.dto.req.CreatePostRequest
 import com.example.moiza.domain.community.post.presentation.dto.res.PostIdResponse
 import com.example.moiza.domain.user.facade.UserFacade

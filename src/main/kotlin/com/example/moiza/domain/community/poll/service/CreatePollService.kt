@@ -1,9 +1,9 @@
 package com.example.moiza.domain.community.poll.service
 
-import com.example.moiza.domain.community.community.domain.type.CommunityType
-import com.example.moiza.domain.community.poll.domain.Poll
-import com.example.moiza.domain.community.poll.domain.PollOption
-import com.example.moiza.domain.community.poll.domain.PollRepository
+import com.example.moiza.domain.community.community.domain.entity.type.CommunityType
+import com.example.moiza.domain.community.poll.domain.entity.Poll
+import com.example.moiza.domain.community.poll.domain.entity.PollOption
+import com.example.moiza.domain.community.poll.domain.repository.PollRepository
 import com.example.moiza.domain.community.poll.presentation.dto.req.CreatePollRequest
 import com.example.moiza.domain.community.poll.presentation.dto.res.PollIdResponse
 import com.example.moiza.domain.user.facade.UserFacade

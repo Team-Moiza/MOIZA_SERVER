@@ -1,7 +1,7 @@
-package com.example.moiza.domain.community.poll.domain
+package com.example.moiza.domain.community.poll.domain.entity
 
-import com.example.moiza.domain.community.community.domain.Community
-import com.example.moiza.domain.community.community.domain.type.CommunityType
+import com.example.moiza.domain.community.community.domain.entity.Community
+import com.example.moiza.domain.community.community.domain.entity.type.CommunityType
 import com.example.moiza.domain.user.domain.User
 import jakarta.persistence.*
 import java.time.LocalDate

@@ -1,5 +1,6 @@
-package com.example.moiza.domain.community.post.domain
+package com.example.moiza.domain.community.post.domain.repository
 
+import com.example.moiza.domain.community.post.domain.entity.Post
 import com.example.moiza.domain.community.post.presentation.dto.res.PostResponse
 
 interface PostRepositoryCustom {

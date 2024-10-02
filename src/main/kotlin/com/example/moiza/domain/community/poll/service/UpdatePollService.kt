@@ -1,6 +1,6 @@
 package com.example.moiza.domain.community.poll.service
 
-import com.example.moiza.domain.community.poll.domain.PollRepository
+import com.example.moiza.domain.community.poll.domain.repository.PollRepository
 import com.example.moiza.domain.community.poll.exception.PollNotFoundException
 import com.example.moiza.domain.community.poll.presentation.dto.res.PollIdResponse
 import com.example.moiza.domain.user.facade.UserFacade

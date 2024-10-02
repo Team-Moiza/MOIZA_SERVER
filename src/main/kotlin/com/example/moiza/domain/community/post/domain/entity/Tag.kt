@@ -1,6 +1,5 @@
-package com.example.moiza.domain.community.community.domain
+package com.example.moiza.domain.community.post.domain.entity
 
-import com.example.moiza.domain.community.post.domain.Post
 import jakarta.persistence.Column
 import jakarta.persistence.ManyToOne
 import jakarta.persistence.FetchType

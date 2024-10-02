@@ -1,6 +1,6 @@
 package com.example.moiza.domain.community.vote.service
 
-import com.example.moiza.domain.community.poll.domain.PollOptionRepository
+import com.example.moiza.domain.community.poll.domain.repository.PollOptionRepository
 import com.example.moiza.domain.community.poll.exception.PollOptionNotFoundException
 import com.example.moiza.domain.community.vote.domain.Vote
 import com.example.moiza.domain.community.vote.domain.VoteRepository

@@ -1,6 +1,6 @@
 package com.example.moiza.domain.community.post.service
 
-import com.example.moiza.domain.community.post.domain.PostRepositoryCustom
+import com.example.moiza.domain.community.post.domain.repository.PostRepositoryCustom
 import com.example.moiza.domain.community.post.exception.PostNotFoundException
 import com.example.moiza.domain.community.post.presentation.dto.res.PostResponse
 import com.example.moiza.domain.user.presentation.dto.res.UserResponse

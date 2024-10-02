@@ -1,6 +1,6 @@
-package com.example.moiza.domain.community.community.domain
+package com.example.moiza.domain.community.community.domain.entity
 
-import com.example.moiza.domain.community.community.domain.type.CommunityType
+import com.example.moiza.domain.community.community.domain.entity.type.CommunityType
 import com.example.moiza.domain.user.domain.User
 import jakarta.persistence.GeneratedValue
 import jakarta.persistence.GenerationType
