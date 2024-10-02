@@ -22,12 +22,3 @@ data class PollOptionResponse(
 data class PollIdResponse(
     val pollId: Long
 )
-
-data class PollWithOptionsProjection(
-    val id: Long,
-    val title: String,
-    val content: String,
-    val user: UserResponse,
-    val createdAt: LocalDate,
-    val optionCount: Long
-)
