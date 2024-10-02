@@ -8,8 +8,8 @@ class PostResponse(
     val title: String,
     val content: String,
     val createdAt: LocalDate,
+    val image: List<String>? = null,
     val user: UserResponse,
-    val image: List<String>? = null
 )
 
 data class PostsResponse(
