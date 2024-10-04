@@ -5,6 +5,7 @@ import com.example.moiza.domain.community.post.domain.repository.PostRepository
 import com.example.moiza.domain.community.post.exception.PostNotFoundException
 import com.example.moiza.domain.user.facade.UserFacade
 import jakarta.transaction.Transactional
+import org.springframework.data.repository.findByIdOrNull
 import org.springframework.stereotype.Service
 
 @Transactional
@@ -17,10 +18,11 @@ class DeletePostService(
     fun execute(postId: Long) {
         val user = userFacade.getCurrentUser()
 
-        val post = postRepository.findById(postId)
-            .orElseThrow { PostNotFoundException }
+        val post = postRepository.findByIdOrNull(postId) ?: throw PostNotFoundException
 
-        if (post.user != user) { AccessDeniedException }
+        if (post.user != user) {
+            throw AccessDeniedException
+        }
 
         postRepository.delete(post)
     }

@@ -5,6 +5,7 @@ import com.example.moiza.domain.community.poll.domain.repository.PollRepository
 import com.example.moiza.domain.community.poll.exception.PollNotFoundException
 import com.example.moiza.domain.user.facade.UserFacade
 import jakarta.transaction.Transactional
+import org.springframework.data.repository.findByIdOrNull
 import org.springframework.stereotype.Service
 
 @Transactional
@@ -14,13 +15,14 @@ class DeletePollService(
     private val userFacade: UserFacade
 ) {
 
-    fun execute(postId: Long) {
+    fun execute(pollId: Long) {
         val user = userFacade.getCurrentUser()
 
-        val poll = pollRepository.findById(postId)
-            .orElseThrow { PollNotFoundException }
+        val poll = pollRepository.findByIdOrNull(pollId) ?: throw PollNotFoundException
 
-        if (poll.user != user) { AccessDeniedException }
+        if (poll.user != user) {
+            throw AccessDeniedException
+        }
 
         pollRepository.delete(poll)
     }
