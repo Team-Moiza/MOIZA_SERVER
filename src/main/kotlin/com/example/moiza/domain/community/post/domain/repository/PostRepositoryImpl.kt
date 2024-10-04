@@ -1,7 +1,7 @@
 package com.example.moiza.domain.community.post.domain.repository
 
 import com.example.moiza.domain.community.post.domain.entity.Post
-import com.example.moiza.domain.community.post.domain.entity.QPost
+import com.example.moiza.domain.community.post.domain.entity.QPost.post
 import com.example.moiza.domain.community.post.presentation.dto.res.PostResponse
 import com.example.moiza.domain.user.presentation.dto.res.UserResponse
 import com.querydsl.core.types.Projections
@@ -14,8 +14,6 @@ class PostRepositoryImpl(
 ) : PostRepositoryCustom {
 
     override fun findById(postId: Long): Post? {
-        val post = QPost.post
-
         return queryFactory
             .selectFrom(post)
             .leftJoin(post.image)
@@ -25,8 +23,6 @@ class PostRepositoryImpl(
     }
 
     override fun findAllPosts(): List<PostResponse> {
-        val post = QPost.post
-
         return queryFactory
             .select(
                 Projections.constructor(
