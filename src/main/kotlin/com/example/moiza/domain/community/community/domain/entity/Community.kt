@@ -2,6 +2,7 @@ package com.example.moiza.domain.community.community.domain.entity
 
 import com.example.moiza.domain.BaseTimeEntity
 import com.example.moiza.domain.community.community.domain.entity.type.CommunityType
+import com.example.moiza.domain.community.community.exception.AccessDeniedException
 import com.example.moiza.domain.user.domain.User
 import jakarta.persistence.GeneratedValue
 import jakarta.persistence.GenerationType
@@ -40,6 +41,8 @@ abstract class Community(
         this.content = content
     }
 
-    fun checkAuthority(user: User): Boolean =
-        this.user == user || user.isAdmin()
+    fun checkAuthority(user: User) {
+        if (this.user == user || user.isAdmin()) return
+        throw AccessDeniedException
+    }
 }
