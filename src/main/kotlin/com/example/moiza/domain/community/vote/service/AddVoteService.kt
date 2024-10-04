@@ -20,12 +20,9 @@ class AddVoteService(
     fun execute(pollOptionId: Long) {
         val user = userFacade.getCurrentUser()
 
-        val pollOption = pollOptionRepository.findById(pollOptionId).orElseThrow {
-            throw PollOptionNotFoundException
-        }
+        val pollOption = pollOptionRepository.findById(pollOptionId).orElseThrow { PollOptionNotFoundException }
 
-        val existingVote = voteRepository.findByPollOptionAndUser(pollOption, user)
-        if (existingVote != null) {
+        voteRepository.findByPollOptionAndUser(pollOption, user)?.let {
             throw AlreadyVotedException
         }
 
