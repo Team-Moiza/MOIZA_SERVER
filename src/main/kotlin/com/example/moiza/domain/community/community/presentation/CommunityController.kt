@@ -10,6 +10,7 @@ import com.example.moiza.domain.community.poll.service.UpdatePollService
 import com.example.moiza.domain.community.post.presentation.dto.req.CreatePostRequest
 import com.example.moiza.domain.community.post.service.*
 import com.example.moiza.domain.community.vote.service.AddVoteService
+import jakarta.validation.Valid
 import org.springframework.http.HttpStatus
 import org.springframework.validation.annotation.Validated
 import org.springframework.web.bind.annotation.DeleteMapping
@@ -22,7 +23,6 @@ import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.ResponseStatus
 import org.springframework.web.bind.annotation.RestController
 
-@Validated
 @RestController
 @RequestMapping("/community")
 class CommunityController(
@@ -42,7 +42,7 @@ class CommunityController(
 
     @PostMapping("/post")
     @ResponseStatus(HttpStatus.CREATED)
-    fun createPost(@RequestBody request: CreatePostRequest)
+    fun createPost(@RequestBody @Valid request: CreatePostRequest)
         = createPostService.execute(request)
 
     @DeleteMapping("/post/{post-id}")
@@ -53,7 +53,7 @@ class CommunityController(
     @PatchMapping("/post/{post-id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     fun updatePost(
-        @RequestBody request: UpdatePostRequest,
+        @RequestBody @Valid request: UpdatePostRequest,
         @PathVariable("post-id") postId: Long
     ) = updatePostService.execute(request.title, request.content, postId)
 
@@ -63,7 +63,7 @@ class CommunityController(
 
     @PostMapping("/poll")
     @ResponseStatus(HttpStatus.CREATED)
-    fun createPoll(@RequestBody request: CreatePollRequest)
+    fun createPoll(@RequestBody @Valid request: CreatePollRequest)
         = createPollService.execute(request)
 
     @DeleteMapping("/poll/{poll-id}")
@@ -74,7 +74,7 @@ class CommunityController(
     @PatchMapping("/poll/{poll-id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     fun updatePoll(
-        @RequestBody request: UpdatePollRequest,
+        @RequestBody @Valid request: UpdatePollRequest,
         @PathVariable("poll-id") pollId: Long
     ) = updatePollService.execute(request.title, request.content, pollId)
 
