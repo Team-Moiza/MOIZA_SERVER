@@ -1,6 +1,5 @@
 package com.example.moiza.domain.community.poll.service
 
-import com.example.moiza.domain.community.community.exception.AccessDeniedException
 import com.example.moiza.domain.community.poll.domain.repository.PollRepository
 import com.example.moiza.domain.community.poll.exception.PollNotFoundException
 import com.example.moiza.domain.user.facade.UserFacade
@@ -17,12 +16,9 @@ class DeletePollService(
 
     fun execute(pollId: Long) {
         val user = userFacade.getCurrentUser()
-
         val poll = pollRepository.findByIdOrNull(pollId) ?: throw PollNotFoundException
 
-        if (poll.user != user) {
-            throw AccessDeniedException
-        }
+        poll.checkAuthority(user)
 
         pollRepository.delete(poll)
     }
