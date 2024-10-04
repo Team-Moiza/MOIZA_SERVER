@@ -1,9 +1,9 @@
 package com.example.moiza.domain.community.poll.service
 
+import com.example.moiza.domain.community.community.exception.AccessDeniedException
 import com.example.moiza.domain.community.poll.domain.repository.PollRepository
 import com.example.moiza.domain.community.poll.exception.PollNotFoundException
 import com.example.moiza.domain.user.facade.UserFacade
-import com.teaminsert.homepage.global.security.jwt.exception.InvalidJwtException
 import jakarta.transaction.Transactional
 import org.springframework.stereotype.Service
 
@@ -21,7 +21,7 @@ class DeletePollService(
             .orElseThrow { PollNotFoundException }
 
         if (poll.user != user) {
-            throw InvalidJwtException
+            throw AccessDeniedException
         }
 
         pollRepository.delete(poll)

@@ -1,9 +1,9 @@
 package com.example.moiza.domain.community.post.service
 
+import com.example.moiza.domain.community.community.exception.AccessDeniedException
 import com.example.moiza.domain.community.post.domain.repository.PostRepository
 import com.example.moiza.domain.community.post.exception.PostNotFoundException
 import com.example.moiza.domain.user.facade.UserFacade
-import com.teaminsert.homepage.global.security.jwt.exception.InvalidJwtException
 import jakarta.transaction.Transactional
 import org.springframework.stereotype.Service
 
@@ -21,7 +21,7 @@ class DeletePostService(
             .orElseThrow { PostNotFoundException }
 
         if (post.user != user) {
-            throw InvalidJwtException
+            throw AccessDeniedException
         }
 
         postRepository.delete(post)
