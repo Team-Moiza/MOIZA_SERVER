@@ -40,7 +40,19 @@ class SecurityConfig(
 
         http
             .authorizeHttpRequests { authorize ->
+                // user
                 authorize.requestMatchers("/user").authenticated()
+
+                // post
+                authorize.requestMatchers("/community/post").authenticated()
+                authorize.requestMatchers("/community/post/{post-id}").authenticated()
+
+                // poll
+                authorize.requestMatchers("/community/poll").authenticated()
+                authorize.requestMatchers("/community/poll/{poll-id}").authenticated()
+                authorize.requestMatchers("/community/vote/{poll-option-id}").authenticated()
+                authorize.requestMatchers("/community").authenticated()
+
                 authorize.anyRequest().permitAll()
             }
 

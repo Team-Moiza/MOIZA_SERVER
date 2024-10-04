@@ -7,3 +7,8 @@ data class InfoUserResponse(
     val profile: String,
     val school: School
 )
+
+data class UserResponse(
+    val nickname: String,
+    val profile: String
+)
