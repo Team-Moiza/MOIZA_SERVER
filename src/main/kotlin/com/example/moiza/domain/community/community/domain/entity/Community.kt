@@ -1,5 +1,6 @@
 package com.example.moiza.domain.community.community.domain.entity
 
+import com.example.moiza.domain.BaseTimeEntity
 import com.example.moiza.domain.community.community.domain.entity.type.CommunityType
 import com.example.moiza.domain.user.domain.User
 import jakarta.persistence.GeneratedValue
@@ -32,14 +33,14 @@ abstract class Community(
 
     @Enumerated(EnumType.STRING)
     @Column(name = "type", columnDefinition = "VARCHAR(4)", nullable = false)
-    var type: CommunityType,
-
-    @Column(name = "createdAt", columnDefinition = "DATE", nullable = false)
-    var createdAt: LocalDate
-) {
+    var type: CommunityType
+) : BaseTimeEntity() {
 
     fun update(title: String, content: String) {
         this.title = title
         this.content = content
     }
+
+    fun checkAuthority(user: User): Boolean =
+        this.user == user || user.isAdmin()
 }

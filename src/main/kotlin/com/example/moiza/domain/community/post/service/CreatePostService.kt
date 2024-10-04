@@ -1,6 +1,5 @@
 package com.example.moiza.domain.community.post.service
 
-import com.example.moiza.domain.community.community.domain.entity.type.CommunityType
 import com.example.moiza.domain.community.post.domain.entity.Post
 import com.example.moiza.domain.community.post.domain.repository.PostRepository
 import com.example.moiza.domain.community.post.presentation.dto.req.CreatePostRequest
@@ -8,7 +7,6 @@ import com.example.moiza.domain.community.post.presentation.dto.res.PostIdRespon
 import com.example.moiza.domain.user.facade.UserFacade
 import jakarta.transaction.Transactional
 import org.springframework.stereotype.Service
-import java.time.LocalDate
 
 @Service
 @Transactional
@@ -24,9 +22,7 @@ class CreatePostService(
             title = request.title,
             content = request.content,
             user = user,
-            type = CommunityType.POST,
             image = request.image,
-            createdAt = LocalDate.now()
         )
 
         postRepository.save(post)

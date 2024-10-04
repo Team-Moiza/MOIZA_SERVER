@@ -34,7 +34,6 @@ class PostRepositoryImpl(
                     post.id,
                     post.title,
                     post.content,
-                    post.createdAt,
                     Projections.constructor(
                         UserResponse::class.java,
                         post.user.nickname,

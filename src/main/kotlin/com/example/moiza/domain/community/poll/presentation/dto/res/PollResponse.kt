@@ -1,13 +1,11 @@
 package com.example.moiza.domain.community.poll.presentation.dto.res
 
 import com.example.moiza.domain.user.presentation.dto.res.UserResponse
-import java.time.LocalDate
 
 class PollResponse(
     val pollId: Long,
     val title: String,
     val content: String,
-    val createdAt: LocalDate,
     val options: List<PollOptionResponse>,
     val user: UserResponse
 )

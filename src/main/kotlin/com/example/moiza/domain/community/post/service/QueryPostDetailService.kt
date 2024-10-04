@@ -20,7 +20,6 @@ class QueryPostDetailService(
             postId = post.id,
             title = post.title,
             content = post.content,
-            createdAt = post.createdAt,
             user = UserResponse(
                 nickname = post.user.nickname,
                 profile = post.user.profile
