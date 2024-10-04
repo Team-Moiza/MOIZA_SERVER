@@ -35,4 +35,7 @@ class User(
     @Enumerated(EnumType.STRING)
     var authority: Authority = Authority.USER
         protected set
+
+    fun isAdmin(): Boolean =
+        this.authority == Authority.ADMIN
 }

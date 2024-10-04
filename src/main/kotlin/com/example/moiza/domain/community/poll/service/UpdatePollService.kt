@@ -1,5 +1,6 @@
 package com.example.moiza.domain.community.poll.service
 
+import com.example.moiza.domain.community.community.exception.AccessDeniedException
 import com.example.moiza.domain.community.poll.domain.repository.PollRepository
 import com.example.moiza.domain.community.poll.exception.PollNotFoundException
 import com.example.moiza.domain.community.poll.presentation.dto.res.PollIdResponse
@@ -19,8 +20,11 @@ class UpdatePollService(
         val poll = pollRepository.findByIdAndUser(pollId, user)
             ?: throw PollNotFoundException
 
-        poll.update(title, content)
+        if (!poll.checkAuthority(user)) {
+            throw AccessDeniedException
+        }
 
+        poll.update(title, content)
         val updated = pollRepository.save(poll)
 
         return PollIdResponse(updated.id)

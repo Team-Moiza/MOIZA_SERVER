@@ -1,5 +1,6 @@
 package com.example.moiza.domain.community.post.service
 
+import com.example.moiza.domain.community.community.exception.AccessDeniedException
 import com.example.moiza.domain.community.post.domain.repository.PostRepository
 import com.example.moiza.domain.community.post.exception.PostNotFoundException
 import com.example.moiza.domain.community.post.presentation.dto.res.PostIdResponse
@@ -19,8 +20,11 @@ class UpdatePostService(
         val post = postRepository.findByIdAndUser(postId, user)
             ?: throw PostNotFoundException
 
-        post.update(title, content)
+        if (!post.checkAuthority(user)) {
+            throw AccessDeniedException
+        }
 
+        post.update(title, content)
         val updated = postRepository.save(post)
 
         return PostIdResponse(updated.id)
