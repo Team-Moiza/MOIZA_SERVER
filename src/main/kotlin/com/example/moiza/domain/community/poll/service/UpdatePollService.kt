@@ -6,6 +6,7 @@ import com.example.moiza.domain.community.poll.exception.PollNotFoundException
 import com.example.moiza.domain.community.poll.presentation.dto.res.PollIdResponse
 import com.example.moiza.domain.user.facade.UserFacade
 import jakarta.transaction.Transactional
+import org.springframework.data.repository.findByIdOrNull
 import org.springframework.stereotype.Service
 
 @Transactional
@@ -17,16 +18,12 @@ class UpdatePollService(
 
     fun execute(title: String, content: String, pollId: Long): PollIdResponse {
         val user = userFacade.getCurrentUser()
-        val poll = pollRepository.findByIdAndUser(pollId, user)
-            ?: throw PollNotFoundException
+        val poll = pollRepository.findByIdOrNull(pollId) ?: throw PollNotFoundException
 
-        if (!poll.checkAuthority(user)) {
-            throw AccessDeniedException
-        }
+        if (!poll.checkAuthority(user)) { AccessDeniedException }
 
         poll.update(title, content)
-        val updated = pollRepository.save(poll)
 
-        return PollIdResponse(updated.id)
+        return PollIdResponse(poll.id)
     }
 }
