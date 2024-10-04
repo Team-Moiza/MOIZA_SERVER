@@ -7,6 +7,7 @@ import com.example.moiza.domain.community.vote.domain.VoteRepository
 import com.example.moiza.domain.community.vote.exception.AlreadyVotedException
 import com.example.moiza.domain.user.facade.UserFacade
 import jakarta.transaction.Transactional
+import org.springframework.data.repository.findByIdOrNull
 import org.springframework.stereotype.Service
 
 @Service
@@ -20,7 +21,8 @@ class AddVoteService(
     fun execute(pollOptionId: Long) {
         val user = userFacade.getCurrentUser()
 
-        val pollOption = pollOptionRepository.findById(pollOptionId).orElseThrow { PollOptionNotFoundException }
+        val pollOption = pollOptionRepository.findByIdOrNull(pollOptionId)
+            ?: throw PollOptionNotFoundException
 
         voteRepository.findByPollOptionAndUser(pollOption, user)?.let {
             throw AlreadyVotedException

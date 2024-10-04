@@ -20,9 +20,7 @@ class DeletePollService(
         val poll = pollRepository.findById(postId)
             .orElseThrow { PollNotFoundException }
 
-        if (poll.user != user) {
-            throw AccessDeniedException
-        }
+        if (poll.user != user) { AccessDeniedException }
 
         pollRepository.delete(poll)
     }

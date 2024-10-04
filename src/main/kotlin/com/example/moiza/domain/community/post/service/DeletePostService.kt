@@ -20,9 +20,7 @@ class DeletePostService(
         val post = postRepository.findById(postId)
             .orElseThrow { PostNotFoundException }
 
-        if (post.user != user) {
-            throw AccessDeniedException
-        }
+        if (post.user != user) { AccessDeniedException }
 
         postRepository.delete(post)
     }

@@ -12,7 +12,6 @@ import com.example.moiza.domain.community.post.service.*
 import com.example.moiza.domain.community.vote.service.AddVoteService
 import jakarta.validation.Valid
 import org.springframework.http.HttpStatus
-import org.springframework.validation.annotation.Validated
 import org.springframework.web.bind.annotation.DeleteMapping
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PatchMapping
@@ -79,7 +78,6 @@ class CommunityController(
     ) = updatePollService.execute(request.title, request.content, pollId)
 
     @PostMapping("/vote/{poll-option-id}")
-    @ResponseStatus(HttpStatus.OK)
     fun addVote(@PathVariable("poll-option-id") pollOptionId: Long)
         = addVoteService.execute(pollOptionId)
 }

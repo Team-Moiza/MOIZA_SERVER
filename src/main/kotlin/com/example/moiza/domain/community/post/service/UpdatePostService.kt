@@ -20,9 +20,7 @@ class UpdatePostService(
         val post = postRepository.findByIdAndUser(postId, user)
             ?: throw PostNotFoundException
 
-        if (!post.checkAuthority(user)) {
-            throw AccessDeniedException
-        }
+        if (!post.checkAuthority(user)) { AccessDeniedException }
 
         post.update(title, content)
         val updated = postRepository.save(post)

@@ -13,7 +13,6 @@ import jakarta.persistence.EnumType
 import jakarta.persistence.FetchType
 import jakarta.persistence.JoinColumn
 import jakarta.persistence.MappedSuperclass
-import java.time.LocalDate
 
 @MappedSuperclass
 abstract class Community(
