@@ -35,6 +35,7 @@ class PollRepositoryImpl(
                     pollId = pollEntity.id,
                     title = pollEntity.title,
                     content = pollEntity.content,
+                    type = pollEntity.type,
                     options = options,
                     user = UserResponse(
                         nickname = pollEntity.user.nickname,
