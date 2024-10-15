@@ -25,7 +25,8 @@ class QueryPostDetailService(
                 nickname = post.user.nickname,
                 profile = post.user.profile
             ),
-            image = post.image
+            image = post.image,
+            createdAt = post.createdAt
         )
     }
 }

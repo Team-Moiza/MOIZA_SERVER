@@ -35,10 +35,12 @@ class PostRepositoryImpl(
                         UserResponse::class.java,
                         post.user.nickname,
                         post.user.profile
-                    )
+                    ),
+                    post.createdAt
                 )
             )
             .from(post)
+            .orderBy(post.createdAt.desc())
             .fetch()
     }
 }

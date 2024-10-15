@@ -2,6 +2,7 @@ package com.example.moiza.domain.community.post.presentation.dto.res
 
 import com.example.moiza.domain.community.community.domain.entity.type.CommunityType
 import com.example.moiza.domain.user.presentation.dto.res.UserResponse
+import java.time.LocalDateTime
 
 class PostDetailResponse(
     val postId: Long,
@@ -10,6 +11,7 @@ class PostDetailResponse(
     val type: CommunityType,
     val image: List<String>? = null,
     val user: UserResponse,
+    val createdAt: LocalDateTime
 )
 
 data class PostsResponse(
@@ -25,4 +27,5 @@ class PostResponse(
     val title: String,
     val content: String,
     val user: UserResponse,
+    val createdAt: LocalDateTime
 )
