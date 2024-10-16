@@ -26,6 +26,7 @@ class PostResponse(
     val postId: Long,
     val title: String,
     val content: String,
+    val type: CommunityType,
     val user: UserResponse,
     val createdAt: LocalDateTime
 )
