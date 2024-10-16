@@ -1,6 +1,5 @@
 package com.example.moiza.domain.community.poll.domain.repository
 
-import com.example.moiza.domain.community.community.domain.entity.type.CommunityType
 import com.example.moiza.domain.community.poll.domain.entity.QPoll.poll
 import com.example.moiza.domain.community.poll.domain.entity.QPollOption.pollOption
 import com.example.moiza.domain.community.poll.presentation.dto.res.PollOptionResponse
