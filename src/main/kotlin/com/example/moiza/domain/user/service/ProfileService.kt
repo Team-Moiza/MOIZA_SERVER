@@ -12,6 +12,6 @@ class ProfileService(
     @Transactional(readOnly = true)
     fun execute(): InfoUserResponse {
         val user = userFacade.getCurrentUser()
-        return InfoUserResponse(user.nickname, user.profile)
+        return InfoUserResponse(user.nickname, user.profile, user.school)
     }
 }
