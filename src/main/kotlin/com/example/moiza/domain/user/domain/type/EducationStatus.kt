@@ -1,6 +1,6 @@
 package com.example.moiza.domain.user.domain.type
 
-enum class Education {
+enum class EducationStatus {
     ENROLLED,
     GRADUATED,
 }
