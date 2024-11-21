@@ -1,6 +1,9 @@
 package com.example.moiza.domain.user.domain
 
 import com.example.moiza.domain.user.domain.type.Authority
+import com.example.moiza.domain.user.domain.type.EducationStatus
+import com.example.moiza.domain.user.domain.type.Major
+import com.example.moiza.domain.user.domain.type.School
 import jakarta.persistence.*
 
 @Entity
@@ -29,6 +32,25 @@ class User(
     var authority: Authority = Authority.USER
         protected set
 
+    @Enumerated(EnumType.STRING)
+    var school: School? = null
+        protected set
+
+    @Enumerated(EnumType.STRING)
+    var major: Major? = null
+        protected set
+
+    @Column(name = "education_status")
+    @Enumerated(EnumType.STRING)
+    var educationStatus: EducationStatus? = null
+        protected set
+
     fun isAdmin(): Boolean =
         this.authority == Authority.ADMIN
+
+    fun update(school: School, major: Major, educationStatus: EducationStatus) {
+        this.school = school
+        this.major = major
+        this.educationStatus = educationStatus
+    }
 }

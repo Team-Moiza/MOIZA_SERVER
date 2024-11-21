@@ -1,17 +1,18 @@
 package com.example.moiza.domain.user.service
 
 import com.example.moiza.domain.user.facade.UserFacade
-import com.example.moiza.domain.user.presentation.dto.res.InfoUserResponse
+import com.example.moiza.domain.user.presentation.dto.req.UpdateProfileRequest
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 
 @Service
-class ProfileService(
+class UpdateProfileService(
     private val userFacade: UserFacade,
 ) {
-    @Transactional(readOnly = true)
-    fun execute(): InfoUserResponse {
+
+    @Transactional
+    fun execute(request: UpdateProfileRequest) {
         val user = userFacade.getCurrentUser()
-        return InfoUserResponse(user.nickname, user.profile, user.school)
+        user.update(request.school, request.major, request.educationStatus)
     }
 }
