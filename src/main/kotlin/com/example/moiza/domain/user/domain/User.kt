@@ -32,17 +32,14 @@ class User(
     var authority: Authority = Authority.USER
         protected set
 
-    @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     var school: School? = null
         protected set
 
-    @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     var major: Major? = null
         protected set
 
-    @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     var education: Education? = null
         protected set
