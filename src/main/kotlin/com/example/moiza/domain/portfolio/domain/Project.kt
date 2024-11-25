@@ -1,18 +1,37 @@
 package com.example.moiza.domain.portfolio.domain
 
 import jakarta.persistence.*
+import java.time.LocalDate
 
 @Entity
 class Project(
+    title: String,
+    status: Boolean,
+    startDate: LocalDate,
+    endDate: LocalDate,
     description: String,
     link: String,
-    status: Boolean,
-    period: String,
     portfolio: Portfolio
 ) {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long = 0L
+
+    @Column(columnDefinition = "VARCHAR(50)", nullable = false)
+    var title: String = title
+        protected set
+
+    @Column(nullable = false)
+    var startDate: LocalDate = startDate
+        protected set
+
+    @Column(nullable = false)
+    var endDate: LocalDate = endDate
+        protected set
+
+    @Column(columnDefinition = "BOOLEAN", nullable = false)
+    var status: Boolean = status
+        protected set
 
     @Column(columnDefinition = "TEXT", nullable = false)
     var description: String = description
@@ -20,14 +39,6 @@ class Project(
 
     @Column(columnDefinition = "VARCHAR(255)", nullable = true)
     var link: String = link
-        protected set
-
-    @Column(columnDefinition = "BOOLEAN", nullable = false)
-    var status: Boolean = status
-        protected set
-
-    @Column(nullable = false)
-    var period: String = period
         protected set
 
     @ManyToOne(fetch = FetchType.LAZY)
