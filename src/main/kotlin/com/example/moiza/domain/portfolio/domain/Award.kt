@@ -35,4 +35,11 @@ class Award(
     @JoinColumn(name = "portfolio_id")
     var portfolio: Portfolio = portfolio
         protected set
+
+    fun update(name: String, type: String, date: LocalDate, description: String) {
+        this.name = name
+        this.type = type
+        this.date = date
+        this.description = description
+    }
 }

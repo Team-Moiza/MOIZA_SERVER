@@ -19,4 +19,8 @@ class Link(
     @JoinColumn(name = "portfolio_id")
     var portfolio: Portfolio = portfolio
         protected set
+
+    fun update(url: String) {
+        this.url = url
+    }
 }

@@ -45,4 +45,13 @@ class Project(
     @JoinColumn(name = "portfolio_id")
     var portfolio: Portfolio = portfolio
         protected set
+
+    fun update(title: String, startDate: LocalDate, endDate: LocalDate, status: Boolean, description: String, link: String) {
+        this.title = title
+        this.startDate = startDate
+        this.endDate = endDate
+        this.status = status
+        this.description = description
+        this.link = link
+    }
 }

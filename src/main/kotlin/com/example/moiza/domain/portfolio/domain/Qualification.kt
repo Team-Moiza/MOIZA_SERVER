@@ -30,4 +30,10 @@ class Qualification(
     @JoinColumn(name = "portfolio_id")
     var portfolio: Portfolio = portfolio
         protected set
+
+    fun update(name: String, score: String, date: LocalDate) {
+        this.name = name
+        this.score = score
+        this.date = date
+    }
 }
