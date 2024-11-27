@@ -2,7 +2,7 @@ package com.example.moiza.domain.portfolio.presentation.dto.req
 
 import java.time.LocalDate
 
-data class CreatePortfolioRequest(
+data class PortfolioRequest(
     val projects: List<ProjectDto>? = null,
     val awards: List<AwardDto>? = null,
     val qualifications: List<QualificationDto>? = null,
