@@ -1,9 +1,7 @@
 package com.example.moiza.domain.portfolio.presentation
 
 import com.example.moiza.domain.portfolio.presentation.dto.req.PortfolioRequest
-import com.example.moiza.domain.portfolio.service.CreatePortfolioService
-import com.example.moiza.domain.portfolio.service.DeletePortfolioService
-import com.example.moiza.domain.portfolio.service.UpdatePortfolioService
+import com.example.moiza.domain.portfolio.service.*
 import jakarta.validation.Valid
 import org.springframework.web.bind.annotation.*
 
@@ -12,7 +10,9 @@ import org.springframework.web.bind.annotation.*
 class PortfolioController(
     private val createPortfolioService: CreatePortfolioService,
     private val updatePortfolioService: UpdatePortfolioService,
-    private val deletePortfolioService: DeletePortfolioService
+    private val deletePortfolioService: DeletePortfolioService,
+    private val queryPortfolioListService: QueryPortfolioListService,
+    private val queryPortfolioDetailResponse: QueryPortfolioDetailResponse
 ) {
 
     @PostMapping
@@ -28,4 +28,12 @@ class PortfolioController(
     @DeleteMapping("/{portfolio-id}")
     fun deletePortfolio(@PathVariable("portfolio-id") portfolioId: Long)
         = deletePortfolioService.execute(portfolioId)
+
+    @GetMapping
+    fun queryPortfolioList()
+        = queryPortfolioListService.execute()
+
+    @GetMapping("/{portfolio-id}")
+    fun queryPortfolioDetail(@PathVariable("portfolio-id") portfolioId: Long)
+        = queryPortfolioDetailResponse.execute(portfolioId)
 }
