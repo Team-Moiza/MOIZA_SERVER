@@ -7,6 +7,6 @@ import org.springframework.stereotype.Repository
 
 @Repository
 interface PortfolioRepository: JpaRepository<Portfolio, Long> {
-    fun findPortfolioByUserId(userId: Long): List<Portfolio>
+    fun findPortfolioByUser(user: User): Portfolio
     fun findPortfolioByIdAndUser(portfolioId: Long, user: User): Portfolio?
 }
