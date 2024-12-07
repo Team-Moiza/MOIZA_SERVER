@@ -29,7 +29,8 @@ class UpdatePortfolioService(
     private fun updateProjects(portfolio: Portfolio, projectDtos: List<ProjectDto>?) {
         updateEntities(
             existing = projectRepository.findAllByPortfolio(portfolio),
-            updatedDtos = projectDtos,
+            updated = projectDtos,
+            match = { entity, dto -> entity.id == dto.id },
             create = { dto -> Project(dto.title, dto.status, dto.startDate!!, dto.endDate!!, dto.description, dto.link, portfolio) },
             update = { entity, dto -> entity.update(dto.title, dto.startDate!!, dto.endDate!!, dto.status, dto.description, dto.link) },
             delete = { projectRepository.delete(it) },
@@ -40,7 +41,8 @@ class UpdatePortfolioService(
     private fun updateQualifications(portfolio: Portfolio, qualificationDtos: List<QualificationDto>?) {
         updateEntities(
             existing = qualificationRepository.findAllByPortfolio(portfolio),
-            updatedDtos = qualificationDtos,
+            updated = qualificationDtos,
+            match = { entity, dto -> entity.id == dto.id },
             create = { dto -> Qualification(dto.name, dto.score, dto.date, portfolio) },
             update = { entity, dto -> entity.update(dto.name, dto.score, dto.date) },
             delete = { qualificationRepository.delete(it) },
@@ -51,7 +53,8 @@ class UpdatePortfolioService(
     private fun updateAwards(portfolio: Portfolio, awardDtos: List<AwardDto>?) {
         updateEntities(
             existing = awardRepository.findAllByPortfolio(portfolio),
-            updatedDtos = awardDtos,
+            updated = awardDtos,
+            match = { entity, dto -> entity.id == dto.id },
             create = { dto -> Award(dto.name, dto.type, dto.date, dto.description, portfolio) },
             update = { entity, dto -> entity.update(dto.name, dto.type, dto.date, dto.description) },
             delete = { awardRepository.delete(it) },
@@ -62,7 +65,8 @@ class UpdatePortfolioService(
     private fun updateLinks(portfolio: Portfolio, linkDtos: List<LinkDto>?) {
         updateEntities(
             existing = linkRepository.findAllByPortfolio(portfolio),
-            updatedDtos = linkDtos,
+            updated = linkDtos,
+            match = { entity, dto -> entity.id == dto.id },
             create = { dto -> Link(dto.url, portfolio) },
             update = { entity, dto -> entity.update(dto.url) },
             delete = { linkRepository.delete(it) },
@@ -71,35 +75,26 @@ class UpdatePortfolioService(
     }
 
     private fun <E : Any, D : Any> updateEntities(
-        // 현재 존재하는 섹션들의 기존 목록
         existing: List<E>,
-        // request에서 받는 새로운 섹션 리스트
-        updatedDtos: List<D>?,
-        // 새로운 섹션 엔티티 생성 함수 (기존 리스트에서 추가로 들어온 값)
+        updated: List<D>?,
+        match: (E, D) -> Boolean,
         create: (D) -> E,
-        // 기존 섹션 엔티티 업데이트하는 함수 (기존 리스트에서 수정된 값)
         update: (E, D) -> Unit,
-        // 기존 섹션 삭제하는 람다 함수 (기존 리스트에서 삭제된 값)
         delete: (E) -> Unit,
-        // 저장
         save: (E) -> Unit
     ) {
-        /*
-        dto 리스트를 순회하며 각 dto에
-        1. if 인덱스가 기존 리스트 크기보다 작으면 엔티티 업데이트
-        2. else 그렇지 않다면 엔티티 생성 후 저장
-        */
-        updatedDtos?.forEachIndexed { index, dto ->
-            if (index < existing.size) {
-                update(existing[index], dto)
+        val writing = mutableSetOf<E>()
+
+        updated?.forEach { dto ->
+            val entity = existing.find { match(it, dto) }
+            if (entity != null) {
+                update(entity, dto)
+                writing.add(entity)
             } else {
                 save(create(dto))
             }
         }
 
-        // 만약 dto 리스트 크기가 기존 엔티티 목록 갯수보다 작으면 기존 엔티티 삭제
-        if (updatedDtos != null && updatedDtos.size < existing.size) {
-            existing.subList(updatedDtos.size, existing.size).forEach(delete)
-        }
+        existing.filterNot { writing.contains(it) }.forEach(delete)
     }
 }

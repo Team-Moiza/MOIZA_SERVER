@@ -12,6 +12,7 @@ import com.example.moiza.domain.portfolio.presentation.dto.req.LinkDto
 object PortfolioDtoUtil {
     fun getProjectDto(project: Project): ProjectDto {
         return ProjectDto(
+            id = project.id,
             title = project.title,
             status = project.status,
             startDate = project.startDate,
@@ -23,6 +24,7 @@ object PortfolioDtoUtil {
 
     fun getQualificationDto(qualification: Qualification): QualificationDto {
         return QualificationDto(
+            id = qualification.id,
             name = qualification.name,
             score = qualification.score,
             date = qualification.date
@@ -31,6 +33,7 @@ object PortfolioDtoUtil {
 
     fun getAwardDto(award: Award): AwardDto {
         return AwardDto(
+            id = award.id,
             name = award.name,
             type = award.type,
             date = award.date,
@@ -40,6 +43,7 @@ object PortfolioDtoUtil {
 
     fun getLinkDto(link: Link): LinkDto {
         return LinkDto(
+            id = link.id,
             url = link.url
         )
     }

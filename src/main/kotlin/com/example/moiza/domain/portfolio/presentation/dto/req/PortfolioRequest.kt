@@ -10,6 +10,7 @@ data class PortfolioRequest(
 )
 
 data class ProjectDto(
+    val id: Long?,
     val title: String,
     val status: Boolean,
     val startDate: LocalDate?,
@@ -19,6 +20,7 @@ data class ProjectDto(
 )
 
 data class AwardDto(
+    val id: Long?,
     val name: String,
     val type: String,
     val date: LocalDate,
@@ -26,11 +28,13 @@ data class AwardDto(
 )
 
 data class QualificationDto(
+    val id: Long?,
     val name: String,
     val score: String,
     val date: LocalDate
 )
 
 data class LinkDto(
+    val id: Long?,
     val url: String
 )
