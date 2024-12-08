@@ -17,7 +17,7 @@ class QueryPortfolioDetailResponse(
     @Transactional
     fun execute(portfolioId: Long): PortfolioDetailResponse {
         val portfolio = portfolioRepository.findByIdOrNull(portfolioId) ?: throw PortfolioNotFoundException
-        val user = userFacade.getCurrentUser()
+        val user = portfolio.user
 
         return PortfolioDetailResponse(
             id = portfolio.id,
