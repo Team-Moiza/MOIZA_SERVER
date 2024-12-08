@@ -8,4 +8,7 @@ enum class ErrorCode(
     INVALID_JWT(401, "Invalid Jwt"),
     USER_NOT_FOUND(404, "User Not Found"),
     TOKEN_NOT_FOUND(404, "Token Not Found"),
+
+    // portfolio
+    PORTFOLIO_NOT_FOUND(404, "Portfolio Not Found")
 }
