@@ -16,5 +16,8 @@ class UserFacade(
     }
 
     fun getUserByEmail(email: String)
-            = userRepository.findByEmail(email) ?: throw UserNotFoundException
+        = userRepository.findByEmail(email) ?: throw UserNotFoundException
+
+    fun isLogin()
+        = SecurityContextHolder.getContext().authentication.isAuthenticated
 }
