@@ -12,13 +12,15 @@ data class PortfolioListResponse(
     val name: String,
     val school: School,
     val major: Major,
-    val profile: String
+    val profile: String,
+    val introduce: String
 )
 
 data class PortfolioDetailResponse(
     val id: Long,
     val name: String,
     val major: Major,
+    val introduce: String,
     val projects: List<ProjectDto>?,
     val qualifications: List<QualificationDto>?,
     val awards: List<AwardDto>?,

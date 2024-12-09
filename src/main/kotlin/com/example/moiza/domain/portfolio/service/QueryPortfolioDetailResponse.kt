@@ -4,7 +4,6 @@ import com.example.moiza.domain.portfolio.domain.repository.PortfolioRepository
 import com.example.moiza.domain.portfolio.exception.PortfolioNotFoundException
 import com.example.moiza.domain.portfolio.presentation.dto.PortfolioDtoUtil
 import com.example.moiza.domain.portfolio.presentation.dto.res.PortfolioDetailResponse
-import com.example.moiza.domain.user.facade.UserFacade
 import jakarta.transaction.Transactional
 import org.springframework.data.repository.findByIdOrNull
 import org.springframework.stereotype.Service
@@ -12,7 +11,6 @@ import org.springframework.stereotype.Service
 @Service
 class QueryPortfolioDetailResponse(
     private val portfolioRepository: PortfolioRepository,
-    private val userFacade: UserFacade
 ) {
     @Transactional
     fun execute(portfolioId: Long): PortfolioDetailResponse {
@@ -23,6 +21,7 @@ class QueryPortfolioDetailResponse(
             id = portfolio.id,
             name = user.nickname,
             major = user.major!!,
+            introduce = portfolio.introduce,
             projects = portfolio.projects.map { project -> PortfolioDtoUtil.getProjectDto(project) },
             qualifications = portfolio.qualifications.map { qualification -> PortfolioDtoUtil.getQualificationDto(qualification) },
             awards = portfolio.awards.map { award -> PortfolioDtoUtil.getAwardDto(award) },

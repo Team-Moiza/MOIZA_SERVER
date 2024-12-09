@@ -10,6 +10,7 @@ import jakarta.persistence.*
 
 @Entity
 class Portfolio(
+    introduce: String,
     user: User,
 ) {
     @Id
@@ -22,6 +23,10 @@ class Portfolio(
 
     @Column(nullable = false)
     var userStatus: Int = UserStatus.PORTFOLIO_PUBLISHED.level
+        protected set
+
+    @Column(nullable = false)
+    var introduce: String = introduce
         protected set
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -40,6 +45,10 @@ class Portfolio(
 
     @OneToMany(mappedBy = "portfolio", cascade = [CascadeType.ALL], orphanRemoval = true)
     val links: MutableList<Link> = mutableListOf()
+
+    fun update(introduce: String) {
+        this.introduce = introduce
+    }
 
     fun addProjects(projectDtos: List<ProjectDto>) {
         projectDtos.forEach { dto ->
