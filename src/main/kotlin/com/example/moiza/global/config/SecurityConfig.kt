@@ -4,6 +4,7 @@ import com.example.moiza.global.security.jwt.JwtTokenFilter
 import com.example.moiza.global.security.jwt.JwtTokenProvider
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
+import org.springframework.http.HttpMethod
 import org.springframework.http.HttpStatus
 import org.springframework.security.config.Customizer
 import org.springframework.security.config.annotation.web.builders.HttpSecurity
@@ -42,6 +43,9 @@ class SecurityConfig(
             .authorizeHttpRequests { authorize ->
                 // auth
                 authorize.requestMatchers("/auth/**").permitAll()
+
+                // portfolio
+                authorize.requestMatchers(HttpMethod.GET, "/portfolio").permitAll()
 
                 authorize.anyRequest().authenticated()
             }

@@ -3,6 +3,7 @@ package com.example.moiza.domain.portfolio.presentation
 import com.example.moiza.domain.portfolio.presentation.dto.req.PortfolioRequest
 import com.example.moiza.domain.portfolio.service.*
 import jakarta.validation.Valid
+import org.springframework.data.domain.Pageable
 import org.springframework.web.bind.annotation.*
 
 @RequestMapping("/portfolio")
@@ -31,8 +32,8 @@ class PortfolioController(
         = deletePortfolioService.execute(portfolioId)
 
     @GetMapping
-    fun queryPortfolioList()
-        = queryPortfolioListService.execute()
+    fun queryPortfolioList(pageable: Pageable)
+        = queryPortfolioListService.execute(pageable)
 
     @GetMapping("/{portfolio-id}")
     fun queryPortfolioDetail(@PathVariable("portfolio-id") portfolioId: Long)
