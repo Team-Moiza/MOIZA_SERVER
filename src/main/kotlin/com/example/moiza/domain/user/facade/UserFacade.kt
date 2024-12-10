@@ -1,8 +1,9 @@
 package com.example.moiza.domain.user.facade
 
-import com.example.moiza.domain.user.exception.UserNotFoundException
 import com.example.moiza.domain.user.domain.User
 import com.example.moiza.domain.user.domain.repository.UserRepository
+import com.example.moiza.domain.user.exception.UserNotFoundException
+import org.springframework.security.authentication.AnonymousAuthenticationToken
 import org.springframework.security.core.context.SecurityContextHolder
 import org.springframework.stereotype.Component
 
@@ -18,6 +19,11 @@ class UserFacade(
     fun getUserByEmail(email: String)
         = userRepository.findByEmail(email) ?: throw UserNotFoundException
 
-    fun isLogin()
-        = SecurityContextHolder.getContext().authentication.isAuthenticated
+    fun isLogin(): Boolean {
+        val authentication = SecurityContextHolder.getContext().authentication
+
+        return authentication != null
+                && authentication.isAuthenticated
+                && authentication !is AnonymousAuthenticationToken
+    }
 }

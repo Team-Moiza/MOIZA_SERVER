@@ -17,7 +17,7 @@ class QueryPortfolioListService(
     @Transactional(readOnly = true)
     fun execute(pageable: Pageable): Page<PortfolioListResponse> {
         var status: UserStatus = UserStatus.NOT_LOGGED_IN
-        println(userFacade.isLogin())
+
         if (userFacade.isLogin()) {
             status = userFacade.getCurrentUser().userStatus
         }
