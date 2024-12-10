@@ -1,8 +1,8 @@
 package com.example.moiza.domain.portfolio.domain.type
 
-enum class UserStatus {
-    NOT_LOGGED_IN,
-    LOGGED_IN,
-    PORTFOLIO_COMPLETED,
-    PORTFOLIO_PUBLISHED,
+enum class UserStatus(val level: Int) {
+    NOT_LOGGED_IN(0),
+    LOGGED_IN(1),
+    PORTFOLIO_COMPLETED(2),
+    PORTFOLIO_PUBLISHED(3),
 }

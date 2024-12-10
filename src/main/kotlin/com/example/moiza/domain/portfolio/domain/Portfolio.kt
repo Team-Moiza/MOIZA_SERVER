@@ -1,5 +1,6 @@
 package com.example.moiza.domain.portfolio.domain
 
+import com.example.moiza.domain.portfolio.domain.type.UserStatus
 import com.example.moiza.domain.portfolio.presentation.dto.req.AwardDto
 import com.example.moiza.domain.portfolio.presentation.dto.req.LinkDto
 import com.example.moiza.domain.portfolio.presentation.dto.req.ProjectDto
@@ -14,6 +15,10 @@ class Portfolio(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long = 0L
+
+    @Column(nullable = false)
+    var userStatus: Int = UserStatus.PORTFOLIO_PUBLISHED.level
+        protected set
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
