@@ -17,6 +17,10 @@ class Portfolio(
     val id: Long = 0L
 
     @Column(nullable = false)
+    var publish: Boolean = false
+        protected set
+
+    @Column(nullable = false)
     var userStatus: Int = UserStatus.PORTFOLIO_PUBLISHED.level
         protected set
 
@@ -85,5 +89,10 @@ class Portfolio(
             )
             links.add(link)
         }
+    }
+
+    fun changePublish(): Boolean {
+        publish = !publish
+        return publish
     }
 }
