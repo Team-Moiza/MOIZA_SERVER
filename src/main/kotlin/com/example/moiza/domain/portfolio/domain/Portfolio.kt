@@ -17,7 +17,7 @@ class Portfolio(
     val id: Long = 0L
 
     @Column(nullable = false)
-    var publish: Boolean = false
+    var isPublished: Boolean = false
         protected set
 
     @Column(nullable = false)
@@ -92,7 +92,7 @@ class Portfolio(
     }
 
     fun changePublish(): Boolean {
-        publish = !publish
-        return publish
+        isPublished = !isPublished
+        return isPublished
     }
 }

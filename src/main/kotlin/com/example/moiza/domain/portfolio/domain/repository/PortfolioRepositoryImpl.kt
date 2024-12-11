@@ -28,7 +28,8 @@ class PortfolioRepositoryImpl(
                 )
             )
             .from(portfolio)
-            .where(portfolio.userStatus.loe(status.level))
+            .where(portfolio.userStatus.loe(status.level)
+                .and(portfolio.isPublished.isTrue))
             .fetch()
 
         val countQuery: JPAQuery<Long> = queryFactory

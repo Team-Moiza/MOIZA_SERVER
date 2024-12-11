@@ -18,7 +18,7 @@ class ChangePublishService(
         val portfolio = (portfolioRepository.findPortfolioByUser(user)
             ?: throw PortfolioNotFoundException)
 
-        if(portfolio.publish)
+        if(portfolio.isPublished)
             user.updateUserStatus(UserStatus.PORTFOLIO_COMPLETED)
         else
             user.updateUserStatus(UserStatus.PORTFOLIO_PUBLISHED)
