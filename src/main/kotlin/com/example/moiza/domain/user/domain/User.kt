@@ -1,5 +1,6 @@
 package com.example.moiza.domain.user.domain
 
+import com.example.moiza.domain.portfolio.domain.type.UserStatus
 import com.example.moiza.domain.user.domain.type.Authority
 import com.example.moiza.domain.user.domain.type.EducationStatus
 import com.example.moiza.domain.user.domain.type.Major
@@ -45,6 +46,10 @@ class User(
     var educationStatus: EducationStatus? = null
         protected set
 
+    @Column(nullable = false)
+    @Enumerated(EnumType.STRING)
+    var userStatus: UserStatus = UserStatus.LOGGED_IN
+
     fun isAdmin(): Boolean =
         this.authority == Authority.ADMIN
 
@@ -52,5 +57,9 @@ class User(
         this.school = school
         this.major = major
         this.educationStatus = educationStatus
+    }
+
+    fun updateUserStatus(userStatus: UserStatus){
+        this.userStatus = userStatus
     }
 }
