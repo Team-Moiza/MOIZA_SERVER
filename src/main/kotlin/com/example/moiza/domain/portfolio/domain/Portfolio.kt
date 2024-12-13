@@ -1,10 +1,7 @@
 package com.example.moiza.domain.portfolio.domain
 
+import com.example.moiza.domain.portfolio.presentation.dto.req.*
 import com.example.moiza.domain.portfolio.domain.type.UserStatus
-import com.example.moiza.domain.portfolio.presentation.dto.req.AwardDto
-import com.example.moiza.domain.portfolio.presentation.dto.req.LinkDto
-import com.example.moiza.domain.portfolio.presentation.dto.req.ProjectDto
-import com.example.moiza.domain.portfolio.presentation.dto.req.QualificationDto
 import com.example.moiza.domain.user.domain.User
 import jakarta.persistence.*
 
@@ -45,6 +42,9 @@ class Portfolio(
 
     @OneToMany(mappedBy = "portfolio", cascade = [CascadeType.ALL], orphanRemoval = true)
     val links: MutableList<Link> = mutableListOf()
+
+    @OneToOne(mappedBy = "portfolio", cascade = [CascadeType.ALL], orphanRemoval = true)
+    var introduction: Introduction? = null
 
     fun update(introduce: String) {
         this.introduce = introduce
@@ -98,6 +98,15 @@ class Portfolio(
             )
             links.add(link)
         }
+    }
+
+    fun addIntroduction(introductionDto: IntroductionDto) {
+        val introduction = Introduction(
+            introduce = introductionDto.introduce,
+            url = introductionDto.url,
+            portfolio = this
+        )
+        this.introduction = introduction
     }
 
     fun changePublish(): Boolean {

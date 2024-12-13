@@ -22,6 +22,7 @@ class QueryPortfolioDetailResponse(
             name = user.nickname,
             major = user.major!!,
             introduce = portfolio.introduce,
+            introduction = portfolio.introduction?.let { PortfolioDtoUtil.getIntroductionDto(it) },
             projects = portfolio.projects.map { project -> PortfolioDtoUtil.getProjectDto(project) },
             qualifications = portfolio.qualifications.map { qualification -> PortfolioDtoUtil.getQualificationDto(qualification) },
             awards = portfolio.awards.map { award -> PortfolioDtoUtil.getAwardDto(award) },

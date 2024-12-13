@@ -15,7 +15,8 @@ class UpdatePortfolioService(
     private val projectRepository: ProjectRepository,
     private val qualificationRepository: QualificationRepository,
     private val awardRepository: AwardRepository,
-    private val linkRepository: LinkRepository
+    private val linkRepository: LinkRepository,
+    private val introductionRepository: IntroductionRepository
 ) {
     fun execute(portfolioId: Long, request: PortfolioRequest) {
         val portfolio = portfolioRepository.findByIdOrNull(portfolioId) ?: throw PortfolioNotFoundException
@@ -27,6 +28,7 @@ class UpdatePortfolioService(
         updateQualifications(portfolio, request.qualifications)
         updateAwards(portfolio, request.awards)
         updateLinks(portfolio, request.links)
+        updateIntroduction(portfolio, request.introduction)
     }
 
     private fun updateProjects(portfolio: Portfolio, projectDtos: List<ProjectDto>?) {
@@ -75,6 +77,18 @@ class UpdatePortfolioService(
             delete = { linkRepository.delete(it) },
             save = { linkRepository.save(it) }
         )
+    }
+
+    private fun updateIntroduction(portfolio: Portfolio, introductionDto: IntroductionDto?) {
+        if (introductionDto != null) {
+            if (portfolio.introduction != null) {
+                portfolio.introduction!!.update(introductionDto.introduce, introductionDto.url)
+            } else {
+                portfolio.addIntroduction(introductionDto)
+            }
+        } else {
+            portfolio.introduction = null
+        }
     }
 
     private fun <E : Any, D : Any> updateEntities(

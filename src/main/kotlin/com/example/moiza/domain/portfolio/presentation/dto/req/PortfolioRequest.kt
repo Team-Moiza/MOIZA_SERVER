@@ -8,6 +8,7 @@ data class PortfolioRequest(
     val awards: List<AwardDto>? = null,
     val qualifications: List<QualificationDto>? = null,
     val links: List<LinkDto>? = null,
+    val introduction: IntroductionDto? = null
 )
 
 data class ProjectDto(
@@ -37,5 +38,10 @@ data class QualificationDto(
 
 data class LinkDto(
     val id: Long?,
+    val url: String
+)
+
+data class IntroductionDto(
+    val introduce: String,
     val url: String
 )
