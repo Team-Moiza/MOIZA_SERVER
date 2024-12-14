@@ -15,14 +15,12 @@ class UpdatePortfolioService(
     private val projectRepository: ProjectRepository,
     private val qualificationRepository: QualificationRepository,
     private val awardRepository: AwardRepository,
-    private val linkRepository: LinkRepository,
-    private val introductionRepository: IntroductionRepository
+    private val linkRepository: LinkRepository
 ) {
     fun execute(portfolioId: Long, request: PortfolioRequest) {
         val portfolio = portfolioRepository.findByIdOrNull(portfolioId) ?: throw PortfolioNotFoundException
 
         portfolio.update(request.introduce)
-        portfolioRepository.save(portfolio)
 
         updateProjects(portfolio, request.projects)
         updateQualifications(portfolio, request.qualifications)
@@ -80,15 +78,15 @@ class UpdatePortfolioService(
     }
 
     private fun updateIntroduction(portfolio: Portfolio, introductionDto: IntroductionDto?) {
-        if (introductionDto != null) {
-            if (portfolio.introduction != null) {
-                portfolio.introduction!!.update(introductionDto.introduce, introductionDto.url)
-            } else {
-                portfolio.addIntroduction(introductionDto)
-            }
-        } else {
-            portfolio.introduction = null
-        }
+        updateEntities(
+            existing = listOfNotNull(portfolio.introduction),
+            updated = introductionDto?.let { listOf(it) },
+            match = { _, _ -> true },
+            create = { dto -> Introduction(dto.introduce, dto.url, portfolio) },
+            update = { entity, dto -> entity.update(dto.introduce, dto.url) },
+            delete = { portfolio.introduction = null },
+            save = { portfolio.introduction = it }
+        )
     }
 
     private fun <E : Any, D : Any> updateEntities(
