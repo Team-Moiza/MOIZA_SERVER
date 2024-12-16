@@ -14,4 +14,7 @@ data class UpdateProfileRequest(
 
     @NotNull
     val educationStatus: EducationStatus,
+
+    @NotNull
+    val introduce: String,
 )
