@@ -1,13 +1,7 @@
 package com.example.moiza.domain.portfolio.presentation.dto
 
-import com.example.moiza.domain.portfolio.domain.Project
-import com.example.moiza.domain.portfolio.domain.Qualification
-import com.example.moiza.domain.portfolio.domain.Award
-import com.example.moiza.domain.portfolio.domain.Link
-import com.example.moiza.domain.portfolio.presentation.dto.req.ProjectDto
-import com.example.moiza.domain.portfolio.presentation.dto.req.QualificationDto
-import com.example.moiza.domain.portfolio.presentation.dto.req.AwardDto
-import com.example.moiza.domain.portfolio.presentation.dto.req.LinkDto
+import com.example.moiza.domain.portfolio.domain.*
+import com.example.moiza.domain.portfolio.presentation.dto.req.*
 
 object PortfolioDtoUtil {
     fun getProjectDto(project: Project): ProjectDto {
@@ -45,6 +39,13 @@ object PortfolioDtoUtil {
         return LinkDto(
             id = link.id,
             url = link.url
+        )
+    }
+
+    fun getIntroductionDto(introduction: Introduction): IntroductionDto {
+        return IntroductionDto(
+            introduce = introduction.introduce,
+            url = introduction.url
         )
     }
 }

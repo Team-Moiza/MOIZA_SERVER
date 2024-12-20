@@ -50,13 +50,18 @@ class User(
     @Enumerated(EnumType.STRING)
     var userStatus: UserStatus = UserStatus.LOGGED_IN
 
+    @Column(nullable = false)
+    var introduce: String? = null
+        protected set
+
     fun isAdmin(): Boolean =
         this.authority == Authority.ADMIN
 
-    fun update(school: School, major: Major, educationStatus: EducationStatus) {
+    fun update(school: School, major: Major, educationStatus: EducationStatus, introduce: String) {
         this.school = school
         this.major = major
         this.educationStatus = educationStatus
+        this.introduce = introduce
     }
 
     fun updateUserStatus(userStatus: UserStatus){

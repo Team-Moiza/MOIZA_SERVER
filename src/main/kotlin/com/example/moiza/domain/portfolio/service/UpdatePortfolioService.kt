@@ -24,6 +24,7 @@ class UpdatePortfolioService(
         updateQualifications(portfolio, request.qualifications)
         updateAwards(portfolio, request.awards)
         updateLinks(portfolio, request.links)
+        updateIntroduction(portfolio, request.introduction)
     }
 
     private fun updateProjects(portfolio: Portfolio, projectDtos: List<ProjectDto>?) {
@@ -71,6 +72,18 @@ class UpdatePortfolioService(
             update = { entity, dto -> entity.update(dto.url) },
             delete = { linkRepository.delete(it) },
             save = { linkRepository.save(it) }
+        )
+    }
+
+    private fun updateIntroduction(portfolio: Portfolio, introductionDto: IntroductionDto?) {
+        updateEntities(
+            existing = listOfNotNull(portfolio.introduction),
+            updated = introductionDto?.let { listOf(it) },
+            match = { _, _ -> true },
+            create = { dto -> Introduction(dto.introduce, dto.url, portfolio) },
+            update = { entity, dto -> entity.update(dto.introduce, dto.url) },
+            delete = { portfolio.introduction = null },
+            save = { portfolio.introduction = it }
         )
     }
 

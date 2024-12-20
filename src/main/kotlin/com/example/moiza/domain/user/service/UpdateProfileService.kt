@@ -13,6 +13,6 @@ class UpdateProfileService(
     @Transactional
     fun execute(request: UpdateProfileRequest) {
         val user = userFacade.getCurrentUser()
-        user.update(request.school, request.major, request.educationStatus)
+        user.update(request.school, request.major, request.educationStatus, request.introduce)
     }
 }

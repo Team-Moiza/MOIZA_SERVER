@@ -22,6 +22,7 @@ class CreatePortfolioService(
         request.qualifications?.let(portfolio::addQualifications)
         request.awards?.let(portfolio::addAwards)
         request.links?.let(portfolio::addLinks)
+        request.introduction?.let(portfolio::addIntroduction)
 
         user.updateUserStatus(UserStatus.PORTFOLIO_COMPLETED)
         portfolioRepository.save(portfolio)
