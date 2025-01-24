@@ -14,7 +14,7 @@ class Code(
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     var id: Long = 0L
 
-    @Column(nullable = false, unique = true)
+    @Column(nullable = false)
     var keyword: String = keyword
         protected set
 }

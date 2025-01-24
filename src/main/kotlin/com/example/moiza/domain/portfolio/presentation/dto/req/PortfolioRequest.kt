@@ -8,7 +8,8 @@ data class PortfolioRequest(
     val awards: List<AwardDto>? = null,
     val qualifications: List<QualificationDto>? = null,
     val links: List<LinkDto>? = null,
-    val introduction: IntroductionDto? = null
+    val introduction: IntroductionDto? = null,
+    val codes: List<Long>? = null
 )
 
 data class ProjectDto(

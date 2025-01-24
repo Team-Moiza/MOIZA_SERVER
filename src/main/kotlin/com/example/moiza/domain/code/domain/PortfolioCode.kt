@@ -9,8 +9,7 @@ class PortfolioCode(
     code: Code
 ) {
     @EmbeddedId
-    var id: PortfolioCodeId = PortfolioCodeId(portfolio.id, code.id)
-        protected set
+    val id: PortfolioCodeId = PortfolioCodeId(portfolio.id, code.id)
 
     @MapsId("portfolioId")
     @ManyToOne(fetch = FetchType.LAZY)
