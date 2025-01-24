@@ -45,7 +45,7 @@ class Portfolio(
 
     @OneToMany(mappedBy = "portfolio", cascade = [CascadeType.ALL], orphanRemoval = true)
     private val _portfolioCodes: MutableList<PortfolioCode> = mutableListOf()
-    val portfolioCodes: List<PortfolioCode> get() = _portfolioCodes.toList()
+    val codes: List<PortfolioCode> get() = _portfolioCodes.toList()
 
     fun addCode(code: Code) {
         val portfolioCode = PortfolioCode(this, code)

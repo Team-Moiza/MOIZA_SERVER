@@ -1,5 +1,8 @@
 package com.example.moiza.domain.portfolio.service
 
+import com.example.moiza.domain.code.domain.PortfolioCode
+import com.example.moiza.domain.code.domain.repository.CodeRepository
+import com.example.moiza.domain.code.domain.repository.PortfolioCodeRepository
 import com.example.moiza.domain.portfolio.domain.*
 import com.example.moiza.domain.portfolio.domain.repository.*
 import com.example.moiza.domain.portfolio.exception.PortfolioNotFoundException
@@ -15,7 +18,9 @@ class UpdatePortfolioService(
     private val projectRepository: ProjectRepository,
     private val qualificationRepository: QualificationRepository,
     private val awardRepository: AwardRepository,
-    private val linkRepository: LinkRepository
+    private val linkRepository: LinkRepository,
+    private val portfolioCodeRepository: PortfolioCodeRepository,
+    private val codeRepository: CodeRepository
 ) {
     fun execute(portfolioId: Long, request: PortfolioRequest) {
         val portfolio = portfolioRepository.findByIdOrNull(portfolioId) ?: throw PortfolioNotFoundException
@@ -25,6 +30,7 @@ class UpdatePortfolioService(
         updateAwards(portfolio, request.awards)
         updateLinks(portfolio, request.links)
         updateIntroduction(portfolio, request.introduction)
+        updateCodes(portfolio, request.codes)
     }
 
     private fun updateProjects(portfolio: Portfolio, projectDtos: List<ProjectDto>?) {
@@ -84,6 +90,18 @@ class UpdatePortfolioService(
             update = { entity, dto -> entity.update(dto.introduce, dto.url) },
             delete = { portfolio.introduction = null },
             save = { portfolio.introduction = it }
+        )
+    }
+
+    private fun updateCodes(portfolio: Portfolio, codeIds: List<Long>?) {
+        updateEntities(
+            existing = portfolioCodeRepository.findAllByPortfolio(portfolio),
+            updated = codeIds?.mapNotNull { codeRepository.findByIdOrNull(it) },
+            match = { entity, code -> entity.code.id == code.id },
+            create = { code -> PortfolioCode(portfolio, code) },
+            update = { _, _ -> },
+            delete = { portfolioCodeRepository.delete(it) },
+            save = { portfolioCodeRepository.save(it) }
         )
     }
 

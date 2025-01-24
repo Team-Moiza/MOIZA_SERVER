@@ -22,5 +22,6 @@ data class PortfolioDetailResponse(
     val projects: List<ProjectDto>?,
     val qualifications: List<QualificationDto>?,
     val awards: List<AwardDto>?,
-    val links: List<LinkDto>?
+    val links: List<LinkDto>?,
+    val codes: List<Long>?
 )
