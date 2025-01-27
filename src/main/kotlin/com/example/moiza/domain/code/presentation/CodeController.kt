@@ -20,7 +20,7 @@ class CodeController(
     fun createCode(keyword: String): CreateCodeResponse
         = createCodeService.execute(keyword)
 
-    @GetMapping("/{code-id}")
+    @GetMapping
     fun queryCodeKeyword(@RequestParam("code-id") codeId: Long): QueryCodeKeywordResponse
         = queryCodeKeywordService.execute(codeId)
 }
