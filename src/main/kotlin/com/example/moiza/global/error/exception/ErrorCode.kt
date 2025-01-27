@@ -10,5 +10,8 @@ enum class ErrorCode(
     TOKEN_NOT_FOUND(404, "Token Not Found"),
 
     // portfolio
-    PORTFOLIO_NOT_FOUND(404, "Portfolio Not Found")
+    PORTFOLIO_NOT_FOUND(404, "Portfolio Not Found"),
+
+    // code
+    CODE_NOT_FOUND(404, "Code Not Found"),
 }
