@@ -13,7 +13,7 @@ class PortfolioController(
     private val updatePortfolioService: UpdatePortfolioService,
     private val deletePortfolioService: DeletePortfolioService,
     private val queryPortfolioListService: QueryPortfolioListService,
-    private val queryPortfolioDetailResponse: QueryPortfolioDetailResponse,
+    private val queryPortfolioDetailService: QueryPortfolioDetailService,
     private val changePublishService: ChangePublishService,
 ) {
 
@@ -37,7 +37,7 @@ class PortfolioController(
 
     @GetMapping("/{portfolio-id}")
     fun queryPortfolioDetail(@PathVariable("portfolio-id") portfolioId: Long)
-        = queryPortfolioDetailResponse.execute(portfolioId)
+        = queryPortfolioDetailService.execute(portfolioId)
 
     @PatchMapping("/publish")
     fun changePublish()
