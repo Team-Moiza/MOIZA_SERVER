@@ -1,5 +1,7 @@
 package com.example.moiza.domain.portfolio.domain
 
+import com.example.moiza.domain.code.domain.Code
+import com.example.moiza.domain.code.domain.PortfolioCode
 import com.example.moiza.domain.portfolio.presentation.dto.req.*
 import com.example.moiza.domain.portfolio.domain.type.UserStatus
 import com.example.moiza.domain.user.domain.User
@@ -40,6 +42,15 @@ class Portfolio(
 
     @OneToOne(mappedBy = "portfolio", cascade = [CascadeType.ALL], orphanRemoval = true)
     var introduction: Introduction? = null
+
+    @OneToMany(mappedBy = "portfolio", cascade = [CascadeType.ALL], orphanRemoval = true)
+    private val _portfolioCodes: MutableList<PortfolioCode> = mutableListOf()
+    val codes: List<PortfolioCode> get() = _portfolioCodes.toList()
+
+    fun addCode(code: Code) {
+        val portfolioCode = PortfolioCode(this, code)
+        _portfolioCodes.add(portfolioCode)
+    }
 
     fun addProjects(projectDtos: List<ProjectDto>) {
         projectDtos.forEach { dto ->
