@@ -50,7 +50,6 @@ class User(
     @Enumerated(EnumType.STRING)
     var userStatus: UserStatus = UserStatus.LOGGED_IN
 
-    @Column(nullable = false)
     var introduce: String? = null
         protected set
 
