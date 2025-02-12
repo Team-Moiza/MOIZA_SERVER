@@ -8,30 +8,13 @@ import org.jetbrains.annotations.NotNull
 import java.time.LocalDate
 
 data class UpdateProfileRequest(
-    @NotNull
     val nickname: String,
-
-    @NotNull
     val school: School,
-
-    @NotNull
     val major: Major,
-
-    @NotNull
     val educationStatus: EducationStatus,
-
-    @NotNull
     val enrollmentStartDate: LocalDate,
-
-    @NotNull
     val enrollmentEndDate: LocalDate,
-
-    @NotNull
     val job: Job,
-
-    @NotNull
     val company: String,
-
-    @NotNull
     val introduce: String,
 )
