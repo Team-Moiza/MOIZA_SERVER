@@ -27,9 +27,11 @@ class ChangePublishService(
                     it.changePublish()
                 }
             }
+            user.updateUserStatus(UserStatus.PORTFOLIO_PUBLISHED)
             return
         }
 
+        user.updateUserStatus(UserStatus.PORTFOLIO_COMPLETED)
         portfolio.changePublish()
     }
 }
