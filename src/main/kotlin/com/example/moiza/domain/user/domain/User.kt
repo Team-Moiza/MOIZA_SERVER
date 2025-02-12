@@ -47,6 +47,7 @@ class User(
     @Column(name = "user_status", nullable = false)
     @Enumerated(EnumType.STRING)
     var userStatus: UserStatus = UserStatus.LOGGED_IN // 유저 상태
+        protected set
 
     @Column(length = 100)
     var introduce: String? = null
