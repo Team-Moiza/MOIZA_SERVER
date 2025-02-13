@@ -3,6 +3,7 @@ package com.example.moiza.domain.portfolio.presentation.dto.res
 import com.example.moiza.domain.portfolio.presentation.dto.req.*
 import com.example.moiza.domain.user.domain.type.Major
 import com.example.moiza.domain.user.domain.type.School
+import java.time.LocalDateTime
 
 data class PortfolioListResponse(
     val id: Long,
@@ -24,4 +25,11 @@ data class PortfolioDetailResponse(
     val awards: List<AwardDto>?,
     val links: List<LinkDto>?,
     val codes: List<Long>?
+)
+
+data class MyPortfolioResponse(
+    val id: Long,
+    val title: String,
+    val updatedAt: LocalDateTime,
+    val isPublished: Boolean
 )
