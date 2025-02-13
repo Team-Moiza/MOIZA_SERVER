@@ -11,7 +11,7 @@ class QueryMyPortfolioService(
     private val portfolioRepository: PortfolioRepository,
     private val userFacade: UserFacade
 ) {
-    @Transactional
+    @Transactional(readOnly = true)
     fun execute(): List<MyPortfolioResponse>? {
         val user = userFacade.getCurrentUser()
         val portfolios = portfolioRepository.findAllByUser(user) ?: return null
