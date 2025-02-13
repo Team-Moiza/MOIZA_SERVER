@@ -18,7 +18,7 @@ class CreatePortfolioService(
     @Transactional
     fun execute(request: PortfolioRequest) {
         val user = userFacade.getCurrentUser()
-        val portfolio = Portfolio(user)
+        val portfolio = Portfolio(user, request.title)
 
         request.projects?.let(portfolio::addProjects)
         request.qualifications?.let(portfolio::addQualifications)

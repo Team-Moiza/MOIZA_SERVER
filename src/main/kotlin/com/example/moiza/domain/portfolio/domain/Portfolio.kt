@@ -10,6 +10,7 @@ import jakarta.persistence.*
 @Entity
 class Portfolio(
     user: User,
+    title: String,
 ) {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -17,6 +18,10 @@ class Portfolio(
 
     @Column(nullable = false)
     var isPublished: Boolean = false
+        protected set
+
+    @Column(nullable = false)
+    var title: String = title
         protected set
 
     @Column(nullable = false)
