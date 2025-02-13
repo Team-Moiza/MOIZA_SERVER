@@ -21,12 +21,9 @@ class ChangePublishService(
             ?: throw PortfolioNotFoundException
 
         if (!portfolio.isPublished) {
-            portfolioList?.forEach {
-                if (it.id == id) return@forEach;
-                if (it.isPublished) {
-                    it.changePublish()
-                }
-            }
+            portfolioList?.filter { it.id != id && it.isPublished }
+                ?.forEach { it.changePublish() }
+
             user.updateUserStatus(UserStatus.PORTFOLIO_PUBLISHED)
             return
         }
