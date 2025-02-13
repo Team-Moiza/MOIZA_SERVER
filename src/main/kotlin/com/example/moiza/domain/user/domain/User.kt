@@ -1,11 +1,9 @@
 package com.example.moiza.domain.user.domain
 
 import com.example.moiza.domain.portfolio.domain.type.UserStatus
-import com.example.moiza.domain.user.domain.type.Authority
-import com.example.moiza.domain.user.domain.type.EducationStatus
-import com.example.moiza.domain.user.domain.type.Major
-import com.example.moiza.domain.user.domain.type.School
+import com.example.moiza.domain.user.domain.type.*
 import jakarta.persistence.*
+import java.time.LocalDate
 
 @Entity
 class User(
@@ -34,36 +32,55 @@ class User(
         protected set
 
     @Enumerated(EnumType.STRING)
-    var school: School? = null
+    var school: School? = null // 학교
         protected set
 
     @Enumerated(EnumType.STRING)
-    var major: Major? = null
+    var major: Major? = null // 학과
         protected set
 
     @Column(name = "education_status")
     @Enumerated(EnumType.STRING)
-    var educationStatus: EducationStatus? = null
+    var educationStatus: EducationStatus? = null // 재학 상태
         protected set
 
-    @Column(nullable = false)
+    @Column(name = "user_status", nullable = false)
     @Enumerated(EnumType.STRING)
-    var userStatus: UserStatus = UserStatus.LOGGED_IN
+    var userStatus: UserStatus = UserStatus.LOGGED_IN // 유저 상태
+        protected set
 
+    @Column(length = 100)
     var introduce: String? = null
         protected set
 
-    fun isAdmin(): Boolean =
-        this.authority == Authority.ADMIN
+    var enrollmentStartDate: LocalDate? = null // 입학일
+        protected set
 
-    fun update(school: School, major: Major, educationStatus: EducationStatus, introduce: String) {
+    var enrollmentEndDate: LocalDate? = null // 졸업일
+        protected set
+
+    var company: String? = null // 회사
+        protected set
+
+    @Enumerated(EnumType.STRING)
+    var job: Job? = null // 개발 직무
+        protected set
+
+    fun update(nickname: String, school: School, major: Major, educationStatus: EducationStatus,
+               enrollmentStartDate: LocalDate, enrollmentEndDate: LocalDate, job: Job,
+               company: String, introduce: String) {
+        this.nickname = nickname
         this.school = school
         this.major = major
         this.educationStatus = educationStatus
+        this.enrollmentStartDate = enrollmentStartDate
+        this.enrollmentEndDate = enrollmentEndDate
+        this.job = job
+        this.company = company
         this.introduce = introduce
     }
 
-    fun updateUserStatus(userStatus: UserStatus){
+    fun updateUserStatus(userStatus: UserStatus) {
         this.userStatus = userStatus
     }
 }

@@ -39,7 +39,7 @@ class PortfolioController(
     fun queryPortfolioDetail(@PathVariable("portfolio-id") portfolioId: Long)
         = queryPortfolioDetailService.execute(portfolioId)
 
-    @PatchMapping("/publish")
-    fun changePublish()
-        = changePublishService.execute()
+    @PatchMapping("/publish/{portfolio-id}")
+    fun changePublish(@PathVariable("portfolio-id") portfolioId: Long)
+        = changePublishService.execute(portfolioId)
 }
