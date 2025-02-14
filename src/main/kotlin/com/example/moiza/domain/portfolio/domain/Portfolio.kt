@@ -1,5 +1,6 @@
 package com.example.moiza.domain.portfolio.domain
 
+import com.example.moiza.domain.BaseTimeEntity
 import com.example.moiza.domain.code.domain.Code
 import com.example.moiza.domain.code.domain.PortfolioCode
 import com.example.moiza.domain.portfolio.presentation.dto.req.*
@@ -10,13 +11,18 @@ import jakarta.persistence.*
 @Entity
 class Portfolio(
     user: User,
-) {
+    title: String,
+): BaseTimeEntity() {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long = 0L
 
     @Column(nullable = false)
     var isPublished: Boolean = false
+        protected set
+
+    @Column(nullable = false)
+    var title: String = title
         protected set
 
     @Column(nullable = false)

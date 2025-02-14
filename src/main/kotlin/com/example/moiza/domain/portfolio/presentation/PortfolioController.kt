@@ -15,6 +15,7 @@ class PortfolioController(
     private val queryPortfolioListService: QueryPortfolioListService,
     private val queryPortfolioDetailService: QueryPortfolioDetailService,
     private val changePublishService: ChangePublishService,
+    private val queryMyPortfolioService: QueryMyPortfolioService,
 ) {
 
     @PostMapping
@@ -42,4 +43,7 @@ class PortfolioController(
     @PatchMapping("/publish/{portfolio-id}")
     fun changePublish(@PathVariable("portfolio-id") portfolioId: Long)
         = changePublishService.execute(portfolioId)
+
+    @GetMapping("/my")
+    fun queryMyPortfolio() = queryMyPortfolioService.execute()
 }
