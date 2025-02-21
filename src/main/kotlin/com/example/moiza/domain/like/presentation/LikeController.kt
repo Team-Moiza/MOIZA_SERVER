@@ -2,17 +2,15 @@ package com.example.moiza.domain.like.presentation
 
 import com.example.moiza.domain.like.service.LikeService
 import com.example.moiza.domain.like.service.ListLikesService
-import org.springframework.web.bind.annotation.GetMapping
-import org.springframework.web.bind.annotation.PostMapping
-import org.springframework.web.bind.annotation.RequestMapping
-import org.springframework.web.bind.annotation.RequestParam
-import org.springframework.web.bind.annotation.RestController
+import com.example.moiza.domain.like.service.UnLikeService
+import org.springframework.web.bind.annotation.*
 
 @RequestMapping("/likes")
 @RestController
 class LikeController(
     private val listLikesService: ListLikesService,
     private val likeService: LikeService,
+    private val unLikeService: UnLikeService
 ) {
     @GetMapping
     fun findAll() = listLikesService.execute()
@@ -22,4 +20,8 @@ class LikeController(
         @RequestParam portfolioId: Long,
     ) = likeService.execute(portfolioId)
 
+    @PutMapping
+    fun unLike(
+        @RequestParam portfolioId: Long,
+    ) = unLikeService.execute(portfolioId)
 }

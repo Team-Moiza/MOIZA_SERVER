@@ -14,6 +14,7 @@ enum class ErrorCode(
 
     // like
     ALREADY_LIKE(400, "Already Liked"),
+    ALREADY_UNLIKE(400, "Already UnLiked"),
 
     // code
     CODE_NOT_FOUND(404, "Code Not Found"),
