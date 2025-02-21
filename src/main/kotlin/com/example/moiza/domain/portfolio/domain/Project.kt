@@ -8,7 +8,7 @@ class Project(
     title: String,
     status: Boolean,
     startDate: LocalDate,
-    endDate: LocalDate,
+    endDate: LocalDate?,
     description: String,
     link: String,
     portfolio: Portfolio
@@ -26,7 +26,7 @@ class Project(
         protected set
 
     @Column(nullable = false)
-    var endDate: LocalDate = endDate
+    var endDate: LocalDate? = endDate
         protected set
 
     @Column(columnDefinition = "BOOLEAN", nullable = false)
@@ -46,7 +46,7 @@ class Project(
     var portfolio: Portfolio = portfolio
         protected set
 
-    fun update(title: String, startDate: LocalDate, endDate: LocalDate, status: Boolean, description: String, link: String) {
+    fun update(title: String, startDate: LocalDate, endDate: LocalDate?, status: Boolean, description: String, link: String) {
         this.title = title
         this.startDate = startDate
         this.endDate = endDate

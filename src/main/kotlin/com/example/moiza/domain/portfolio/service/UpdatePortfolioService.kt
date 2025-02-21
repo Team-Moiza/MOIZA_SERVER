@@ -38,8 +38,8 @@ class UpdatePortfolioService(
             existing = projectRepository.findAllByPortfolio(portfolio),
             updated = projectDtos,
             match = { entity, dto -> entity.id == dto.id },
-            create = { dto -> Project(dto.title, dto.status, dto.startDate!!, dto.endDate!!, dto.description, dto.link, portfolio) },
-            update = { entity, dto -> entity.update(dto.title, dto.startDate!!, dto.endDate!!, dto.status, dto.description, dto.link) },
+            create = { dto -> Project(dto.title, dto.status, dto.startDate!!, dto.endDate, dto.description, dto.link, portfolio) },
+            update = { entity, dto -> entity.update(dto.title, dto.startDate!!, dto.endDate, dto.status, dto.description, dto.link) },
             delete = { projectRepository.delete(it) },
             save = { projectRepository.save(it) }
         )
