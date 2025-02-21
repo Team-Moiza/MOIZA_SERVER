@@ -11,6 +11,7 @@ data class LikesResponse(
     val school: School?,
     val major: Major?,
     val introduce: String?,
+    val likeCnt: Long,
 ) {
     companion object {
         fun from(like: Like): LikesResponse {
@@ -22,6 +23,7 @@ data class LikesResponse(
                 school = user.school,
                 major = user.major,
                 introduce = user.introduce,
+                likeCnt = like.portfolio.likeCnt
             )
         }
     }

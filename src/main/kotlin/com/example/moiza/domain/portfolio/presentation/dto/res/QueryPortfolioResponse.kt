@@ -12,7 +12,8 @@ data class PortfolioListResponse(
     val school: School,
     val major: Major,
     val profile: String,
-    val introduce: String
+    val introduce: String,
+    val likeCnt: Long,
 )
 
 data class PortfolioDetailResponse(
@@ -25,12 +26,14 @@ data class PortfolioDetailResponse(
     val qualifications: List<QualificationDto>?,
     val awards: List<AwardDto>?,
     val links: List<LinkDto>?,
-    val codes: List<CodeResponse>?
+    val codes: List<CodeResponse>?,
+    val likeCnt: Long,
 )
 
 data class MyPortfolioResponse(
     val id: Long,
     val title: String,
     val updatedAt: LocalDateTime,
-    val isPublished: Boolean
+    val isPublished: Boolean,
+    val likeCnt: Long,
 )

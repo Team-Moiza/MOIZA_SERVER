@@ -5,6 +5,7 @@ import com.example.moiza.domain.user.domain.User
 import jakarta.persistence.*
 
 @Entity
+@Table(name = "likes")
 class Like(
     portfolio: Portfolio,
     user: User,

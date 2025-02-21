@@ -25,7 +25,8 @@ class PortfolioRepositoryImpl(
                     portfolio.user.school,
                     portfolio.user.major,
                     portfolio.user.profile,
-                    portfolio.user.introduce
+                    portfolio.user.introduce,
+                    portfolio.likeCnt,
                 )
             )
             .from(portfolio)
