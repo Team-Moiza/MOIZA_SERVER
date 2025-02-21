@@ -124,4 +124,12 @@ class Portfolio(
         isPublished = !isPublished
         return isPublished
     }
+
+    fun like() {
+        likeCnt++
+    }
+
+    fun unLike() {
+        likeCnt--
+    }
 }
