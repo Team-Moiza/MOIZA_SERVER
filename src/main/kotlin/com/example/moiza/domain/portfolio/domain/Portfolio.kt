@@ -29,6 +29,9 @@ class Portfolio(
     var userStatus: Int = UserStatus.PORTFOLIO_PUBLISHED.level
         protected set
 
+    @Column(nullable = false)
+    var likeCnt: Long = 0L
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     var user: User = user
