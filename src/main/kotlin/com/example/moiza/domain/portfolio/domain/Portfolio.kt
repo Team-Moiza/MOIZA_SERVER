@@ -120,9 +120,8 @@ class Portfolio(
         this.introduction = introduction
     }
 
-    fun changePublish(): Boolean {
-        isPublished = !isPublished
-        return isPublished
+    fun changePublish(status: Boolean) {
+        this.isPublished = status
     }
 
     fun like() {
