@@ -16,16 +16,15 @@ class ChangePublishService(
     @Transactional
     fun execute(id: Long) {
         val user = userFacade.getCurrentUser()
-        val portfolioList = portfolioRepository.findAllByUser(user)
         val portfolio = portfolioRepository.findByIdOrNull(id)
             ?: throw PortfolioNotFoundException
 
         if (portfolio.isPublished) {
-            portfolioList?.map { it.changePublish(false) }
+            portfolioRepository.findAllByUser(user)
+                ?.map { it.changePublish(false) }
 
-            user.updateUserStatus(UserStatus.PORTFOLIO_PUBLISHED)
             portfolio.changePublish(true)
-
+            user.updateUserStatus(UserStatus.PORTFOLIO_PUBLISHED)
             return
         }
 
