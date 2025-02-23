@@ -21,7 +21,8 @@ class QueryMyPortfolioService(
                 id = portfolio.id,
                 title = portfolio.title,
                 isPublished = portfolio.isPublished,
-                updatedAt = portfolio.updatedAt
+                updatedAt = portfolio.updatedAt,
+                likeCnt = portfolio.likeCnt,
             )
         }
     }

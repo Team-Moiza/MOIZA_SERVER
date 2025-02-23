@@ -45,7 +45,7 @@ class SecurityConfig(
                 authorize.requestMatchers("/auth/**").permitAll()
 
                 // portfolio
-                authorize.requestMatchers(HttpMethod.GET, "/portfolio").permitAll()
+                authorize.requestMatchers(HttpMethod.GET, "/portfolios").permitAll()
 
                 authorize.anyRequest().authenticated()
             }

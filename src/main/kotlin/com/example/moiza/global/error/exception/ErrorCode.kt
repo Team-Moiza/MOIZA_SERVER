@@ -12,6 +12,10 @@ enum class ErrorCode(
     // portfolio
     PORTFOLIO_NOT_FOUND(404, "Portfolio Not Found"),
 
+    // like
+    ALREADY_LIKE(409, "Already Liked"),
+    ALREADY_UNLIKE(409, "Already UnLiked"),
+
     // code
     CODE_NOT_FOUND(404, "Code Not Found"),
 }

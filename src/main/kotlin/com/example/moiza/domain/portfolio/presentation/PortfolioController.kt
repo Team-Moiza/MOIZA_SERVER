@@ -6,7 +6,7 @@ import jakarta.validation.Valid
 import org.springframework.data.domain.Pageable
 import org.springframework.web.bind.annotation.*
 
-@RequestMapping("/portfolio")
+@RequestMapping("/portfolios")
 @RestController
 class PortfolioController(
     private val createPortfolioService: CreatePortfolioService,

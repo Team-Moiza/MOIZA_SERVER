@@ -29,6 +29,9 @@ class Portfolio(
     var userStatus: Int = UserStatus.PORTFOLIO_PUBLISHED.level
         protected set
 
+    @Column(nullable = false)
+    var likeCnt: Long = 0L
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     var user: User = user
@@ -117,8 +120,15 @@ class Portfolio(
         this.introduction = introduction
     }
 
-    fun changePublish(): Boolean {
-        isPublished = !isPublished
-        return isPublished
+    fun changePublish(status: Boolean) {
+        this.isPublished = status
+    }
+
+    fun like() {
+        likeCnt++
+    }
+
+    fun unLike() {
+        likeCnt--
     }
 }

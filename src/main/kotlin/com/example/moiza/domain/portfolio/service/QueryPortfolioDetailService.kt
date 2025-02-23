@@ -1,13 +1,14 @@
 package com.example.moiza.domain.portfolio.service
 
 import com.example.moiza.domain.code.presentation.dto.CodeResponse
+import com.example.moiza.domain.like.domain.QLike.like
 import com.example.moiza.domain.portfolio.domain.repository.PortfolioRepository
 import com.example.moiza.domain.portfolio.exception.PortfolioNotFoundException
 import com.example.moiza.domain.portfolio.presentation.dto.PortfolioDtoUtil
 import com.example.moiza.domain.portfolio.presentation.dto.res.PortfolioDetailResponse
-import org.springframework.transaction.annotation.Transactional
 import org.springframework.data.repository.findByIdOrNull
 import org.springframework.stereotype.Service
+import org.springframework.transaction.annotation.Transactional
 
 @Service
 class QueryPortfolioDetailService(
@@ -33,7 +34,8 @@ class QueryPortfolioDetailService(
                     id = portfolioCode.code.id,
                     keyword = portfolioCode.code.keyword
                 )
-            }
+            },
+            likeCnt = portfolio.likeCnt,
         )
     }
 }
