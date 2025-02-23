@@ -19,16 +19,15 @@ class ChangePublishService(
         val portfolio = portfolioRepository.findByIdOrNull(id)
             ?: throw PortfolioNotFoundException
 
-        if (portfolio.isPublished) {
-            portfolioRepository.findAllByUser(user)
-                ?.map { it.changePublish(false) }
-
+        if (!portfolio.isPublished) {
+            portfolioRepository.findAllByUser(user)?.forEach { it.changePublish(false) }
             portfolio.changePublish(true)
             user.updateUserStatus(UserStatus.PORTFOLIO_PUBLISHED)
-            return
+        } else {
+            portfolio.changePublish(false)
+            user.updateUserStatus(UserStatus.PORTFOLIO_COMPLETED)
         }
 
-        portfolio.changePublish(false)
-        user.updateUserStatus(UserStatus.PORTFOLIO_COMPLETED)
+        portfolioRepository.save(portfolio)
     }
 }
