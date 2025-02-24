@@ -9,17 +9,17 @@ import java.time.LocalDateTime
 data class PortfolioListResponse(
     val id: Long,
     val name: String,
-    val school: School,
-    val major: Major,
+    val school: School?,
+    val major: Major?,
     val profile: String,
-    val introduce: String,
+    val introduce: String?,
     val likeCnt: Long,
 )
 
 data class PortfolioDetailResponse(
     val id: Long,
     val name: String,
-    val major: Major,
+    val major: Major?,
     val introduce: String,
     val introduction: IntroductionDto?,
     val projects: List<ProjectDto>?,
