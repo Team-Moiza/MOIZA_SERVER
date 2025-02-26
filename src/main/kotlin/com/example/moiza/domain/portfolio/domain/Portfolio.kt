@@ -3,6 +3,7 @@ package com.example.moiza.domain.portfolio.domain
 import com.example.moiza.domain.BaseTimeEntity
 import com.example.moiza.domain.code.domain.Code
 import com.example.moiza.domain.code.domain.PortfolioCode
+import com.example.moiza.domain.like.domain.Like
 import com.example.moiza.domain.portfolio.presentation.dto.req.*
 import com.example.moiza.domain.portfolio.domain.type.UserStatus
 import com.example.moiza.domain.user.domain.User
@@ -55,6 +56,9 @@ class Portfolio(
     @OneToMany(mappedBy = "portfolio", cascade = [CascadeType.ALL], orphanRemoval = true)
     private val _portfolioCodes: MutableList<PortfolioCode> = mutableListOf()
     val codes: List<PortfolioCode> get() = _portfolioCodes.toList()
+
+    @OneToMany(mappedBy = "portfolio", cascade = [CascadeType.ALL], orphanRemoval = true)
+    private val likes: MutableList<Like> = mutableListOf()
 
     fun addCode(code: Code) {
         val portfolioCode = PortfolioCode(this, code)
