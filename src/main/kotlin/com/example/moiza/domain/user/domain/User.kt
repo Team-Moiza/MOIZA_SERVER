@@ -67,8 +67,8 @@ class User(
         protected set
 
     fun update(nickname: String, school: School, major: Major, educationStatus: EducationStatus,
-               enrollmentStartDate: LocalDate, enrollmentEndDate: LocalDate, job: Job,
-               company: String, introduce: String) {
+               enrollmentStartDate: LocalDate, enrollmentEndDate: LocalDate, job: Job?,
+               company: String?, introduce: String) {
         this.nickname = nickname
         this.school = school
         this.major = major
