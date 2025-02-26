@@ -2,6 +2,7 @@ package com.example.moiza.domain.portfolio.presentation
 
 import com.example.moiza.domain.portfolio.presentation.dto.PortfolioFilter
 import com.example.moiza.domain.portfolio.presentation.dto.req.PortfolioRequest
+import com.example.moiza.domain.portfolio.presentation.dto.req.UpdatePortfolioRequest
 import com.example.moiza.domain.portfolio.service.*
 import com.example.moiza.domain.user.domain.type.School
 import jakarta.validation.Valid
@@ -26,7 +27,7 @@ class PortfolioController(
     @PatchMapping("/{portfolio-id}")
     fun updatePortfolio(
         @PathVariable("portfolio-id") portfolioId: Long,
-        @Valid @RequestBody request: PortfolioRequest
+        @Valid @RequestBody request: UpdatePortfolioRequest
     ) = updatePortfolioService.execute(portfolioId, request)
 
     @DeleteMapping("/{portfolio-id}")

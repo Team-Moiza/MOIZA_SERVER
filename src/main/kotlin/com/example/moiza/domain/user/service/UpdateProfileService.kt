@@ -15,7 +15,7 @@ class UpdateProfileService(
         val user = userFacade.getCurrentUser()
         user.update(request.nickname, request.school, request.major,
             request.educationStatus, request.enrollmentStartDate,
-            request.enrollmentEndDate, request.job, request.company,
+            request.enrollmentEndDate, request.job!!, request.company!!,
             request.introduce)
     }
 }

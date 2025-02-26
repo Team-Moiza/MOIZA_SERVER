@@ -22,7 +22,7 @@ class UpdatePortfolioService(
     private val portfolioCodeRepository: PortfolioCodeRepository,
     private val codeRepository: CodeRepository
 ) {
-    fun execute(portfolioId: Long, request: PortfolioRequest) {
+    fun execute(portfolioId: Long, request: UpdatePortfolioRequest) {
         val portfolio = portfolioRepository.findByIdOrNull(portfolioId) ?: throw PortfolioNotFoundException
 
         updateProjects(portfolio, request.projects)
@@ -93,10 +93,10 @@ class UpdatePortfolioService(
         )
     }
 
-    private fun updateCodes(portfolio: Portfolio, codeIds: List<Long>?) {
+    private fun updateCodes(portfolio: Portfolio, codes: List<CodeDto>?) {
         updateEntities(
             existing = portfolioCodeRepository.findAllByPortfolio(portfolio),
-            updated = codeIds?.mapNotNull { codeRepository.findByIdOrNull(it) },
+            updated = codes?.mapNotNull { codeRepository.findByIdOrNull(it.id) },
             match = { entity, code -> entity.code.id == code.id },
             create = { code -> PortfolioCode(portfolio, code) },
             update = { _, _ -> },
