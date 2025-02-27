@@ -1,5 +1,7 @@
 package com.example.moiza.domain.user.domain
 
+import com.example.moiza.domain.like.domain.Like
+import com.example.moiza.domain.portfolio.domain.Portfolio
 import com.example.moiza.domain.portfolio.domain.type.UserStatus
 import com.example.moiza.domain.user.domain.type.*
 import jakarta.persistence.*
@@ -66,9 +68,15 @@ class User(
     var job: Job? = null // 개발 직무
         protected set
 
+    @OneToMany(mappedBy = "user", cascade = [CascadeType.ALL], orphanRemoval = true)
+    private val portfolios: MutableList<Portfolio> = mutableListOf()
+
+    @OneToMany(mappedBy = "user", cascade = [CascadeType.ALL], orphanRemoval = true)
+    private val likes: MutableList<Like> = mutableListOf()
+
     fun update(nickname: String, school: School, major: Major, educationStatus: EducationStatus,
-               enrollmentStartDate: LocalDate, enrollmentEndDate: LocalDate, job: Job,
-               company: String, introduce: String) {
+               enrollmentStartDate: LocalDate, enrollmentEndDate: LocalDate, job: Job?,
+               company: String?, introduce: String) {
         this.nickname = nickname
         this.school = school
         this.major = major

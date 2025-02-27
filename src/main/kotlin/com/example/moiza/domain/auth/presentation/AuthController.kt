@@ -27,7 +27,7 @@ class AuthController(
     fun createNewAccessToken(@RequestBody @Valid request: TokenRequest)
             = reissueService.execute(request.token)
 
-    @DeleteMapping
+    @PatchMapping
     fun logout(@RequestBody @Valid request: TokenRequest)
             = logoutService.execute(request.token)
 }
