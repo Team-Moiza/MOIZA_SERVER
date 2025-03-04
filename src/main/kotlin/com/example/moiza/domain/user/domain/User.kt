@@ -88,6 +88,12 @@ class User(
         this.introduce = introduce
     }
 
+    fun registerUpdate(school: School, major: Major, educationStatus: EducationStatus) {
+        this.school = school
+        this.major = major
+        this.educationStatus = educationStatus
+    }
+
     fun updateUserStatus(userStatus: UserStatus) {
         this.userStatus = userStatus
     }

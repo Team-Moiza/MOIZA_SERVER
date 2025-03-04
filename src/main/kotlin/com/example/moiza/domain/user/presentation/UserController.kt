@@ -1,8 +1,10 @@
 package com.example.moiza.domain.user.presentation
 
+import com.example.moiza.domain.user.presentation.dto.req.RegisterProfileRequest
 import com.example.moiza.domain.user.presentation.dto.req.UpdateProfileRequest
 import com.example.moiza.domain.user.service.DropUserService
 import com.example.moiza.domain.user.service.ProfileService
+import com.example.moiza.domain.user.service.RegisterProfileService
 import com.example.moiza.domain.user.service.UpdateProfileService
 import jakarta.validation.Valid
 import org.springframework.web.bind.annotation.DeleteMapping
@@ -18,11 +20,16 @@ import org.springframework.web.bind.annotation.RestController
 class UserController(
     private val profileService: ProfileService,
     private val updateProfileService: UpdateProfileService,
+    private val registerProfileService: RegisterProfileService,
     private val dropUserService: DropUserService,
 ) {
     @GetMapping
     fun findMyInfo()
         = profileService.execute()
+
+    @PatchMapping("/register")
+    fun updateProfile(@RequestBody @Valid request: RegisterProfileRequest)
+        = registerProfileService.execute(request)
 
     @PatchMapping("/update")
     fun updateProfile(@RequestBody @Valid request: UpdateProfileRequest)
