@@ -14,7 +14,7 @@ data class UpdateProfileRequest(
     val educationStatus: EducationStatus,
     val enrollmentStartDate: LocalDate,
     val enrollmentEndDate: LocalDate,
-    val job: Job,
-    val company: String,
+    val job: Job?,
+    val company: String?,
     val introduce: String,
 )
