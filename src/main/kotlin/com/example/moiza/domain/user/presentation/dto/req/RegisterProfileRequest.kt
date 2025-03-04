@@ -7,14 +7,8 @@ import com.example.moiza.domain.user.domain.type.School
 import org.jetbrains.annotations.NotNull
 import java.time.LocalDate
 
-data class UpdateProfileRequest(
-    val nickname: String,
+data class RegisterProfileRequest(
     val school: School,
     val major: Major,
     val educationStatus: EducationStatus,
-    val enrollmentStartDate: LocalDate,
-    val enrollmentEndDate: LocalDate,
-    val job: Job,
-    val company: String,
-    val introduce: String,
 )
