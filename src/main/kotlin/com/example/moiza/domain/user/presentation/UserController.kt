@@ -33,7 +33,7 @@ class UserController(
 
     @PatchMapping("/update")
     fun updateProfile(@RequestBody @Valid request: UpdateProfileRequest)
-            = updateProfileService.execute(request)
+        = updateProfileService.execute(request)
 
     @DeleteMapping
     fun dropUser()
