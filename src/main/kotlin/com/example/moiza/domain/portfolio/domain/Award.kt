@@ -9,6 +9,7 @@ class Award(
     type: String,
     date: LocalDate,
     description: String,
+    competitionName: String,
     portfolio: Portfolio
 ) {
     @Id
@@ -31,15 +32,20 @@ class Award(
     var description: String = description
         protected set
 
+    @Column(nullable = false, columnDefinition = "TEXT")
+    var competitionName: String = competitionName
+        protected set
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "portfolio_id")
     var portfolio: Portfolio = portfolio
         protected set
 
-    fun update(name: String, type: String, date: LocalDate, description: String) {
+    fun update(name: String, type: String, date: LocalDate, description: String, competitionName: String) {
         this.name = name
         this.type = type
         this.date = date
         this.description = description
+        this.competitionName = competitionName
     }
 }

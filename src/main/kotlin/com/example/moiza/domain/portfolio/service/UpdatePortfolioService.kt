@@ -62,8 +62,8 @@ class UpdatePortfolioService(
             existing = awardRepository.findAllByPortfolio(portfolio),
             updated = awardDtos,
             match = { entity, dto -> entity.id == dto.id },
-            create = { dto -> Award(dto.name, dto.type, dto.date, dto.description, portfolio) },
-            update = { entity, dto -> entity.update(dto.name, dto.type, dto.date, dto.description) },
+            create = { dto -> Award(dto.name, dto.type, dto.date, dto.description, dto.competitionName, portfolio) },
+            update = { entity, dto -> entity.update(dto.name, dto.type, dto.date, dto.description, dto.competitionName) },
             delete = { awardRepository.delete(it) },
             save = { awardRepository.save(it) }
         )
