@@ -28,7 +28,8 @@ data class AwardDto(
     val name: String,
     val type: String,
     val date: LocalDate,
-    val description: String
+    val description: String,
+    val competitionName: String
 )
 
 data class QualificationDto(

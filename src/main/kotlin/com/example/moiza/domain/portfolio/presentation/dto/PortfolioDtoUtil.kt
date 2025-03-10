@@ -31,7 +31,8 @@ object PortfolioDtoUtil {
             name = award.name,
             type = award.type,
             date = award.date,
-            description = award.description
+            description = award.description,
+            competitionName = award.competitionName
         )
     }
 

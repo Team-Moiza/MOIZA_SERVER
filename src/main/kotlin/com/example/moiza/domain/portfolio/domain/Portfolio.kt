@@ -99,7 +99,8 @@ class Portfolio(
                 name = dto.name,
                 type = dto.type,
                 date = dto.date,
-                description = dto.description
+                description = dto.description,
+                competitionName = dto.competitionName,
             )
             awards.add(award)
         }
