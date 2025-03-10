@@ -1,5 +1,6 @@
 package com.example.moiza.global.config
 
+import com.example.moiza.domain.like.service.LikeService
 import com.example.moiza.global.security.jwt.JwtTokenFilter
 import com.example.moiza.global.security.jwt.JwtTokenProvider
 import org.springframework.context.annotation.Bean
@@ -20,7 +21,7 @@ class SecurityConfig(
     private val jwtProvider: JwtTokenProvider
 ) {
     @Bean
-    fun filterChain(http: HttpSecurity): SecurityFilterChain {
+    fun filterChain(http: HttpSecurity, likeService: LikeService): SecurityFilterChain {
         http
             .csrf { it.disable() }
             .httpBasic { it.disable() }
@@ -46,6 +47,9 @@ class SecurityConfig(
 
                 // portfolio
                 authorize.requestMatchers(HttpMethod.GET, "/portfolios").permitAll()
+
+                // likes
+                authorize.requestMatchers(HttpMethod.GET, "/likes/{portfolio-id}").permitAll()
 
                 authorize.anyRequest().authenticated()
             }
