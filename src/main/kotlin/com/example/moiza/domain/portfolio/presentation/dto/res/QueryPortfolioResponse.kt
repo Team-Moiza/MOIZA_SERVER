@@ -7,6 +7,7 @@ import com.example.moiza.domain.user.domain.type.EducationStatus
 import com.example.moiza.domain.user.domain.type.Job
 import com.example.moiza.domain.user.domain.type.Major
 import com.example.moiza.domain.user.domain.type.School
+import java.time.LocalDate
 import java.time.LocalDateTime
 
 data class PortfolioListResponse(
@@ -15,6 +16,7 @@ data class PortfolioListResponse(
     val school: School?,
     val company: String?,
     val major: Major?,
+    val enrollmentStartDate: LocalDate?,
     val job: Job?,
     val profile: String,
     val introduce: String?,
