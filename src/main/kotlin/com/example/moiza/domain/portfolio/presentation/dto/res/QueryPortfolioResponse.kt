@@ -15,6 +15,7 @@ data class PortfolioListResponse(
     val school: School?,
     val company: String?,
     val major: Major?,
+    val job: Job?,
     val profile: String,
     val introduce: String?,
     val likeCnt: Long,

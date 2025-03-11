@@ -43,6 +43,7 @@ class PortfolioRepositoryImpl(
                 portfolio.user.school,
                 portfolio.user.company,
                 portfolio.user.major,
+                portfolio.user.job,
                 portfolio.user.profile,
                 portfolio.user.introduce,
                 portfolio.likeCnt,

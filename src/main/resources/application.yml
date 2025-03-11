@@ -35,3 +35,6 @@ auth:
     base-url: ${GOOGLE_BASE_URL}
     client-id: ${GOOGLE_CLIENT}
     redirect-url: ${GOOGLE_REDIRECT}
+
+server:
+  port: 8081
