@@ -1,5 +1,6 @@
 package com.example.moiza.domain.portfolio.presentation.dto.res
 
+import com.example.moiza.domain.code.domain.Code
 import com.example.moiza.domain.code.presentation.dto.CodeResponse
 import com.example.moiza.domain.portfolio.presentation.dto.req.*
 import com.example.moiza.domain.user.domain.type.Major
@@ -10,10 +11,12 @@ data class PortfolioListResponse(
     val id: Long,
     val name: String,
     val school: School?,
+    val company: String?,
     val major: Major?,
     val profile: String,
     val introduce: String?,
     val likeCnt: Long,
+    val codes: List<Code>?
 )
 
 data class PortfolioDetailResponse(

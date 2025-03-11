@@ -7,5 +7,5 @@ import org.springframework.data.domain.Page
 import org.springframework.data.domain.Pageable
 
 interface PortfolioRepositoryCustom {
-    fun getPortfolioList(status: UserStatus, pageable: Pageable, filter: PortfolioFilter): Page<PortfolioListResponse>
+    fun getPortfolioList(status: UserStatus, filter: PortfolioFilter): Page<PortfolioListResponse>
 }
