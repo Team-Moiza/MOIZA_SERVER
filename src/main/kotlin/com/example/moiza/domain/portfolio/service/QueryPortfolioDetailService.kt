@@ -1,7 +1,6 @@
 package com.example.moiza.domain.portfolio.service
 
 import com.example.moiza.domain.code.presentation.dto.CodeResponse
-import com.example.moiza.domain.like.domain.QLike.like
 import com.example.moiza.domain.portfolio.domain.repository.PortfolioRepository
 import com.example.moiza.domain.portfolio.exception.PortfolioNotFoundException
 import com.example.moiza.domain.portfolio.presentation.dto.PortfolioDtoUtil
@@ -22,8 +21,12 @@ class QueryPortfolioDetailService(
         return PortfolioDetailResponse(
             id = portfolio.id,
             name = user.nickname,
-            major = user.major!!,
-            introduce = user.introduce!!,
+            job = user.job,
+            school = user.school,
+            company = user.company,
+            introduce = user.introduce,
+            educationStatus = user.educationStatus,
+            major = user.major,
             introduction = portfolio.introduction?.let { PortfolioDtoUtil.getIntroductionDto(it) },
             projects = portfolio.projects.map { project -> PortfolioDtoUtil.getProjectDto(project) },
             qualifications = portfolio.qualifications.map { qualification -> PortfolioDtoUtil.getQualificationDto(qualification) },

@@ -3,6 +3,8 @@ package com.example.moiza.domain.portfolio.presentation.dto.res
 import com.example.moiza.domain.code.domain.Code
 import com.example.moiza.domain.code.presentation.dto.CodeResponse
 import com.example.moiza.domain.portfolio.presentation.dto.req.*
+import com.example.moiza.domain.user.domain.type.EducationStatus
+import com.example.moiza.domain.user.domain.type.Job
 import com.example.moiza.domain.user.domain.type.Major
 import com.example.moiza.domain.user.domain.type.School
 import java.time.LocalDateTime
@@ -22,8 +24,12 @@ data class PortfolioListResponse(
 data class PortfolioDetailResponse(
     val id: Long,
     val name: String,
+    val job: Job?,
+    val school: School?,
+    val introduce: String?,
+    val company: String?,
+    val educationStatus: EducationStatus?,
     val major: Major?,
-    val introduce: String,
     val introduction: IntroductionDto?,
     val projects: List<ProjectDto>?,
     val qualifications: List<QualificationDto>?,
