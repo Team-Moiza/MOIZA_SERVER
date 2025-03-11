@@ -1,5 +1,6 @@
 package com.example.moiza.global.config
 
+import com.example.moiza.domain.code.domain.repository.CodeRepository
 import com.example.moiza.domain.like.service.LikeService
 import com.example.moiza.global.security.jwt.JwtTokenFilter
 import com.example.moiza.global.security.jwt.JwtTokenProvider
@@ -21,7 +22,7 @@ class SecurityConfig(
     private val jwtProvider: JwtTokenProvider
 ) {
     @Bean
-    fun filterChain(http: HttpSecurity, likeService: LikeService): SecurityFilterChain {
+    fun filterChain(http: HttpSecurity, likeService: LikeService, codeRepository: CodeRepository): SecurityFilterChain {
         http
             .csrf { it.disable() }
             .httpBasic { it.disable() }
@@ -47,6 +48,9 @@ class SecurityConfig(
 
                 // portfolio
                 authorize.requestMatchers(HttpMethod.GET, "/portfolios").permitAll()
+
+                // code
+                authorize.requestMatchers(HttpMethod.GET, "/codes").permitAll()
 
                 // likes
                 authorize.requestMatchers(HttpMethod.GET, "/likes/{portfolio-id}").permitAll()
