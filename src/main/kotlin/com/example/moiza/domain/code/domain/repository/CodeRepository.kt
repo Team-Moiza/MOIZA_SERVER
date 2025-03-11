@@ -7,4 +7,6 @@ import org.springframework.stereotype.Repository
 @Repository
 interface CodeRepository: JpaRepository<Code, Long> {
     fun findByKeyword(keyword: String): Code?
+
+    fun findByKeywordContaining(keyword: String): List<Code>
 }
