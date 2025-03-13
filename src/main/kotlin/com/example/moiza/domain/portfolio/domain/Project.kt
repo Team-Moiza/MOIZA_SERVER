@@ -1,7 +1,5 @@
 package com.example.moiza.domain.portfolio.domain
 
-import com.example.moiza.domain.code.domain.Code
-import com.example.moiza.domain.code.domain.ProjectCode
 import jakarta.persistence.*
 import java.time.LocalDate
 
@@ -47,15 +45,6 @@ class Project(
     @JoinColumn(name = "portfolio_id")
     var portfolio: Portfolio = portfolio
         protected set
-
-    @OneToMany(mappedBy = "project", cascade = [CascadeType.ALL], orphanRemoval = true)
-    private val _projectCodes: MutableList<ProjectCode> = mutableListOf()
-    val codes: List<ProjectCode> get() = _projectCodes.toList()
-
-    fun addCode(code: Code) {
-        val projectCode = ProjectCode(this, code)
-        _projectCodes.add(projectCode)
-    }
 
     fun update(title: String, startDate: LocalDate, endDate: LocalDate?, status: Boolean, description: String, link: String) {
         this.title = title

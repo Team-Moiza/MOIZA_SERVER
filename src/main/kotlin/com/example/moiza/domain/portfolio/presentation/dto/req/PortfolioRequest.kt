@@ -20,8 +20,7 @@ data class ProjectDto(
     val startDate: LocalDate?,
     val endDate: LocalDate?,
     val description: String,
-    val link: String,
-    val codes: List<Long>? = null
+    val link: String
 )
 
 data class AwardDto(
