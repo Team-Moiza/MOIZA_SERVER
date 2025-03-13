@@ -65,8 +65,19 @@ class Portfolio(
         _portfolioCodes.add(portfolioCode)
     }
 
-    fun addProjects(projects: List<Project>) {
-        this.projects.addAll(projects)
+    fun addProjects(projectDtos: List<ProjectDto>) {
+        projectDtos.forEach { dto ->
+            val project = Project(
+                portfolio = this,
+                title = dto.title,
+                status = dto.status,
+                startDate = dto.startDate!!,
+                endDate = dto.endDate!!,
+                description = dto.description,
+                link = dto.link
+            )
+            projects.add(project)
+        }
     }
 
     fun addQualifications(qualificationDtos: List<QualificationDto>) {
