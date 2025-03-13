@@ -4,9 +4,7 @@ import com.example.moiza.domain.portfolio.presentation.dto.PortfolioFilter
 import com.example.moiza.domain.portfolio.presentation.dto.req.PortfolioRequest
 import com.example.moiza.domain.portfolio.presentation.dto.req.UpdatePortfolioRequest
 import com.example.moiza.domain.portfolio.service.*
-import com.example.moiza.domain.user.domain.type.School
 import jakarta.validation.Valid
-import org.springframework.data.domain.Pageable
 import org.springframework.web.bind.annotation.*
 
 @RequestMapping("/portfolios")
@@ -35,11 +33,8 @@ class PortfolioController(
 
     @GetMapping
     fun queryPortfolioList(
-        pageable: Pageable,
-        @RequestParam(required = false) code: List<Long>?,
-        @RequestParam(required = false) school: School?,
-        @RequestParam(required = false) isEmployed: Boolean?,
-    ) = queryPortfolioListService.execute(pageable, PortfolioFilter(code, school, isEmployed))
+        @ModelAttribute filter: PortfolioFilter
+    ) = queryPortfolioListService.execute(filter)
 
     @GetMapping("/{portfolio-id}")
     fun queryPortfolioDetail(@PathVariable("portfolio-id") portfolioId: Long) =

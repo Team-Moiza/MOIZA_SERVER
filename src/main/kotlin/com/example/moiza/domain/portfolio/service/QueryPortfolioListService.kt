@@ -6,7 +6,6 @@ import com.example.moiza.domain.portfolio.presentation.dto.PortfolioFilter
 import com.example.moiza.domain.portfolio.presentation.dto.res.PortfolioListResponse
 import com.example.moiza.domain.user.facade.UserFacade
 import org.springframework.data.domain.Page
-import org.springframework.data.domain.Pageable
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 
@@ -16,13 +15,13 @@ class QueryPortfolioListService(
     private val portfolioRepository: PortfolioRepositoryCustom,
 ) {
     @Transactional(readOnly = true)
-    fun execute(pageable: Pageable, filter: PortfolioFilter): Page<PortfolioListResponse> {
+    fun execute(filter: PortfolioFilter): Page<PortfolioListResponse> {
         var status: UserStatus = UserStatus.NOT_LOGGED_IN
 
         if (userFacade.isLogin()) {
             status = userFacade.getCurrentUser().userStatus
         }
 
-        return portfolioRepository.getPortfolioList(status, pageable, filter)
+        return portfolioRepository.getPortfolioList(status, filter)
     }
 }
