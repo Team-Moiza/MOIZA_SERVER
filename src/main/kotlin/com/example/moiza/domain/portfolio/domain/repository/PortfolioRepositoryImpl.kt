@@ -22,6 +22,7 @@ class PortfolioRepositoryImpl(
     override fun getPortfolioList(status: UserStatus, filter: PortfolioFilter): Page<PortfolioListResponse> {
         val portfolios = queryFactory
             .selectFrom(portfolio)
+            .leftJoin(portfolio._portfolioCodes, portfolioCode).fetchJoin()
             .where(
                 portfolio.userStatus.loe(status.level)
                     .and(portfolio.isPublished.isTrue)
@@ -32,11 +33,6 @@ class PortfolioRepositoryImpl(
             .fetch()
 
         val portfolioResult = portfolios.map { portfolio ->
-            val fetch = queryFactory.select(portfolioCode.code)
-                .from(portfolioCode)
-                .where(portfolioCode.portfolio.eq(portfolio))
-                .fetch()
-
             PortfolioListResponse(
                 portfolio.id,
                 portfolio.user.nickname,
@@ -48,7 +44,7 @@ class PortfolioRepositoryImpl(
                 portfolio.user.profile,
                 portfolio.user.introduce,
                 portfolio.likeCnt,
-                fetch
+                portfolio.codes.map { it.code }
             )
         }
 
