@@ -58,11 +58,6 @@ class SecurityConfig(
                 authorize.anyRequest().authenticated()
             }
 
-        http
-            .exceptionHandling { handler ->
-                handler.authenticationEntryPoint(HttpStatusEntryPoint(HttpStatus.UNAUTHORIZED))
-            }
-
         return http.build()
     }
 }

@@ -18,4 +18,9 @@ enum class ErrorCode(
 
     // code
     CODE_NOT_FOUND(404, "Code Not Found"),
+
+    // server
+    VALIDATION_ERROR(400, "Validation Error"),
+    NOT_SUPPORTED_URI_ERROR(500, "URI Not Supported"),
+    NOT_SUPPORTED_METHOD_ERROR(405, "Method Not Allowed"),
 }
