@@ -2,6 +2,7 @@ package com.example.moiza.domain.portfolio.service
 
 import com.example.moiza.domain.code.domain.repository.CodeRepository
 import com.example.moiza.domain.portfolio.domain.Portfolio
+import com.example.moiza.domain.portfolio.domain.Project
 import com.example.moiza.domain.portfolio.domain.repository.PortfolioRepository
 import com.example.moiza.domain.portfolio.domain.type.UserStatus
 import com.example.moiza.domain.portfolio.presentation.dto.req.PortfolioRequest
@@ -20,16 +21,34 @@ class CreatePortfolioService(
         val user = userFacade.getCurrentUser()
         val portfolio = Portfolio(user, request.title)
 
-        request.projects?.let(portfolio::addProjects)
+        val projects = request.projects?.map { dto ->
+            val project = Project(
+                portfolio = portfolio,
+                title = dto.title,
+                status = dto.status,
+                startDate = dto.startDate!!,
+                endDate = dto.endDate!!,
+                description = dto.description,
+                link = dto.link
+            )
+
+            dto.codes?.let { codeIds ->
+                val codes = codeRepository.findAllById(codeIds)
+                codes.forEach { project.addCode(it) }
+            }
+
+            project
+        } ?: emptyList()
+
+        portfolio.addProjects(projects)
+
         request.qualifications?.let(portfolio::addQualifications)
         request.awards?.let(portfolio::addAwards)
         request.links?.let(portfolio::addLinks)
         request.introduction?.let(portfolio::addIntroduction)
         request.codes?.let { codeIds ->
             val codes = codeRepository.findAllById(codeIds)
-            codes.forEach { code ->
-                portfolio.addCode(code)
-            }
+            codes.forEach { portfolio.addCode(it) }
         }
 
         user.updateUserStatus(UserStatus.PORTFOLIO_COMPLETED)
