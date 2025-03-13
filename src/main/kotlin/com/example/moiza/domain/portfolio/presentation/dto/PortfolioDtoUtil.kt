@@ -12,7 +12,8 @@ object PortfolioDtoUtil {
             startDate = project.startDate,
             endDate = project.endDate,
             description = project.description,
-            link = project.link
+            link = project.link,
+            codes = project.codes.map { projectCode -> projectCode.code.id }
         )
     }
 
