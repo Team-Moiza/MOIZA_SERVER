@@ -79,8 +79,8 @@ class PortfolioRepositoryImpl(
 
     private fun eqIsEmployed(isEmployed: Boolean?): BooleanExpression {
         return when (isEmployed) {
-            true -> portfolio.user.company.isNull
-            false -> portfolio.user.company.isNotNull()
+            true -> portfolio.user.company.isNotNull
+            false -> portfolio.user.company.isNull
             else -> Expressions.TRUE
         }
     }
