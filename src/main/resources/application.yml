@@ -17,6 +17,11 @@ spring:
         format_sql: true
     open-in-view: false
 
+  servlet:
+    multipart:
+      max-file-size: 5MB
+      max-request-size: 10MB
+
   data:
     redis:
       host: ${REDIS_HOST:localhost}
@@ -35,3 +40,8 @@ auth:
     base-url: ${GOOGLE_BASE_URL}
     client-id: ${GOOGLE_CLIENT}
     redirect-url: ${GOOGLE_REDIRECT}
+
+nextcloud:
+  base-url: ${NEXTCLOUD_BASE_URL}
+  username: ${NEXTCLOUD_USERNAME}
+  password: ${NEXTCLOUD_PASSWORD}

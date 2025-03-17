@@ -1,4 +1,4 @@
-package com.example.moiza.global.feign.auth.dto.res
+package com.example.moiza.global.feign.google.dto.res
 
 class GoogleInformationResponse(
         val email: String,

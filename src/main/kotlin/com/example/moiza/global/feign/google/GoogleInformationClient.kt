@@ -1,6 +1,6 @@
-package com.example.moiza.global.feign
+package com.example.moiza.global.feign.google
 
-import com.example.moiza.global.feign.auth.dto.res.GoogleInformationResponse
+import com.example.moiza.global.feign.google.dto.res.GoogleInformationResponse
 import org.springframework.cloud.openfeign.FeignClient
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RequestParam
