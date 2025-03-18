@@ -16,6 +16,6 @@ class ListLikesService(
         val user = userFacade.getCurrentUser()
         val likes = likeRepository.findAllByUser(user)
 
-        return likes.map { LikesResponse.from(it) }
+        return likes.map { LikesResponse.from(it.portfolio) }
     }
 }
