@@ -2,7 +2,7 @@ package com.example.moiza.domain.portfolio.presentation.dto.req
 
 data class UpdatePortfolioRequest(
     val title: String,
-    val introduce: String,
+    val introduce: String? = null,
     val projects: List<ProjectDto>? = null,
     val awards: List<AwardDto>? = null,
     val qualifications: List<QualificationDto>? = null,

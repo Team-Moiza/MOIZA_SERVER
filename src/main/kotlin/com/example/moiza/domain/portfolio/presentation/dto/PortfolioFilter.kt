@@ -12,6 +12,7 @@ data class PortfolioFilter(
     val school: School? = null,
     val isEmployed: Boolean? = null,
     val dateSort: Direction = Direction.DESC,
+    val likeSort: Direction? = null,
 ) {
     fun getPageable(): Pageable = PageRequest.of(page, size)
 }

@@ -6,10 +6,8 @@ import com.example.moiza.domain.portfolio.domain.type.UserStatus
 import com.example.moiza.domain.portfolio.presentation.dto.PortfolioFilter
 import com.example.moiza.domain.portfolio.presentation.dto.res.PortfolioListResponse
 import com.example.moiza.domain.user.domain.type.School
-import com.querydsl.core.types.Order
 import com.querydsl.core.types.OrderSpecifier
 import com.querydsl.core.types.dsl.BooleanExpression
-import com.querydsl.core.types.dsl.ComparableExpressionBase
 import com.querydsl.core.types.dsl.Expressions
 import com.querydsl.jpa.impl.JPAQuery
 import com.querydsl.jpa.impl.JPAQueryFactory
@@ -34,7 +32,7 @@ class PortfolioRepositoryImpl(
                     .and(eqIsEmployed(filter.isEmployed))
                     .and(eqSchool(filter.school))
             )
-            .orderBy(getSortedColumn(filter.dateSort, portfolio.createdAt))
+            .orderBy(*getSortedColumn(filter.dateSort, filter.likeSort))
             .fetch()
 
         val portfolioResult = portfolios.map { portfolio ->
@@ -81,17 +79,26 @@ class PortfolioRepositoryImpl(
 
     private fun eqIsEmployed(isEmployed: Boolean?): BooleanExpression {
         return when (isEmployed) {
-            true -> portfolio.user.company.isNull
-            false -> portfolio.user.company.isNotNull()
+            true -> portfolio.user.company.isNotNull
+            false -> portfolio.user.company.isNull
             else -> Expressions.TRUE
         }
     }
 
-    private fun getSortedColumn(direction: Sort.Direction, column: ComparableExpressionBase<*>): OrderSpecifier<*> {
-        return if (direction == Sort.Direction.ASC) {
-            OrderSpecifier(Order.ASC, column)
-        } else {
-            OrderSpecifier(Order.DESC, column)
-        }
+    private fun getSortedColumn(
+        dateSort: Sort.Direction,
+        likeSort: Sort.Direction?,
+    ): Array<OrderSpecifier<*>> {
+        return buildList<OrderSpecifier<*>> {
+            likeSort?.let {
+                add(portfolio.likeCnt.desc())
+            }
+
+            if (dateSort == Sort.Direction.DESC) {
+                add(portfolio.createdAt.desc())
+            } else {
+                add(portfolio.createdAt.asc())
+            }
+        }.toTypedArray()
     }
 }

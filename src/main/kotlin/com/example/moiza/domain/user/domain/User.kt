@@ -97,4 +97,8 @@ class User(
     fun updateUserStatus(userStatus: UserStatus) {
         this.userStatus = userStatus
     }
+
+    fun updateProfileImg(profileImg: String) {
+        this.profile = profileImg
+    }
 }
