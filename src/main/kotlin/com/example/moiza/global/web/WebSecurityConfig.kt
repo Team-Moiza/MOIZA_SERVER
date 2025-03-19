@@ -12,7 +12,7 @@ class WebMvcConfig : WebMvcConfigurer {
         registry.addMapping("/**")
             .allowedMethods("GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS")
             .allowedOrigins(
-                "http://localhost:3000"
+                "http://localhost:3000", "http://211.112.175.88:3000", "https://www.moiza.kro.kr", "https://moiza.kro.kr"
             )
             .exposedHeaders(HttpHeaders.CONTENT_DISPOSITION)
     }
