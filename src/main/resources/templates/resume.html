@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1, width=device-width" />
+
+    <style>
+        @page {
+            size: A4;
+            padding: 80px 70px;
+        }
+
+        body {
+            transform: scale(2);
+            transform-origin: top left;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .frame-child {
+            width: 92px;
+            position: relative;
+            border-radius: 4px;
+            height: 92px;
+            overflow: hidden;
+            flex-shrink: 0;
+            object-fit: cover;
+        }
+        .div {
+            position: relative;
+            font-size: 10px;
+            line-height: 150%;
+            font-weight: 600;
+        }
+        .div1 {
+            position: relative;
+            font-size: 8px;
+            line-height: 160%;
+            color: #9e9e9e;
+        }
+        .parent {
+            align-self: stretch;
+            display: flex;
+            flex-direction: row;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 0px;
+        }
+        .b {
+            position: relative;
+            font-size: 16px;
+            line-height: 130%;
+        }
+        .nextjs-reactjs-typescript {
+            align-self: stretch;
+            position: relative;
+            font-size: 8px;
+            line-height: 160%;
+            font-weight: 500;
+        }
+        .frame-div {
+            width: 333.5px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: flex-start;
+            gap: 5px;
+        }
+        .frame-container {
+            align-self: stretch;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+        }
+        .frame-item {
+            height: 1px;
+            width: 442px;
+            background-color: #F2F4F6;
+            position: relative;
+            max-height: 100%;
+        }
+        .frame-group {
+            width: 442px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: flex-start;
+            gap: 20px;
+        }
+        .div2 {
+            align-self: stretch;
+            position: relative;
+            line-height: 140%;
+            font-weight: 600;
+        }
+        .p {
+            margin: 0;
+        }
+        .xml-json-container {
+            align-self: stretch;
+            position: relative;
+            font-size: 10px;
+            line-height: 150%;
+        }
+        .group {
+            align-self: stretch;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: flex-start;
+            gap: 10px;
+        }
+        .typescript {
+            position: relative;
+            line-height: 160%;
+        }
+        .typescript-wrapper {
+            align-self: stretch;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: flex-start;
+        }
+        .frame-wrapper {
+            border-radius: 14px;
+            background-color: #fff;
+            border: 0.5px solid #e3e3e3;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: flex-start;
+            padding: 3px 7px;
+        }
+        .frame-parent2 {
+            align-self: stretch;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: flex-start;
+            gap: 6px;
+            font-size: 8px;
+        }
+        .container {
+            width: 392.5px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: flex-start;
+            gap: 10px;
+        }
+        .div5 {
+            align-self: stretch;
+            position: relative;
+            line-height: 150%;
+            font-weight: 600;
+        }
+        .div6 {
+            align-self: stretch;
+            position: relative;
+            font-size: 8px;
+            line-height: 160%;
+            color: #787878;
+        }
+        .parent2 {
+            width: 90px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: flex-start;
+            gap: 2px;
+            font-size: 10px;
+        }
+        .div7 {
+            align-self: stretch;
+            position: relative;
+            line-height: 150%;
+        }
+        .httpswwwfigmacom {
+            align-self: stretch;
+            position: relative;
+            line-height: 150%;
+            color: #1adfb4;
+        }
+        .frame-parent4 {
+            align-self: stretch;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: flex-start;
+            gap: 6px;
+        }
+        .parent3 {
+            width: 96px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: flex-start;
+            gap: 2px;
+        }
+        .frame-parent5 {
+            align-self: stretch;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: flex-start;
+            gap: 6px;
+            font-size: 10px;
+        }
+        .parent4 {
+            width: 219.5px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: flex-start;
+            gap: 2px;
+            font-size: 10px;
+        }
+        .frame-parent3 {
+            align-self: stretch;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: flex-start;
+            gap: 16px;
+            font-size: 9px;
+        }
+        .parent1 {
+            width: 442px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: flex-start;
+            gap: 10px;
+        }
+        .div15 {
+            align-self: stretch;
+            position: relative;
+            font-size: 8px;
+            line-height: 160%;
+            font-weight: 500;
+            color: #787878;
+        }
+        .app-modernization-eks-jam-1-parent {
+            width: 146.5px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: flex-start;
+            gap: 2px;
+        }
+        .li {
+            margin-bottom: 0px;
+        }
+        .ai {
+            margin: 0;
+            font-family: inherit;
+            font-size: inherit;
+            padding-left: 12px;
+        }
+        .ai-container {
+            align-self: stretch;
+            position: relative;
+            font-size: 9px;
+            line-height: 150%;
+        }
+        .frame-parent7 {
+            align-self: stretch;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: flex-start;
+            gap: 8px;
+            font-size: 10px;
+        }
+        .parent7 {
+            align-self: stretch;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: flex-start;
+            gap: 2px;
+        }
+        .frame-parent8 {
+            align-self: stretch;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: flex-start;
+            gap: 16px;
+            font-size: 10px;
+        }
+        .rectangle-icon {
+            width: 8px;
+            position: relative;
+            border-radius: 1.5px;
+            height: 8px;
+        }
+        .httpswwwfigmacom2 {
+            color: #04201A;
+            position: relative;
+            text-decoration: underline;
+            line-height: 160%;
+            text-decoration-style: solid;
+            text-decoration-skip-ink: auto;
+            text-decoration-thickness: auto;
+            text-underline-offset: auto;
+            text-underline-position: from-font;
+        }
+        .vector-parent {
+            align-self: stretch;
+            border-radius: 4px;
+            background-color: #fff;
+            border: 0.5px solid #e3e3e3;
+            overflow: hidden;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: flex-start;
+            padding: 6px 10px;
+            gap: 8px;
+        }
+        .frame-parent9 {
+            align-self: stretch;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: flex-start;
+            gap: 4px;
+            font-size: 8px;
+        }
+        .parent9 {
+            width: 349px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: flex-start;
+            gap: 10px;
+        }
+        .frame-parent1 {
+            align-self: stretch;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: flex-start;
+            gap: 38px;
+            font-size: 12px;
+        }
+        .frame-parent {
+            align-self: stretch;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: flex-start;
+            gap: 36px;
+        }
+        .a4-6-inner {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 452px;
+            height: 1288px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: flex-start;
+        }
+        .a4-6 {
+            background-color: #fff;
+            width: 100%;
+            max-width: 1448px;
+            height: 1448px;
+            position: relative;
+            overflow: hidden;
+            font-family: Pretendard;
+        }
+    </style>
+    <link
+            rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=Pretendard:wght@400;500;600;700&display=swap"
+    />
+</head>
+<body>
+<div class="a4-6">
+    <div class="a4-6-inner">
+        <div class="frame-parent">
+
+            <!-- 프로필 -->
+            <div class="frame-group">
+                <div class="frame-container">
+                    <img class="frame-child" th:src="@{${user.profile}}" alt="프로필 사진" />
+
+                    <div class="frame-div">
+                        <div class="parent">
+                            <div class="div" th:text="${user.job.getName()}">프론트엔드 개발자</div>
+                            <div class="div1" th:text="${user.school.getName()}">학교명</div>
+                        </div>
+                        <b class="b" th:text="${user.nickname}">이름</b>
+                        <div class="nextjs-reactjs-typescript" th:text="${user.introduce}">소개 문장</div>
+                    </div>
+                </div>
+                <div class="frame-item"></div>
+            </div>
+
+            <!-- 자기소개 -->
+            <div class="group">
+                <div class="div2">자기소개</div>
+                <div class="xml-json-container" th:text="${portfolio.introduction?.introduce}">
+                    소개 내용
+                </div>
+            </div>
+
+            <!-- 기술 스택 -->
+            <div class="container">
+                <div class="div2">기술 스택</div>
+                <div class="frame-parent2">
+                    <div class="frame-wrapper" th:each="code : ${codes}">
+                        <div class="typescript-wrapper">
+                            <div class="typescript" th:text="${code.keyword}">기술</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 프로젝트 -->
+            <div class="parent1">
+                <div class="div2">프로젝트</div>
+                <div class="frame-parent3">
+                    <div class="frame-parent4" th:each="project : ${portfolio.projects}">
+                        <div class="parent2">
+                            <div class="div5" th:text="${project.title}">프로젝트명</div>
+                            <div class="div6" th:text="|${#temporals.format(project.startDate, 'yyyy.MM')} ~ ${#temporals.format(project.endDate, 'yyyy.MM')}|">기간</div>
+                        </div>
+                        <div class="div7" th:text="${project.description}">설명</div>
+                        <div class="httpswwwfigmacom" th:if="${project.link != null}" th:text="${project.link}">링크</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 수상 내역 -->
+            <div class="parent1">
+                <div class="div2">수상 내역</div>
+                <div class="frame-parent7">
+                    <div th:each="award : ${portfolio.awards}">
+                        <div class="app-modernization-eks-jam-1-parent">
+                            <div class="div" th:text="${award.competitionName}">대회명</div>
+                            <div class="div15" th:text="${award.date}">수상일</div>
+                        </div>
+                        <div class="ai-container" th:text="${award.description}">수상 설명</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 자격증 -->
+            <div class="parent1">
+                <div class="div2">자격증</div>
+                <div class="frame-parent8">
+                    <div class="parent7" th:each="q : ${portfolio.qualifications}">
+                        <div class="div5" th:text="${q.name}">자격증 이름</div>
+                        <div class="div15" th:text="${q.date}">취득일</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 링크 -->
+            <div class="parent9">
+                <div class="div2">링크</div>
+                <div class="frame-parent9">
+                    <div class="vector-parent" th:each="link : ${portfolio.links}">
+                        <svg class="rectangle-icon"
+                             xmlns="http://www.w3.org/2000/svg" width="10" height="9" viewBox="0 0 10 9" fill="none">
+                            <path d="M2.86527 3.78842L1.44212 5.21157C0.852627 5.80106 0.852627 6.75682 1.44212 7.34631L2.15369 8.05788C2.74318 8.64737 3.69894 8.64737 4.28843 8.05788L5.71158 6.63473M3.93264 5.56738L6.06737 3.43264M4.28842 2.36527L5.71157 0.942118C6.30106 0.352628 7.25682 0.352627 7.84631 0.942117L8.55788 1.65369C9.14737 2.24318 9.14737 3.19894 8.55788 3.78843L7.13473 5.21158" stroke="#04201A" stroke-width="0.7" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        <a class="httpswwwfigmacom2" th:href="@{${link.url}}" th:text="${link.url}">링크</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+</body>
+</html>
