@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestHeader
 interface NextcloudUploadClient {
 
     @PutMapping(
-        value = ["/remote.php/dav/files/carrier/{fileName}"],
+        value = ["/remote.php/dav/files/moiza/{fileName}"],
         consumes = [MediaType.APPLICATION_OCTET_STREAM_VALUE]
     )
     fun uploadFile(

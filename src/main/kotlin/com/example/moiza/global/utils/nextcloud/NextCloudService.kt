@@ -6,6 +6,7 @@ import com.example.moiza.global.feign.nextcloud.NextcloudUploadClient
 import org.springframework.stereotype.Component
 import org.springframework.web.multipart.MultipartFile
 import java.nio.charset.StandardCharsets
+import java.time.LocalDate
 import java.util.*
 
 @Component
@@ -22,6 +23,20 @@ class NextCloudService(
             .format(UUID.randomUUID(), userId, file.originalFilename)
         val fileData = file.bytes
 
+        return requestNextCloud(fileName, fileData)
+    }
+
+    fun uploadFile(
+        fileData: ByteArray,
+        userId: Long,
+    ): String {
+        val fileName = FILE_NAME_TEMPLATE
+            .format(UUID.randomUUID(), userId, LocalDate.now().toString()) + ".pdf"
+
+        return requestNextCloud(fileName, fileData)
+    }
+
+    private fun requestNextCloud(fileName: String, fileData: ByteArray): String {
         val authHeader = "Basic " + Base64.getEncoder()
             .encodeToString(
                 (nextCloudProperties.username + ":" + nextCloudProperties.password)

@@ -4,20 +4,14 @@ import com.example.moiza.domain.user.presentation.dto.req.RegisterProfileRequest
 import com.example.moiza.domain.user.presentation.dto.req.UpdateProfileRequest
 import com.example.moiza.domain.user.service.*
 import jakarta.validation.Valid
-import org.springframework.web.bind.annotation.DeleteMapping
-import org.springframework.web.bind.annotation.GetMapping
-import org.springframework.web.bind.annotation.PatchMapping
-import org.springframework.web.bind.annotation.RequestBody
-import org.springframework.web.bind.annotation.RequestMapping
-import org.springframework.web.bind.annotation.RequestParam
-import org.springframework.web.bind.annotation.ResponseBody
-import org.springframework.web.bind.annotation.RestController
+import org.springframework.web.bind.annotation.*
 import org.springframework.web.multipart.MultipartFile
 
 @RequestMapping("/users")
 @RestController
 class UserController(
     private val profileService: ProfileService,
+    private val getPortfolioPDFService: GetPortfolioPDFService,
     private val updateProfileService: UpdateProfileService,
     private val registerProfileService: RegisterProfileService,
     private val updatePictureService: UpdatePictureService,
@@ -26,6 +20,10 @@ class UserController(
     @GetMapping
     fun findMyInfo()
         = profileService.execute()
+
+    @GetMapping("/pdf/{portfolio-id}")
+    fun getPortfolioPDF(@PathVariable("portfolio-id") portfolioId: Long)
+        = getPortfolioPDFService.execute(portfolioId)
 
     @PatchMapping("/register")
     fun updateProfile(@RequestBody @Valid request: RegisterProfileRequest)

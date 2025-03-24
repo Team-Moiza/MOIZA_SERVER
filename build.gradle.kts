@@ -52,8 +52,9 @@ dependencies {
     implementation("org.jetbrains.kotlin:kotlin-reflect")
 
     // jwt
-    implementation("io.jsonwebtoken:jjwt:0.9.1")
-    implementation("javax.xml.bind:jaxb-api:2.3.1")
+    implementation("io.jsonwebtoken:jjwt-api:0.11.5")
+    runtimeOnly("io.jsonwebtoken:jjwt-impl:0.11.5")
+    runtimeOnly("io.jsonwebtoken:jjwt-jackson:0.11.5")
 
     // open feign
     implementation("org.springframework.cloud:spring-cloud-starter-openfeign")
@@ -73,6 +74,12 @@ dependencies {
     implementation("com.querydsl:querydsl-apt:5.0.0:jakarta")
     implementation("jakarta.persistence:jakarta.persistence-api")
     implementation("jakarta.annotation:jakarta.annotation-api")
+
+    // thymeleaf
+    implementation("org.springframework.boot:spring-boot-starter-thymeleaf")
+
+    // playwright
+    implementation("com.microsoft.playwright:playwright:1.50.0")
 
     kapt("com.querydsl:querydsl-apt:5.0.0:jakarta")
     kapt("org.springframework.boot:spring-boot-configuration-processor")
