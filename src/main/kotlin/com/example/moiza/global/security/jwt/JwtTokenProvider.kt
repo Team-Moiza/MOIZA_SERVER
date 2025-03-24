@@ -10,6 +10,7 @@ import io.jsonwebtoken.Claims
 import io.jsonwebtoken.Jws
 import io.jsonwebtoken.Jwts
 import io.jsonwebtoken.SignatureAlgorithm
+import io.jsonwebtoken.security.Keys
 import jakarta.servlet.http.HttpServletRequest
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken
 import org.springframework.security.core.userdetails.UserDetails
@@ -36,7 +37,9 @@ class JwtTokenProvider(
 
     fun createToken(email: String, type: String, time: Long): String {
         val now = Date()
-        return Jwts.builder().signWith(SignatureAlgorithm.HS256, jwtProperties.secretKey)
+        val key = Keys.hmacShaKeyFor(jwtProperties.secretKey.toByteArray())
+        return Jwts.builder()
+            .signWith(key, SignatureAlgorithm.HS256)
             .setSubject(email)
             .setHeaderParam("typ", type)
             .setIssuedAt(now)
@@ -66,7 +69,9 @@ class JwtTokenProvider(
 
     fun getTokenBody(token: String): Jws<Claims> {
         try {
-            return Jwts.parser().setSigningKey(jwtProperties.secretKey)
+            val key = Keys.hmacShaKeyFor(jwtProperties.secretKey.toByteArray())
+            return Jwts.parserBuilder()
+                .setSigningKey(key).build()
                 .parseClaimsJws(token)
         } catch (e: io.jsonwebtoken.ExpiredJwtException) {
             throw ExpiredJwtException
