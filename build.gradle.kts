@@ -75,6 +75,12 @@ dependencies {
     implementation("jakarta.persistence:jakarta.persistence-api")
     implementation("jakarta.annotation:jakarta.annotation-api")
 
+    // thymeleaf
+    implementation("org.springframework.boot:spring-boot-starter-thymeleaf")
+
+    // playwright
+    implementation("com.microsoft.playwright:playwright:1.50.0")
+
     kapt("com.querydsl:querydsl-apt:5.0.0:jakarta")
     kapt("org.springframework.boot:spring-boot-configuration-processor")
 }
