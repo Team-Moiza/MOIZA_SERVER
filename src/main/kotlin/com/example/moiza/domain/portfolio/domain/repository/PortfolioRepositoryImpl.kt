@@ -73,8 +73,8 @@ class PortfolioRepositoryImpl(
         }
     }
 
-    private fun eqSchool(school: School?): BooleanExpression {
-        return school?.let { portfolio.user.school.eq(it) } ?: Expressions.TRUE
+    private fun eqSchool(school: List<School>?): BooleanExpression {
+        return school?.let { portfolio.user.school.`in`(it) } ?: Expressions.TRUE
     }
 
     private fun eqIsEmployed(isEmployed: Boolean?): BooleanExpression {
