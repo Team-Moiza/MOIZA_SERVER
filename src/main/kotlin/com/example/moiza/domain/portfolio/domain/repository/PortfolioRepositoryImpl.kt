@@ -1,6 +1,7 @@
 package com.example.moiza.domain.portfolio.domain.repository
 
 import com.example.moiza.domain.code.domain.QPortfolioCode.portfolioCode
+import com.example.moiza.domain.portfolio.domain.Portfolio
 import com.example.moiza.domain.portfolio.domain.QPortfolio.portfolio
 import com.example.moiza.domain.portfolio.domain.type.UserStatus
 import com.example.moiza.domain.portfolio.presentation.dto.PortfolioFilter
@@ -21,6 +22,18 @@ import org.springframework.stereotype.Repository
 class PortfolioRepositoryImpl(
     private val queryFactory: JPAQueryFactory
 ) : PortfolioRepositoryCustom {
+    override fun getPortfolio(id: Long, status: UserStatus): Portfolio? {
+        return queryFactory
+            .selectFrom(portfolio)
+            .leftJoin(portfolio._portfolioCodes, portfolioCode).fetchJoin()
+            .where(
+                portfolio.userStatus.loe(status.level)
+                    .and(portfolio.isPublished.isTrue)
+                    .and(portfolio.id.eq(id))
+            )
+            .fetchOne()
+    }
+
     override fun getPortfolioList(status: UserStatus, filter: PortfolioFilter): Page<PortfolioListResponse> {
         val portfolios = queryFactory
             .selectFrom(portfolio)
