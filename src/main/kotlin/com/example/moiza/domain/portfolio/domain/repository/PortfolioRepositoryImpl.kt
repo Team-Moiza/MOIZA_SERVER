@@ -6,6 +6,7 @@ import com.example.moiza.domain.portfolio.domain.QPortfolio.portfolio
 import com.example.moiza.domain.portfolio.domain.type.UserStatus
 import com.example.moiza.domain.portfolio.presentation.dto.PortfolioFilter
 import com.example.moiza.domain.portfolio.presentation.dto.res.PortfolioListResponse
+import com.example.moiza.domain.user.domain.User
 import com.example.moiza.domain.user.domain.type.School
 import com.querydsl.core.types.OrderSpecifier
 import com.querydsl.core.types.dsl.BooleanExpression
@@ -22,14 +23,16 @@ import org.springframework.stereotype.Repository
 class PortfolioRepositoryImpl(
     private val queryFactory: JPAQueryFactory
 ) : PortfolioRepositoryCustom {
-    override fun getPortfolio(id: Long, status: UserStatus): Portfolio? {
+    override fun getPortfolio(id: Long, user: User?, status: UserStatus): Portfolio? {
         return queryFactory
             .selectFrom(portfolio)
             .leftJoin(portfolio._portfolioCodes, portfolioCode).fetchJoin()
             .where(
-                portfolio.userStatus.loe(status.level)
+                (portfolio.userStatus.loe(status.level)
                     .and(portfolio.isPublished.isTrue)
-                    .and(portfolio.id.eq(id))
+                    .and(portfolio.id.eq(id)))
+                    .or(eqUser(user)
+                        .and(portfolio.id.eq(id)))
             )
             .fetchOne()
     }
@@ -88,6 +91,10 @@ class PortfolioRepositoryImpl(
 
     private fun eqSchool(school: List<School>?): BooleanExpression {
         return school?.let { portfolio.user.school.`in`(it) } ?: Expressions.TRUE
+    }
+
+    private fun eqUser(user: User?): BooleanExpression {
+        return user?.let { portfolio.user.eq(it) } ?: Expressions.TRUE
     }
 
     private fun eqIsEmployed(isEmployed: Boolean?): BooleanExpression {
