@@ -21,7 +21,7 @@ class GetPortfolioPDFService(
     private val processTemplateService: ProcessTemplateService,
 ) {
     @Transactional(readOnly = true)
-    fun execute(id: Long): String {
+    fun execute(id: Long): ByteArray {
         val user = userFacade.getCurrentUser()
         val portfolio = (portfolioRepository.findPortfolioByIdAndUser(id, user)
             ?: throw PortfolioNotFoundException)
@@ -50,6 +50,8 @@ class GetPortfolioPDFService(
             )
         }
 
-        return nextCloudService.uploadFile(pdfBytes, user.id)
+        nextCloudService.uploadFile(pdfBytes, user.id)
+
+        return pdfBytes
     }
 }

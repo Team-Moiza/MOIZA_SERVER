@@ -4,6 +4,10 @@ import com.example.moiza.domain.user.presentation.dto.req.RegisterProfileRequest
 import com.example.moiza.domain.user.presentation.dto.req.UpdateProfileRequest
 import com.example.moiza.domain.user.service.*
 import jakarta.validation.Valid
+import org.springframework.http.HttpHeaders
+import org.springframework.http.HttpStatus
+import org.springframework.http.MediaType
+import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 import org.springframework.web.multipart.MultipartFile
 
@@ -22,8 +26,12 @@ class UserController(
         = profileService.execute()
 
     @GetMapping("/pdf/{portfolio-id}")
-    fun getPortfolioPDF(@PathVariable("portfolio-id") portfolioId: Long)
-        = getPortfolioPDFService.execute(portfolioId)
+    fun getPortfolioPDF(@PathVariable("portfolio-id") portfolioId: Long): ResponseEntity<ByteArray> {
+        val result = getPortfolioPDFService.execute(portfolioId)
+        return ResponseEntity.ok()
+            .contentType(MediaType.APPLICATION_PDF)
+            .body(result)
+    }
 
     @PatchMapping("/register")
     fun updateProfile(@RequestBody @Valid request: RegisterProfileRequest)
