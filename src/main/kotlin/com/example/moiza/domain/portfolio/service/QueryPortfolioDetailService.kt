@@ -38,6 +38,7 @@ class QueryPortfolioDetailService(
             company = portfolioUser.company,
             introduce = portfolioUser.introduce,
             educationStatus = portfolioUser.educationStatus,
+            enrollmentStartDate = portfolioUser.enrollmentStartDate,
             major = portfolioUser.major,
             introduction = portfolio.introduction?.let { PortfolioDtoUtil.getIntroductionDto(it) },
             projects = portfolio.projects.map { project -> PortfolioDtoUtil.getProjectDto(project) },

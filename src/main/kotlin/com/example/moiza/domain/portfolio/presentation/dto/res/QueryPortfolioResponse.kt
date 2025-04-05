@@ -33,6 +33,7 @@ data class PortfolioDetailResponse(
     val introduce: String?,
     val company: String?,
     val educationStatus: EducationStatus?,
+    val enrollmentStartDate: LocalDate?,
     val major: Major?,
     val introduction: IntroductionDto?,
     val projects: List<ProjectDto>?,
