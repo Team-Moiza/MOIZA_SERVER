@@ -44,7 +44,7 @@ class GetPortfolioPDFService(
             val page = browser.newPage()
             page.navigate(htmlPath.toUri().toString(),
                 Page.NavigateOptions()
-                    .setWaitUntil(WaitUntilState.DOMCONTENTLOADED))
+                    .setWaitUntil(WaitUntilState.LOAD))
 
             page.pdf(
                 Page.PdfOptions()
