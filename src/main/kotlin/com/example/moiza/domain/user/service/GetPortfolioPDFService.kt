@@ -3,6 +3,7 @@ package com.example.moiza.domain.user.service
 import com.example.moiza.domain.portfolio.domain.repository.PortfolioRepository
 import com.example.moiza.domain.portfolio.exception.PortfolioNotFoundException
 import com.example.moiza.domain.user.facade.UserFacade
+import com.example.moiza.global.config.properties.NextCloudProperties
 import com.example.moiza.global.utils.nextcloud.NextCloudService
 import com.example.moiza.global.utils.thymeleaf.ProcessTemplateService
 import com.microsoft.playwright.BrowserType
@@ -20,6 +21,7 @@ class GetPortfolioPDFService(
     private val nextCloudService: NextCloudService,
     private val portfolioRepository: PortfolioRepository,
     private val processTemplateService: ProcessTemplateService,
+    private val nextCloudProperties: NextCloudProperties,
 ) {
     @Transactional(readOnly = true)
     fun execute(id: Long): ByteArray {
@@ -27,8 +29,11 @@ class GetPortfolioPDFService(
         val portfolio = (portfolioRepository.findPortfolioByIdAndUser(id, user)
             ?: throw PortfolioNotFoundException)
 
+        val profile = user.profile.replace("https://nas.anys.kro.kr", nextCloudProperties.baseUrl)
+
         val data = mapOf(
             "user" to user,
+            "profile" to profile,
             "portfolio" to portfolio,
             "codes" to portfolio.codes.map { it.code },
         )
