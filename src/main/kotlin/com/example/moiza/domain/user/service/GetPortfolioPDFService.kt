@@ -8,6 +8,7 @@ import com.example.moiza.global.utils.thymeleaf.ProcessTemplateService
 import com.microsoft.playwright.BrowserType
 import com.microsoft.playwright.Page
 import com.microsoft.playwright.Playwright
+import com.microsoft.playwright.options.WaitUntilState
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 import java.nio.file.Files
@@ -41,7 +42,9 @@ class GetPortfolioPDFService(
                 BrowserType.LaunchOptions().setHeadless(true)
             )
             val page = browser.newPage()
-            page.navigate(htmlPath.toUri().toString())
+            page.navigate(htmlPath.toUri().toString(),
+                Page.NavigateOptions()
+                    .setWaitUntil(WaitUntilState.DOMCONTENTLOADED))
 
             page.pdf(
                 Page.PdfOptions()
