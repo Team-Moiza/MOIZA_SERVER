@@ -26,6 +26,7 @@ data class PortfolioListResponse(
 
 data class PortfolioDetailResponse(
     val id: Long,
+    val title: String,
     val name: String,
     val profile: String,
     val job: Job?,

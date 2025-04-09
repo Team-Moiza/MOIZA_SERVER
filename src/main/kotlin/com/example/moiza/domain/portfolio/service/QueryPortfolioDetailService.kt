@@ -32,6 +32,7 @@ class QueryPortfolioDetailService(
 
         return PortfolioDetailResponse(
             id = portfolio.id,
+            title = portfolio.title,
             name = portfolioUser.nickname,
             profile = portfolioUser.profile,
             job = portfolioUser.job,
