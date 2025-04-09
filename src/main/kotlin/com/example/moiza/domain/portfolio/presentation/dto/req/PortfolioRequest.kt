@@ -1,15 +1,19 @@
 package com.example.moiza.domain.portfolio.presentation.dto.req
 
+import jakarta.validation.constraints.NotEmpty
 import java.time.LocalDate
 
 data class PortfolioRequest(
+    @field:NotEmpty
     val title: String,
+    @field:NotEmpty
     val projects: List<ProjectDto>,
     val awards: List<AwardDto>? = null,
     val qualifications: List<QualificationDto>? = null,
     val links: List<LinkDto>? = null,
     val introduction: IntroductionDto? = null,
-    val codes: List<Long>,
+    @field:NotEmpty
+    val codes: List<CodeDto>,
 )
 
 data class ProjectDto(

@@ -9,6 +9,7 @@ import com.example.moiza.domain.portfolio.exception.MissingProfileForPortfolioEx
 import com.example.moiza.domain.portfolio.presentation.dto.req.PortfolioRequest
 import com.example.moiza.domain.user.facade.UserFacade
 import jakarta.transaction.Transactional
+import jakarta.validation.Valid
 import org.springframework.stereotype.Service
 
 @Service
@@ -18,7 +19,7 @@ class CreatePortfolioService(
     private val codeRepository: CodeRepository,
 ) {
     @Transactional
-    fun execute(request: PortfolioRequest): Long {
+    fun execute(request: @Valid PortfolioRequest): Long {
         val user = userFacade.getCurrentUser()
 
         if (user.userStatus == UserStatus.LOGGED_IN) {
@@ -27,7 +28,7 @@ class CreatePortfolioService(
 
         val portfolio = Portfolio(user, request.title)
 
-        val projects = request.projects?.map { dto ->
+        val projects = request.projects.map { dto ->
             val project = Project(
                 portfolio = portfolio,
                 title = dto.title,
@@ -52,7 +53,8 @@ class CreatePortfolioService(
         request.awards?.let(portfolio::addAwards)
         request.links?.let(portfolio::addLinks)
         request.introduction?.let(portfolio::addIntroduction)
-        request.codes?.let { codeIds ->
+        request.codes.let { dto ->
+            val codeIds = dto.map { code -> code.id }
             val codes = codeRepository.findAllById(codeIds)
             codes.forEach { portfolio.addCode(it) }
         }
