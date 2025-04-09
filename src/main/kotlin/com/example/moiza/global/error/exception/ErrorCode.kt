@@ -11,6 +11,7 @@ enum class ErrorCode(
 
     // portfolio
     PORTFOLIO_NOT_FOUND(404, "Portfolio Not Found"),
+    MISSING_PROFILE_FOR_PORTFOLIO(409, "Missing profile information for portfolio registration"),
 
     // like
     ALREADY_LIKE(409, "Already Liked"),

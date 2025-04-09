@@ -5,6 +5,7 @@ import com.example.moiza.domain.portfolio.domain.Portfolio
 import com.example.moiza.domain.portfolio.domain.Project
 import com.example.moiza.domain.portfolio.domain.repository.PortfolioRepository
 import com.example.moiza.domain.portfolio.domain.type.UserStatus
+import com.example.moiza.domain.portfolio.exception.MissingProfileForPortfolioException
 import com.example.moiza.domain.portfolio.presentation.dto.req.PortfolioRequest
 import com.example.moiza.domain.user.facade.UserFacade
 import jakarta.transaction.Transactional
@@ -19,6 +20,11 @@ class CreatePortfolioService(
     @Transactional
     fun execute(request: PortfolioRequest): Long {
         val user = userFacade.getCurrentUser()
+
+        if (user.userStatus == UserStatus.LOGGED_IN) {
+            throw MissingProfileForPortfolioException
+        }
+
         val portfolio = Portfolio(user, request.title)
 
         val projects = request.projects?.map { dto ->
