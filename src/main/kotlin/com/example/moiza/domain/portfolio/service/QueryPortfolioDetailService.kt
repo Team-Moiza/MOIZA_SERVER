@@ -22,7 +22,8 @@ class QueryPortfolioDetailService(
         var user: User? = null
 
         if (userFacade.isLogin()) {
-            status = userFacade.getCurrentUser().userStatus
+            user = userFacade.getCurrentUser()
+            status = user.userStatus
         }
 
         val portfolio = portfolioRepository.getPortfolio(portfolioId, user, status)
