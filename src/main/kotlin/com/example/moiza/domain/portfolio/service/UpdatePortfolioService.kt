@@ -25,6 +25,7 @@ class UpdatePortfolioService(
     fun execute(portfolioId: Long, request: UpdatePortfolioRequest) {
         val portfolio = portfolioRepository.findByIdOrNull(portfolioId) ?: throw PortfolioNotFoundException
 
+        portfolio.updateTitle(request.title)
         updateProjects(portfolio, request.projects)
         updateQualifications(portfolio, request.qualifications)
         updateAwards(portfolio, request.awards)

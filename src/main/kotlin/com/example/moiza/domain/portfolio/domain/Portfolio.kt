@@ -118,6 +118,10 @@ class Portfolio(
         this.isPublished = status
     }
 
+    fun updateTitle(title: String) {
+        this.title = title
+    }
+
     fun like() {
         likeCnt++
     }
