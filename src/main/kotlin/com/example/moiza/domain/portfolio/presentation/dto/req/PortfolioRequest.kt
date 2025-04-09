@@ -4,12 +4,12 @@ import java.time.LocalDate
 
 data class PortfolioRequest(
     val title: String,
-    val projects: List<ProjectDto>? = null,
+    val projects: List<ProjectDto>,
     val awards: List<AwardDto>? = null,
     val qualifications: List<QualificationDto>? = null,
     val links: List<LinkDto>? = null,
     val introduction: IntroductionDto? = null,
-    val codes: List<Long>? = null
+    val codes: List<Long>,
 )
 
 data class ProjectDto(
