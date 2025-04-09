@@ -17,7 +17,7 @@ class CreatePortfolioService(
     private val codeRepository: CodeRepository,
 ) {
     @Transactional
-    fun execute(request: PortfolioRequest) {
+    fun execute(request: PortfolioRequest): Long {
         val user = userFacade.getCurrentUser()
         val portfolio = Portfolio(user, request.title)
 
@@ -52,6 +52,6 @@ class CreatePortfolioService(
         }
 
         user.updateUserStatus(UserStatus.PORTFOLIO_COMPLETED)
-        portfolioRepository.save(portfolio)
+        return portfolioRepository.save(portfolio).id
     }
 }
