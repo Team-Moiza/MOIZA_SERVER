@@ -94,7 +94,7 @@ class PortfolioRepositoryImpl(
     }
 
     private fun eqUser(user: User?): BooleanExpression {
-        return user?.let { portfolio.user.eq(it) } ?: Expressions.TRUE
+        return user?.let { portfolio.user.eq(it) } ?: Expressions.FALSE
     }
 
     private fun eqIsEmployed(isEmployed: Boolean?): BooleanExpression {
