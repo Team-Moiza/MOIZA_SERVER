@@ -33,8 +33,8 @@ class CreatePortfolioService(
                 portfolio = portfolio,
                 title = dto.title,
                 status = dto.status,
-                startDate = dto.startDate!!,
-                endDate = dto.endDate!!,
+                startDate = dto.startDate,
+                endDate = dto.endDate,
                 description = dto.description,
                 link = dto.link
             )
