@@ -1,0 +1,9 @@
+services:
+  backend:
+    container_name: moiza-backend
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: always
+    ports:
+      - "8081:8080"
