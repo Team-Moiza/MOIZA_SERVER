@@ -34,6 +34,6 @@ class GoogleAuthService(
     }
 
     companion object {
-        private const val BASIC_PROFILE_IMG = "https://i.pinimg.com/736x/04/15/e3/0415e3a6c56fc6e8f1e0ac1bed4b6aaf.jpg"
+        private const val BASIC_PROFILE_IMG = "https://nas.anys.kro.kr/s/yAkCpDKXbbsHfZE/download"
     }
 }
