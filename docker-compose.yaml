@@ -4,6 +4,13 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    restart: always
     ports:
       - "8081:8080"
+    volumes:
+      - gradle-cache:/home/gradle/.gradle
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    restart: always
+
+volumes:
+  gradle-cache:
