@@ -12,7 +12,7 @@ class Introduction(
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long = 0L
 
-    @Column(nullable = false)
+    @Column(nullable = false, columnDefinition = "TEXT")
     var introduce: String = introduce
         protected set
 
