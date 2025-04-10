@@ -55,10 +55,10 @@ class User(
     var introduce: String? = null
         protected set
 
-    var enrollmentStartDate: LocalDate? = null // 입학일
+    var enrollmentStartDate: String? = null // 입학일
         protected set
 
-    var enrollmentEndDate: LocalDate? = null // 졸업일
+    var enrollmentEndDate: String? = null // 졸업일
         protected set
 
     var company: String? = null // 회사
@@ -75,7 +75,7 @@ class User(
     private val likes: MutableList<Like> = mutableListOf()
 
     fun update(nickname: String, school: School, major: Major, educationStatus: EducationStatus,
-               enrollmentStartDate: LocalDate, enrollmentEndDate: LocalDate, job: Job?,
+               enrollmentStartDate: String, enrollmentEndDate: String, job: Job?,
                company: String?, introduce: String) {
         this.nickname = nickname
         this.school = school
