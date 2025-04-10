@@ -20,7 +20,7 @@ data class ProjectDto(
     val id: Long?,
     val title: String,
     val status: Boolean,
-    val startDate: LocalDate?,
+    val startDate: LocalDate,
     val endDate: LocalDate?,
     val description: String,
     val link: String,

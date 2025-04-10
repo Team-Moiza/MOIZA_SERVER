@@ -27,7 +27,6 @@ class Project(
     var startDate: LocalDate = startDate
         protected set
 
-    @Column(nullable = false)
     var endDate: LocalDate? = endDate
         protected set
 
