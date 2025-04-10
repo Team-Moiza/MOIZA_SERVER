@@ -14,8 +14,8 @@ class ListLikesService(
     @Transactional(readOnly = true)
     fun execute(): List<LikesResponse> {
         val user = userFacade.getCurrentUser()
-        val likes = likeRepository.findAllByUser(user)
+        val portfolios = likeRepository.findAllByUser(user)
 
-        return likes.map { LikesResponse.from(it.portfolio) }
+        return portfolios.map { LikesResponse.from(it) }
     }
 }

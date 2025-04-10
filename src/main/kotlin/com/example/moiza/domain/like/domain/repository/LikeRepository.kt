@@ -7,7 +7,6 @@ import org.springframework.data.jpa.repository.JpaRepository
 import org.springframework.stereotype.Repository
 
 @Repository
-interface LikeRepository : JpaRepository<Like, Long> {
-    fun findAllByUser(user: User): List<Like>
+interface LikeRepository : JpaRepository<Like, Long>, LikeRepositoryCustom {
     fun findByUserAndPortfolio(user: User, portfolio: Portfolio): Like?
 }
