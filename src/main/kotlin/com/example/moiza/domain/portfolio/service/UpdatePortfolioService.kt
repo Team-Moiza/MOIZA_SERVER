@@ -7,6 +7,7 @@ import com.example.moiza.domain.portfolio.domain.*
 import com.example.moiza.domain.portfolio.domain.repository.*
 import com.example.moiza.domain.portfolio.exception.PortfolioNotFoundException
 import com.example.moiza.domain.portfolio.presentation.dto.req.*
+import com.example.moiza.domain.user.facade.UserFacade
 import jakarta.transaction.Transactional
 import org.springframework.data.repository.findByIdOrNull
 import org.springframework.stereotype.Service
@@ -20,10 +21,13 @@ class UpdatePortfolioService(
     private val awardRepository: AwardRepository,
     private val linkRepository: LinkRepository,
     private val portfolioCodeRepository: PortfolioCodeRepository,
-    private val codeRepository: CodeRepository
+    private val codeRepository: CodeRepository,
+    private val userFacade: UserFacade,
 ) {
     fun execute(portfolioId: Long, request: UpdatePortfolioRequest) {
-        val portfolio = portfolioRepository.findByIdOrNull(portfolioId) ?: throw PortfolioNotFoundException
+        val user = userFacade.getCurrentUser()
+        val portfolio = portfolioRepository.findPortfolioByIdAndUser(portfolioId, user)
+            ?: throw PortfolioNotFoundException
 
         portfolio.updateTitle(request.title)
         updateProjects(portfolio, request.projects)
