@@ -12,6 +12,7 @@ enum class ErrorCode(
     // portfolio
     PORTFOLIO_NOT_FOUND(404, "Portfolio Not Found"),
     MISSING_PROFILE_FOR_PORTFOLIO(409, "Missing profile information for portfolio registration"),
+    MISSING_PIN_FOR_24_HOURS(422, "끌올은 하루에 한 번만 가능합니다. 24시간이 지나지 않았습니다."),
 
     // like
     ALREADY_LIKE(409, "Already Liked"),

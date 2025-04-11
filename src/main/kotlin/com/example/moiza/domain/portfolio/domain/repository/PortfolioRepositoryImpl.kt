@@ -115,9 +115,9 @@ class PortfolioRepositoryImpl(
             }
 
             if (dateSort == Sort.Direction.DESC) {
-                add(portfolio.createdAt.desc())
+                add(portfolio.pinnedAt.desc())
             } else {
-                add(portfolio.createdAt.asc())
+                add(portfolio.pinnedAt.asc())
             }
         }.toTypedArray()
     }
