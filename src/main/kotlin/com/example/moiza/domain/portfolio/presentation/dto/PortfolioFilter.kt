@@ -9,7 +9,7 @@ data class PortfolioFilter(
     val page: Int = 0,
     val size: Int = 20,
     val code: List<Long>? = null,
-    val school: School? = null,
+    val school: List<School>? = null,
     val isEmployed: Boolean? = null,
     val dateSort: Direction = Direction.DESC,
     val likeSort: Direction? = null,

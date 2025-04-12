@@ -8,6 +8,7 @@ import com.example.moiza.domain.portfolio.presentation.dto.req.*
 import com.example.moiza.domain.portfolio.domain.type.UserStatus
 import com.example.moiza.domain.user.domain.User
 import jakarta.persistence.*
+import java.time.LocalDateTime
 
 @Entity
 class Portfolio(
@@ -32,6 +33,9 @@ class Portfolio(
 
     @Column(nullable = false)
     var likeCnt: Long = 0L
+
+    @Column(nullable = false)
+    var pinnedAt: LocalDateTime = LocalDateTime.now()
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
@@ -81,6 +85,10 @@ class Portfolio(
         }
     }
 
+    fun updatePinnedAt() {
+        pinnedAt = LocalDateTime.now()
+    }
+
     fun addAwards(awardDtos: List<AwardDto>) {
         awardDtos.forEach { dto ->
             val award = Award(
@@ -116,6 +124,10 @@ class Portfolio(
 
     fun changePublish(status: Boolean) {
         this.isPublished = status
+    }
+
+    fun updateTitle(title: String) {
+        this.title = title
     }
 
     fun like() {

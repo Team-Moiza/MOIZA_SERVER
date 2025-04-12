@@ -1,10 +1,12 @@
 package com.example.moiza.domain.portfolio.domain.repository
 
 import com.example.moiza.domain.code.domain.QPortfolioCode.portfolioCode
+import com.example.moiza.domain.portfolio.domain.Portfolio
 import com.example.moiza.domain.portfolio.domain.QPortfolio.portfolio
 import com.example.moiza.domain.portfolio.domain.type.UserStatus
 import com.example.moiza.domain.portfolio.presentation.dto.PortfolioFilter
 import com.example.moiza.domain.portfolio.presentation.dto.res.PortfolioListResponse
+import com.example.moiza.domain.user.domain.User
 import com.example.moiza.domain.user.domain.type.School
 import com.querydsl.core.types.OrderSpecifier
 import com.querydsl.core.types.dsl.BooleanExpression
@@ -21,6 +23,20 @@ import org.springframework.stereotype.Repository
 class PortfolioRepositoryImpl(
     private val queryFactory: JPAQueryFactory
 ) : PortfolioRepositoryCustom {
+    override fun getPortfolio(id: Long, user: User?, status: UserStatus): Portfolio? {
+        return queryFactory
+            .selectFrom(portfolio)
+            .leftJoin(portfolio._portfolioCodes, portfolioCode).fetchJoin()
+            .where(
+                (portfolio.userStatus.loe(status.level)
+                    .and(portfolio.isPublished.isTrue)
+                    .and(portfolio.id.eq(id)))
+                    .or(eqUser(user)
+                        .and(portfolio.id.eq(id)))
+            )
+            .fetchOne()
+    }
+
     override fun getPortfolioList(status: UserStatus, filter: PortfolioFilter): Page<PortfolioListResponse> {
         val portfolios = queryFactory
             .selectFrom(portfolio)
@@ -73,8 +89,12 @@ class PortfolioRepositoryImpl(
         }
     }
 
-    private fun eqSchool(school: School?): BooleanExpression {
-        return school?.let { portfolio.user.school.eq(it) } ?: Expressions.TRUE
+    private fun eqSchool(school: List<School>?): BooleanExpression {
+        return school?.let { portfolio.user.school.`in`(it) } ?: Expressions.TRUE
+    }
+
+    private fun eqUser(user: User?): BooleanExpression {
+        return user?.let { portfolio.user.eq(it) } ?: Expressions.FALSE
     }
 
     private fun eqIsEmployed(isEmployed: Boolean?): BooleanExpression {
@@ -95,9 +115,9 @@ class PortfolioRepositoryImpl(
             }
 
             if (dateSort == Sort.Direction.DESC) {
-                add(portfolio.createdAt.desc())
+                add(portfolio.pinnedAt.desc())
             } else {
-                add(portfolio.createdAt.asc())
+                add(portfolio.pinnedAt.asc())
             }
         }.toTypedArray()
     }

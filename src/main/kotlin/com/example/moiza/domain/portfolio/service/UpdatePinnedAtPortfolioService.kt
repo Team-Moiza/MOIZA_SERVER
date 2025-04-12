@@ -1,15 +1,16 @@
 package com.example.moiza.domain.portfolio.service
 
 import com.example.moiza.domain.portfolio.domain.repository.PortfolioRepository
-import com.example.moiza.domain.portfolio.domain.type.UserStatus
+import com.example.moiza.domain.portfolio.exception.MissingPinFor24HoursException
 import com.example.moiza.domain.portfolio.exception.PortfolioNotFoundException
 import com.example.moiza.domain.user.facade.UserFacade
-import org.springframework.data.repository.findByIdOrNull
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
+import java.time.Duration
+import java.time.LocalDateTime
 
 @Service
-class ChangePublishService(
+class UpdatePinnedAtPortfolioService(
     private val userFacade: UserFacade,
     private val portfolioRepository: PortfolioRepository,
 ) {
@@ -19,15 +20,13 @@ class ChangePublishService(
         val portfolio = portfolioRepository.findPortfolioByIdAndUser(id, user)
             ?: throw PortfolioNotFoundException
 
-        if (!portfolio.isPublished) {
-            portfolioRepository.findAllByUser(user)?.forEach { it.changePublish(false) }
-            portfolio.changePublish(true)
-            user.updateUserStatus(UserStatus.PORTFOLIO_PUBLISHED)
-        } else {
-            portfolio.changePublish(false)
-            user.updateUserStatus(UserStatus.PORTFOLIO_COMPLETED)
+        val currentTime = LocalDateTime.now()
+        val duration = Duration.between(portfolio.pinnedAt, currentTime)
+
+        if (duration.toHours() < 24) {
+            throw MissingPinFor24HoursException
         }
 
-        portfolioRepository.save(portfolio)
+        portfolio.updatePinnedAt()
     }
 }

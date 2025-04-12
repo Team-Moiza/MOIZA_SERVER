@@ -17,6 +17,7 @@ class PortfolioController(
     private val queryPortfolioDetailService: QueryPortfolioDetailService,
     private val changePublishService: ChangePublishService,
     private val queryMyPortfolioService: QueryMyPortfolioService,
+    private val updatePinnedAtPortfolioService: UpdatePinnedAtPortfolioService,
 ) {
 
     @PostMapping
@@ -45,4 +46,9 @@ class PortfolioController(
 
     @GetMapping("/my")
     fun queryMyPortfolio() = queryMyPortfolioService.execute()
+
+    @PatchMapping("/pinned/{portfolio-id}")
+    fun updatePinnedAt(
+        @PathVariable("portfolio-id") id: Long,
+    ) = updatePinnedAtPortfolioService.execute(id)
 }

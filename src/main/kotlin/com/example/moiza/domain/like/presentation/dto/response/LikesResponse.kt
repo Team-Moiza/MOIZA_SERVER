@@ -12,7 +12,7 @@ data class LikesResponse(
     val name: String,
     val company: String?,
     val profile: String,
-    val enrollmentStartDate: LocalDate?,
+    val enrollmentStartDate: String?,
     val job: Job?,
     val school: School?,
     val major: Major?,

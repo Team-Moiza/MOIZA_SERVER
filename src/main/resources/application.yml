@@ -1,16 +1,18 @@
 spring:
+  config:
+    import: env.yaml
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://${DB_URL:localhost}:3306/${DB_NAME:moiza}
-    username: ${DB_USERNAME:root}
-    password: ${DB_PASSWORD:1111}
+    url: jdbc:mysql://${DB.URL:localhost}:3306/${DB.NAME:moiza}
+    username: ${DB.USERNAME:root}
+    password: ${DB.PASSWORD:1111}
 
   jpa:
     database: mysql
     database-platform: org.hibernate.dialect.MySQLDialect
     generate-ddl: true
     hibernate:
-      ddl-auto: ${DDL:validate}
+      ddl-auto: ${DB.DDL:validate}
     show-sql: true
     properties:
       hibernate:
@@ -24,24 +26,24 @@ spring:
 
   data:
     redis:
-      host: ${REDIS_HOST:localhost}
-      port: ${REDIS_PORT:6379}
-      password: ${REDIS_PASSWORD}
+      host: ${REDIS.HOST:localhost}
+      port: ${REDIS.PORT:6379}
+      password: ${REDIS.PASSWORD}
 
 jwt:
   access-time: 3600000 # 1시간
   refresh-time: 2592000000 # 30일
   prefix: Bearer
   header: Authorization
-  secret-key: ${JWT_SECRET}
+  secret-key: ${JWT.SECRET}
 
 auth:
   google:
-    base-url: ${GOOGLE_BASE_URL}
-    client-id: ${GOOGLE_CLIENT}
-    redirect-url: ${GOOGLE_REDIRECT}
+    base-url: ${GOOGLE.BASE.URL}
+    client-id: ${GOOGLE.CLIENT}
+    redirect-url: ${GOOGLE.REDIRECT}
 
 nextcloud:
-  base-url: ${NEXTCLOUD_BASE_URL}
-  username: ${NEXTCLOUD_USERNAME}
-  password: ${NEXTCLOUD_PASSWORD}
+  base-url: ${NEXTCLOUD.BASE.URL}
+  username: ${NEXTCLOUD.USERNAME}
+  password: ${NEXTCLOUD.PASSWORD}

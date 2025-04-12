@@ -1,0 +1,22 @@
+services:
+  backend:
+    container_name: moiza-backend
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8081:8080"
+    volumes:
+      - gradle-cache:/home/gradle/.gradle
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    restart: always
+    networks:
+      - moiza-shared-net
+
+volumes:
+  gradle-cache:
+
+networks:
+  moiza-shared-net:
+    external: true

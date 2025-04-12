@@ -23,7 +23,7 @@ class GoogleAuthService(
 
         userRepository.findByEmail(email) ?: run {
             userRepository.save(User(
-                email, res.name, res.picture
+                email, res.name, BASIC_PROFILE_IMG
             ))
         }
 
@@ -31,5 +31,9 @@ class GoogleAuthService(
                 jwtTokenProvider.createAccessToken(email),
                 jwtTokenProvider.createRefreshToken(email)
         )
+    }
+
+    companion object {
+        private const val BASIC_PROFILE_IMG = "https://nas.anys.kro.kr/s/yAkCpDKXbbsHfZE/download"
     }
 }
