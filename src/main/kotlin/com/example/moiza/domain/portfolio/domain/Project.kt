@@ -19,7 +19,7 @@ class Project(
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long = 0L
 
-    @Column(columnDefinition = "VARCHAR(50)", nullable = false)
+    @Column(columnDefinition = "TEXT", nullable = false)
     var title: String = title
         protected set
 
