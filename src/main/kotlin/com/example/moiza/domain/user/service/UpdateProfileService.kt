@@ -20,7 +20,7 @@ class UpdateProfileService(
             request.enrollmentEndDate, request.job, request.company,
             request.introduce)
 
-        if (user.userStatus.level < UserStatus.PROFILE_INFO_UPDATED.level) {
+        if (user.userStatus.level <= UserStatus.PROFILE_INFO_UPDATED.level) {
             user.updateUserStatus(UserStatus.PROFILE_INFO_UPDATED)
         }
     }
